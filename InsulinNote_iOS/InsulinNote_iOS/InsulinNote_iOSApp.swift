@@ -10,9 +10,13 @@ import SwiftData
 
 @main
 struct InsulinNote_iOSApp: App {
-    var sharedModelContainer: ModelContainer = {
+    
+    //아직 사용 안함
+    /*
+    var InsulinModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            DefaultInsulin.self,
+            InsulinRecord.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -22,11 +26,14 @@ struct InsulinNote_iOSApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
-
+    */
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(sharedModelContainer)
+        .modelContainer(for:[
+            DefaultInsulin.self,
+            InsulinRecord.self
+        ])
     }
 }

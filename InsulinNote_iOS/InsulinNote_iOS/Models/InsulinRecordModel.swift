@@ -10,18 +10,18 @@ import SwiftData
 
 
 @Model
-class InsulinRecord{
+class InsulinRecordModel{
     @Attribute(.unique) var id: Int
-    var insulin: String
+    var insulin: DefaultInsulinModel
     var administion: Int
     var createdAt: Date
     var updatedAt: Date
     
-    init(id: Int, insulin: String, administion: Int, createdAt: Date, updatedAt: Date) {
+    init(id: Int, insulin: DefaultInsulinModel, administion: Int, createdAt: Date, updatedAt: Date) {
         self.id = id
         self.insulin = insulin
         self.administion = administion
-        self.createdAt = createdAt
+        self.createdAt = .now
         self.updatedAt = updatedAt
     }
 }

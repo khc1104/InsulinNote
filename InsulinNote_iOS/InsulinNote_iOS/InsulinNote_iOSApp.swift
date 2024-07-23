@@ -32,8 +32,8 @@ struct InsulinNote_iOSApp: App {
             ContentView()
         }
         .modelContainer(for:[
-            DefaultInsulin.self,
-            InsulinRecord.self
+            DefaultInsulinModel.self,
+            InsulinRecordModel.self
         ])
     }
 }

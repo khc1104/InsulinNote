@@ -21,6 +21,13 @@ struct ContentView: View {
                         icon: { Image(systemName: "house.fill") }
                     )
                 }
+            SetDefulatInsulinView()
+                .tabItem {
+                    Label(
+                        title: { Text("InsulinSetting") },
+                          icon: { Image(systemName: "syringe.fill") }
+                    )
+                }
         }
     }
 }

@@ -11,6 +11,7 @@ import SwiftData
 struct SetDefulatInsulinView: View {
     var insulin: DefaultInsulinModel?
     @State private var isSheetViewing: Bool = false
+    @State private var isAlertShowing: Bool = false
     
     @Environment(\.modelContext) var insulinContext
     @Query var insulinSettings: [DefaultInsulinModel]
@@ -35,7 +36,7 @@ struct SetDefulatInsulinView: View {
                                     Text("편집")
                                 }
                                 Button{
-                                    
+                                    removeButtonTapped()
                                 }label: {
                                     Text("삭제")
                                         .padding(.vertical, 8)
@@ -43,6 +44,19 @@ struct SetDefulatInsulinView: View {
                                         .background(.red)
                                         .foregroundStyle(.white)
                                         .background(in: .rect(cornerRadius: 8))
+                                }
+                                .alert(
+                                    Text("이 설정을 삭제 하시겠습니까?"),
+                                    isPresented: $isAlertShowing
+                                ){
+                                    Button("예"){
+                                        confirmRemoveButtonTapped(setting: setting)
+                                    }
+                                    Button("아니오"){
+                                        
+                                    }
+                                } message: {
+                                    Text("")
                                 }
                             }
                         }
@@ -64,8 +78,12 @@ struct SetDefulatInsulinView: View {
             })
         }
     }
-    private func remove(){
-        //데이터 삭제
+    private func removeButtonTapped(){
+        //삭제 버튼 탭했을때
+        isAlertShowing.toggle()
+    }
+    private func confirmRemoveButtonTapped(setting: DefaultInsulinModel){
+        insulinContext.delete(setting)
     }
 }
 

@@ -43,6 +43,7 @@ struct InsulinSettingColumnView: View {
             
         }
     }
+    
 }
 
 #Preview {

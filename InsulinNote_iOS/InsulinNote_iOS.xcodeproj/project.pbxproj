@@ -18,6 +18,7 @@
 		25E53F292C4B9066009DA024 /* SetDefulatInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F282C4B9066009DA024 /* SetDefulatInsulinView.swift */; };
 		25E53F2B2C4C11EB009DA024 /* AddInsulinSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F2A2C4C11EB009DA024 /* AddInsulinSettingView.swift */; };
 		25E53F2D2C4FF0D3009DA024 /* InsulinSettingColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F2C2C4FF0D3009DA024 /* InsulinSettingColumnView.swift */; };
+		25E53F762C514DD8009DA024 /* insulinSettingAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F752C514DD8009DA024 /* insulinSettingAlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		25E53F282C4B9066009DA024 /* SetDefulatInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefulatInsulinView.swift; sourceTree = "<group>"; };
 		25E53F2A2C4C11EB009DA024 /* AddInsulinSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsulinSettingView.swift; sourceTree = "<group>"; };
 		25E53F2C2C4FF0D3009DA024 /* InsulinSettingColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinSettingColumnView.swift; sourceTree = "<group>"; };
+		25E53F752C514DD8009DA024 /* insulinSettingAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insulinSettingAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				25E53F282C4B9066009DA024 /* SetDefulatInsulinView.swift */,
 				25E53F2A2C4C11EB009DA024 /* AddInsulinSettingView.swift */,
 				25E53F2C2C4FF0D3009DA024 /* InsulinSettingColumnView.swift */,
+				25E53F752C514DD8009DA024 /* insulinSettingAlertView.swift */,
 			);
 			path = SetDefualtInsulinView;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				25E53F262C4B8F4D009DA024 /* RecordInsulinView.swift in Sources */,
 				2525622E2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift in Sources */,
 				252562402C46956400F7ECA1 /* InsulinRecordModel.swift in Sources */,
+				25E53F762C514DD8009DA024 /* insulinSettingAlertView.swift in Sources */,
 				25E53F2D2C4FF0D3009DA024 /* InsulinSettingColumnView.swift in Sources */,
 				252562422C4697CC00F7ECA1 /* DefaultInsulinModel.swift in Sources */,
 			);

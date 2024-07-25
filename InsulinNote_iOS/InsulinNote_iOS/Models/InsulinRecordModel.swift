@@ -12,12 +12,12 @@ import SwiftData
 @Model
 class InsulinRecordModel{
     @Attribute(.unique) var id: UUID = UUID()
-    var insulin: DefaultInsulinModel
+    var insulin: InsulinSettingModel
     var administion: Int
     var createdAt: Date
     var updatedAt: Date
     
-    init(insulin: DefaultInsulinModel, administion: Int, createdAt: Date, updatedAt: Date) {
+    init(insulin: InsulinSettingModel, administion: Int, createdAt: Date, updatedAt: Date) {
         self.insulin = insulin
         self.administion = administion
         self.createdAt = .now

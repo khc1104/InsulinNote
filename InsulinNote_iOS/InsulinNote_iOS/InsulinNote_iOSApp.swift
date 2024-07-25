@@ -33,7 +33,7 @@ struct InsulinNote_iOSApp: App {
     init(){
         do{
             modelContainer = try ModelContainer(for:
-                                                    DefaultInsulinModel.self,
+                                                    InsulinSettingModel.self,
                                                 InsulinRecordModel.self
             )
         }catch{

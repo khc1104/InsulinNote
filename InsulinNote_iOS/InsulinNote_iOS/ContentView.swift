@@ -21,7 +21,7 @@ struct ContentView: View {
                         icon: { Image(systemName: "house.fill") }
                     )
                 }
-            SetDefulatInsulinView()
+            SetInsulinSettingView()
                 .tabItem {
                     Label(
                         title: { Text("InsulinSetting") },

@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class DefaultInsulinModel{
+class InsulinSettingModel{
     var insulinProductName: String
     var administration: Int
     var createdAt: Date

@@ -105,7 +105,7 @@ struct SetInsulinSettingView: View {
     let container = try! ModelContainer(for: InsulinSettingModel.self
                                         , configurations: config)
     for i in 1..<20{
-        let insulin = InsulinSettingModel(insulinProductName: "TestInsulin\(i)", administration: 55, updatedAt: .now)
+        let insulin = InsulinSettingModel(insulinProductName: "TestInsulin\(i)", administration: 55, records: [], updatedAt: .now)
         container.mainContext.insert(insulin)
     }
     

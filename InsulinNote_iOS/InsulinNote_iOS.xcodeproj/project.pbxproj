@@ -20,6 +20,11 @@
 		25E53F2D2C4FF0D3009DA024 /* InsulinSettingColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F2C2C4FF0D3009DA024 /* InsulinSettingColumnView.swift */; };
 		25E53F762C514DD8009DA024 /* insulinSettingAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F752C514DD8009DA024 /* insulinSettingAlertView.swift */; };
 		25E53F782C5282AA009DA024 /* UpdateInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F772C5282AA009DA024 /* UpdateInsulinView.swift */; };
+		25E53FC22C554F9B009DA024 /* InsulinNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FC12C554F9B009DA024 /* InsulinNameView.swift */; };
+		25E53FC42C554FDC009DA024 /* DefaultInsulinAdministrationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FC32C554FDC009DA024 /* DefaultInsulinAdministrationButton.swift */; };
+		25E53FC62C555027009DA024 /* NearDefaultAdministrationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FC52C555027009DA024 /* NearDefaultAdministrationButton.swift */; };
+		25E53FC82C5550D4009DA024 /* DirectInputAdministrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FC72C5550D4009DA024 /* DirectInputAdministrationView.swift */; };
+		25E53FCA2C55516A009DA024 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FC92C55516A009DA024 /* DatePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +42,11 @@
 		25E53F2C2C4FF0D3009DA024 /* InsulinSettingColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinSettingColumnView.swift; sourceTree = "<group>"; };
 		25E53F752C514DD8009DA024 /* insulinSettingAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insulinSettingAlertView.swift; sourceTree = "<group>"; };
 		25E53F772C5282AA009DA024 /* UpdateInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInsulinView.swift; sourceTree = "<group>"; };
+		25E53FC12C554F9B009DA024 /* InsulinNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinNameView.swift; sourceTree = "<group>"; };
+		25E53FC32C554FDC009DA024 /* DefaultInsulinAdministrationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInsulinAdministrationButton.swift; sourceTree = "<group>"; };
+		25E53FC52C555027009DA024 /* NearDefaultAdministrationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearDefaultAdministrationButton.swift; sourceTree = "<group>"; };
+		25E53FC72C5550D4009DA024 /* DirectInputAdministrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectInputAdministrationView.swift; sourceTree = "<group>"; };
+		25E53FC92C55516A009DA024 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +120,11 @@
 			children = (
 				25E53F232C4B8EFA009DA024 /* MainView.swift */,
 				25E53F252C4B8F4D009DA024 /* RecordInsulinView.swift */,
+				25E53FC12C554F9B009DA024 /* InsulinNameView.swift */,
+				25E53FC32C554FDC009DA024 /* DefaultInsulinAdministrationButton.swift */,
+				25E53FC52C555027009DA024 /* NearDefaultAdministrationButton.swift */,
+				25E53FC72C5550D4009DA024 /* DirectInputAdministrationView.swift */,
+				25E53FC92C55516A009DA024 /* DatePickerView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -197,15 +212,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				252562302C4538F700F7ECA1 /* ContentView.swift in Sources */,
+				25E53FC62C555027009DA024 /* NearDefaultAdministrationButton.swift in Sources */,
 				25E53F292C4B9066009DA024 /* SetInsulinSettingView.swift in Sources */,
 				25E53F2B2C4C11EB009DA024 /* AddInsulinSettingView.swift in Sources */,
 				25E53F782C5282AA009DA024 /* UpdateInsulinView.swift in Sources */,
+				25E53FC42C554FDC009DA024 /* DefaultInsulinAdministrationButton.swift in Sources */,
+				25E53FCA2C55516A009DA024 /* DatePickerView.swift in Sources */,
 				25E53F242C4B8EFA009DA024 /* MainView.swift in Sources */,
 				25E53F262C4B8F4D009DA024 /* RecordInsulinView.swift in Sources */,
 				2525622E2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift in Sources */,
 				252562402C46956400F7ECA1 /* InsulinRecordModel.swift in Sources */,
 				25E53F762C514DD8009DA024 /* insulinSettingAlertView.swift in Sources */,
+				25E53FC82C5550D4009DA024 /* DirectInputAdministrationView.swift in Sources */,
 				25E53F2D2C4FF0D3009DA024 /* InsulinSettingColumnView.swift in Sources */,
+				25E53FC22C554F9B009DA024 /* InsulinNameView.swift in Sources */,
 				252562422C4697CC00F7ECA1 /* InsulinSettingModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

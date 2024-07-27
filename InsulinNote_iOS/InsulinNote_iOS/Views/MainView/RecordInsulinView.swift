@@ -12,7 +12,11 @@ struct RecordInsulinView: View {
         ZStack{
             Rectangle()
                 .foregroundStyle(.gray)
-            Text("인슐린")
+            VStack{
+                Text("인슐린 이름")
+                Text("투여양")
+                Text("")
+            }
         }
     }
 }

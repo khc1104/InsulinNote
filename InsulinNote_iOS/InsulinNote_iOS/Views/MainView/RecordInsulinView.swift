@@ -9,7 +9,11 @@ import SwiftUI
 
 struct RecordInsulinView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            Rectangle()
+                .foregroundStyle(.gray)
+            Text("인슐린")
+        }
     }
 }
 

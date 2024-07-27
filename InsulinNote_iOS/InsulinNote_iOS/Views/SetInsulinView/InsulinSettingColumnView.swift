@@ -53,8 +53,8 @@ struct InsulinSettingColumnView: View {
                 .buttonStyle(BorderlessButtonStyle())
                 
             }
-            .frame(maxWidth: .infinity)
-        }
+            
+        }.frame(maxWidth: .infinity)
             
     }
     

@@ -8,10 +8,14 @@
 import SwiftUI
 import SwiftData
 
+//
+//투여기록 DateFomat 수정해서 정렬 잘 되게 수정해야 함
+//
+
 struct MainView: View {
     @Environment(\.modelContext) var insulinContext
     @Query var insulinSettings: [InsulinSettingModel]
-    
+    ㅇ
     @State var directInput: String = ""
     @State var date: Date = Date()
 
@@ -31,17 +35,34 @@ struct MainView: View {
                         .gridCellColumns(4)
                 }
                 GridRow{ //-1, +1, +2, +3
-                    NearDefaultAdministrationButton(addAdmin: -1)
-                    NearDefaultAdministrationButton(addAdmin: 1)
-                    NearDefaultAdministrationButton(addAdmin: 2)
-                    NearDefaultAdministrationButton(addAdmin: 3)
+                    NearDefaultAdministrationButton(
+                        administration: insulinSettings.first?.administration ?? 0,
+                        addAdmin: -1,
+                        setting: insulinSettings.first,
+                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
+                    NearDefaultAdministrationButton(
+                        administration: insulinSettings.first?.administration ?? 0,
+                        addAdmin: 1,
+                        setting: insulinSettings.first,
+                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
+                    NearDefaultAdministrationButton(
+                        administration: insulinSettings.first?.administration ?? 0,
+                        addAdmin: 2,
+                        setting: insulinSettings.first,
+                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
+                    NearDefaultAdministrationButton(
+                        administration: insulinSettings.first?.administration ?? 0,
+                        addAdmin: 3,
+                        setting: insulinSettings.first,
+                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
                 }
                 GridRow{ //직접입력
                     DirectInputAdministrationView()
                     
                 }
                 GridRow{ //시간 피커 default는 now
-                    DatePickerView()
+                    //DatePickerView()
+                    RecordsView()
                         .gridCellColumns(4)
                 }
                 GridRow{
@@ -61,10 +82,19 @@ struct MainView: View {
         
     }
     func createNewInsulinRecord(_ insulinSetting:InsulinSettingModel?, _ administration:Int){ //인슐린 설정의 기록 추가
+        print("저장 전: \(administration)")
         let record: InsulinRecordModel = InsulinRecordModel(administion: administration, createdAt: .now, updatedAt: .now)
+        print(record.administion)
         if let insulinSetting{
             insulinSetting.records.append(record)
-            print(insulinSettings.first?.records.last?.administion ?? [])
+            print(insulinSettings.first?.records.sorted{ (i:InsulinRecordModel, j: InsulinRecordModel) -> Bool in
+                return i.createdAt < i.updatedAt
+                
+            }.last?.administion ?? [])
+            print(insulinSettings.first?.records.sorted{ (i:InsulinRecordModel, j: InsulinRecordModel) -> Bool in
+                return i.createdAt < i.updatedAt
+                
+            }.last?.createdAt ?? [])
         }else{
             print("기록 추가 실패")
         }

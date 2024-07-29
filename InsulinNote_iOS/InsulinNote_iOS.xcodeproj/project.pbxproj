@@ -25,6 +25,7 @@
 		25E53FC62C555027009DA024 /* NearDefaultAdministrationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FC52C555027009DA024 /* NearDefaultAdministrationButton.swift */; };
 		25E53FC82C5550D4009DA024 /* DirectInputAdministrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FC72C5550D4009DA024 /* DirectInputAdministrationView.swift */; };
 		25E53FCA2C55516A009DA024 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FC92C55516A009DA024 /* DatePickerView.swift */; };
+		25E53FF22C57BA20009DA024 /* RecordsVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FF12C57BA20009DA024 /* RecordsVIew.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		25E53FC52C555027009DA024 /* NearDefaultAdministrationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearDefaultAdministrationButton.swift; sourceTree = "<group>"; };
 		25E53FC72C5550D4009DA024 /* DirectInputAdministrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectInputAdministrationView.swift; sourceTree = "<group>"; };
 		25E53FC92C55516A009DA024 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		25E53FF12C57BA20009DA024 /* RecordsVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsVIew.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				25E53FC52C555027009DA024 /* NearDefaultAdministrationButton.swift */,
 				25E53FC72C5550D4009DA024 /* DirectInputAdministrationView.swift */,
 				25E53FC92C55516A009DA024 /* DatePickerView.swift */,
+				25E53FF12C57BA20009DA024 /* RecordsVIew.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				25E53F262C4B8F4D009DA024 /* RecordInsulinView.swift in Sources */,
 				2525622E2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift in Sources */,
 				252562402C46956400F7ECA1 /* InsulinRecordModel.swift in Sources */,
+				25E53FF22C57BA20009DA024 /* RecordsVIew.swift in Sources */,
 				25E53F762C514DD8009DA024 /* insulinSettingAlertView.swift in Sources */,
 				25E53FC82C5550D4009DA024 /* DirectInputAdministrationView.swift in Sources */,
 				25E53F2D2C4FF0D3009DA024 /* InsulinSettingColumnView.swift in Sources */,

@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct InsulinNameView: View {
+    var insulinName:String = "인슐린 제품 명"
     var body: some View {
         ZStack{
             Rectangle()
                 .foregroundStyle(.mint)
-            Text("인슐린 이름")
+            Text(insulinName)
         }
     }
 }

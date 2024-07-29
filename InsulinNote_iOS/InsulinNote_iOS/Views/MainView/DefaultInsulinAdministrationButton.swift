@@ -8,20 +8,25 @@
 import SwiftUI
 
 struct DefaultInsulinAdministrationButton: View {
+    var administration: Int = 0
+    var setting :InsulinSettingModel?
+    
+    var createNewInsulinRecord: (InsulinSettingModel?, Int) -> ()
+    
     var body: some View {
         Button{
-            
+            createNewInsulinRecord(setting, administration)
         }label: {
             ZStack{
                 Rectangle()
                     .foregroundStyle(.indigo)
-                Text("인슐린 이름")
+                Text("\(administration)")
                     .foregroundStyle(.black)
             }
         }
     }
 }
 
-#Preview {
-    DefaultInsulinAdministrationButton()
-}
+//#Preview {
+//    DefaultInsulinAdministrationButton()
+//}

@@ -9,12 +9,17 @@ import Foundation
 import SwiftData
 
 @Model
-class InsulinSettingModel{
-    var insulinProductName: String
-    var administration: Int
-    var records: [InsulinRecordModel]
-    var createdAt: Date
-    var updatedAt: Date
+final class InsulinSettingModel: Identifiable{
+    @Attribute(.unique) var id: UUID = UUID() //id
+    
+    var insulinProductName: String //인슐린 제품 명
+    var administration: Int //기본 투여량
+    
+    @Relationship(deleteRule: .cascade)
+    var records: [InsulinRecordModel] //해당 설정으로 등록한 투여기록
+    
+    var createdAt: Date //생성시간
+    var updatedAt: Date //변경시간
     
     init(insulinProductName: String, administration: Int, records: [InsulinRecordModel], updatedAt: Date) {
         self.insulinProductName = insulinProductName

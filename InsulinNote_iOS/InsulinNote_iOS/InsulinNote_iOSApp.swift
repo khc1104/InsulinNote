@@ -32,10 +32,10 @@ struct InsulinNote_iOSApp: App {
     
     init(){
         do{
-            modelContainer = try ModelContainer(for:
-                                                    InsulinSettingModel.self,
-                                                InsulinRecordModel.self
-            )
+            modelContainer = try ModelContainer(for: InsulinSettingModel.self)
+            //let modelContext = ModelContext(modelContainer)
+            //try modelContext.delete(model: InsulinSettingModel.self)
+            
         }catch{
             fatalError("Could not initialize ModelContainer")
         }

@@ -10,11 +10,13 @@ import SwiftData
 
 
 @Model
-class InsulinRecordModel{
-    @Attribute(.unique) var id: UUID = UUID()
-    var administion: Int
-    var createdAt: Date
-    var updatedAt: Date
+class InsulinRecordModel: Identifiable{
+    @Attribute(.unique) var id: UUID = UUID() //id
+    
+    var administion: Int //투여양
+    
+    var createdAt: Date //생성시간
+    var updatedAt: Date //변경시간
     
     init(administion: Int, createdAt: Date, updatedAt: Date) {
         self.administion = administion

@@ -26,6 +26,7 @@
 		25E53FC82C5550D4009DA024 /* DirectInputAdministrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FC72C5550D4009DA024 /* DirectInputAdministrationView.swift */; };
 		25E53FCA2C55516A009DA024 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FC92C55516A009DA024 /* DatePickerView.swift */; };
 		25E53FF22C57BA20009DA024 /* RecordsVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FF12C57BA20009DA024 /* RecordsVIew.swift */; };
+		25E53FF42C5A58C0009DA024 /* SizePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FF32C5A58C0009DA024 /* SizePreferenceKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		25E53FC72C5550D4009DA024 /* DirectInputAdministrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectInputAdministrationView.swift; sourceTree = "<group>"; };
 		25E53FC92C55516A009DA024 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		25E53FF12C57BA20009DA024 /* RecordsVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsVIew.swift; sourceTree = "<group>"; };
+		25E53FF32C5A58C0009DA024 /* SizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePreferenceKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +86,9 @@
 				2525623E2C46954500F7ECA1 /* Views */,
 				2525623D2C46953D00F7ECA1 /* Models */,
 				2525622D2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift */,
-				2525622F2C4538F700F7ECA1 /* ContentView.swift */,
 				252562332C4538F800F7ECA1 /* Assets.xcassets */,
 				252562352C4538F800F7ECA1 /* Preview Content */,
+				25E53FF32C5A58C0009DA024 /* SizePreferenceKey.swift */,
 			);
 			path = InsulinNote_iOS;
 			sourceTree = "<group>";
@@ -111,6 +113,7 @@
 		2525623E2C46954500F7ECA1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2525622F2C4538F700F7ECA1 /* ContentView.swift */,
 				25E53F272C4B8FF5009DA024 /* SetInsulinView */,
 				25E53F222C4B8EE5009DA024 /* MainView */,
 			);
@@ -225,6 +228,7 @@
 				25E53F262C4B8F4D009DA024 /* RecordInsulinView.swift in Sources */,
 				2525622E2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift in Sources */,
 				252562402C46956400F7ECA1 /* InsulinRecordModel.swift in Sources */,
+				25E53FF42C5A58C0009DA024 /* SizePreferenceKey.swift in Sources */,
 				25E53FF22C57BA20009DA024 /* RecordsVIew.swift in Sources */,
 				25E53F762C514DD8009DA024 /* insulinSettingAlertView.swift in Sources */,
 				25E53FC82C5550D4009DA024 /* DirectInputAdministrationView.swift in Sources */,

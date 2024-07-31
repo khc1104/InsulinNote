@@ -17,92 +17,42 @@ struct MainView: View {
     @Query var insulinSettings: [InsulinSettingModel]
     
     @State var directInput: String = ""
-    @State var date: Date = Date()
+    @State var date: Date = .now
     
+    //UIScreen.main을 사용할 수 없어서 대체로 사용 할 수 있는 코드
+    let window = UIApplication.shared.connectedScenes.first as? UIWindowScene
+    @State var windowWidth : CGFloat?
     
     var body: some View {
-        //GeometryReader{ geometry in
-        Grid{
-            GridRow{ //인슐린 이름
-                InsulinNameView(insulinName: insulinSettings.first?.insulinProductName ?? "오류")
-                    .gridCellColumns(4)
+        ScrollView(.horizontal){
+            HStack(spacing:0){
+                RecordInsulinView()
+                    .frame(width: windowWidth)
+                    .background(.blue, in: .rect)
+                    //.frame(width: geometry.size.width)
+                    //.containerRelativeFrame([.horizontal])
+                RecordInsulinView()
+                    .frame(width: windowWidth)
+                    .background(.red, in: .rect)
+                    //.containerRelativeFrame([.horizontal])
+                RecordInsulinView()
+                    .background(.blue, in: .rect)
+                    .frame(width: windowWidth)
+                    //.containerRelativeFrame([.horizontal])
             }
-            GridRow{ //기본 투여양
-                DefaultInsulinAdministrationButton(
-                    administration: insulinSettings.first?.administration ?? 0,
-                    setting: insulinSettings.first, createNewInsulinRecord: createNewInsulinRecord(_:_:)
-                )
-                .gridCellColumns(4)
-            }
-            GridRow{ //-1, +1, +2, +3
-                NearDefaultAdministrationButton(
-                    administration: insulinSettings.first?.administration ?? 0,
-                    addAdmin: -1,
-                    setting: insulinSettings.first,
-                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
-                NearDefaultAdministrationButton(
-                    administration: insulinSettings.first?.administration ?? 0,
-                    addAdmin: 1,
-                    setting: insulinSettings.first,
-                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
-                NearDefaultAdministrationButton(
-                    administration: insulinSettings.first?.administration ?? 0,
-                    addAdmin: 2,
-                    setting: insulinSettings.first,
-                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
-                NearDefaultAdministrationButton(
-                    administration: insulinSettings.first?.administration ?? 0,
-                    addAdmin: 3,
-                    setting: insulinSettings.first,
-                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
-            }
-            GridRow{ //직접입력
-                DirectInputAdministrationView(
-                    directInput: $directInput,
-                    setting: insulinSettings.first,
-                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
-                
-            }
-            GridRow{ //시간 피커 default는 now
-                //DatePickerView()
-                RecordsView()
-                    .gridCellColumns(4)
-            }
-            GridRow{
-                HStack(alignment: .center){
-                    Circle()
-                    Circle()
-                    Circle()
-                }
-                .frame(height: 8)
-                .gridCellColumns(4)
-            }
-            
+            .scrollTargetLayout()
         }
-        .padding()
-        //.frame(maxWidth: geometry.size.width * 0.9)
-        //}
-        
-    }
-    func createNewInsulinRecord(_ insulinSetting:InsulinSettingModel?, _ administration:Int){ //인슐린 설정의 기록 추가
-        print("저장 전: \(administration)")
-        let record: InsulinRecordModel = InsulinRecordModel(administion: administration, createdAt: .now, updatedAt: .now)
-        print(record.administion)
-        if let insulinSetting{
-            insulinSetting.records.append(record)
-            print(insulinSettings.first?.records.sorted{ (i:InsulinRecordModel, j: InsulinRecordModel) -> Bool in
-                return i.createdAt < i.updatedAt
-                
-            }.last?.administion ?? [])
-            print(insulinSettings.first?.records.sorted{ (i:InsulinRecordModel, j: InsulinRecordModel) -> Bool in
-                return i.createdAt < i.updatedAt
-                
-            }.last?.createdAt ?? [])
-        }else{
-            print("기록 추가 실패")
+        .scrollIndicators(.hidden)
+        .scrollTargetBehavior(.paging)
+        .onAppear{
+            windowWidth = window?.screen.bounds.width ?? .zero
         }
     }
+    
+    
 }
+
+
 
 #Preview {
     

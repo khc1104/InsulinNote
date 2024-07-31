@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DatePickerView: View {
-    @State var date: Date = Date()
+    @Binding var date: Date
     var body: some View {
         ZStack{
             Rectangle()
@@ -19,6 +19,3 @@ struct DatePickerView: View {
     }
 }
 
-#Preview {
-    DatePickerView()
-}

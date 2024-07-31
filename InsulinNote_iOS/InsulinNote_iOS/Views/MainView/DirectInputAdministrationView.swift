@@ -20,7 +20,7 @@ struct DirectInputAdministrationView: View {
             TextField("투여량 직접입력", text: $directInput)
                 .foregroundStyle(.black)
         }
-        .gridCellColumns(2)
+        .gridCellColumns(3)
         Button{
             if !directInput.isEmpty{
                 createNewInsulinRecord(setting, Int(directInput) ?? setting?.administration ?? 0)
@@ -34,6 +34,6 @@ struct DirectInputAdministrationView: View {
                     .foregroundStyle(.black)
             }
         }
-        .gridCellColumns(2)
+        .gridCellColumns(1)
     }
 }

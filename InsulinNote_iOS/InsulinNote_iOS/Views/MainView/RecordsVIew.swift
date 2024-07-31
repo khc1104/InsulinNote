@@ -15,7 +15,7 @@ struct RecordsView: View{
     var body: some View{
         ScrollView{
             ForEach((insulinSettings.first?.records.sorted{ (i:InsulinRecordModel, j: InsulinRecordModel) -> Bool in
-                return i.createdAt < i.updatedAt
+                return i.createdAt.compare(j.createdAt) == .orderedDescending
             }) ?? []){record in
                 Text("투여량: \(record.administion), createdAt: \(record.createdAt)")
             }

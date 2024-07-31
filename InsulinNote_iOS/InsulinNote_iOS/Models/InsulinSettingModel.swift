@@ -22,6 +22,8 @@ final class InsulinSettingModel: Identifiable{
     var updatedAt: Date //변경시간
     
     init(insulinProductName: String, administration: Int, records: [InsulinRecordModel], updatedAt: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm a"
         self.insulinProductName = insulinProductName
         self.administration = administration
         self.records = records

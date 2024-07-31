@@ -15,69 +15,72 @@ import SwiftData
 struct MainView: View {
     @Environment(\.modelContext) var insulinContext
     @Query var insulinSettings: [InsulinSettingModel]
-    ㅇ
+    
     @State var directInput: String = ""
     @State var date: Date = Date()
-
+    
     
     var body: some View {
         //GeometryReader{ geometry in
-            Grid{
-                GridRow{ //인슐린 이름
-                    InsulinNameView(insulinName: insulinSettings.first?.insulinProductName ?? "오류")
-                        .gridCellColumns(4)
-                }
-                GridRow{ //기본 투여양
-                    DefaultInsulinAdministrationButton(
-                        administration: insulinSettings.first?.administration ?? 0,
-                        setting: insulinSettings.first, createNewInsulinRecord: createNewInsulinRecord(_:_:)
-                    )
-                        .gridCellColumns(4)
-                }
-                GridRow{ //-1, +1, +2, +3
-                    NearDefaultAdministrationButton(
-                        administration: insulinSettings.first?.administration ?? 0,
-                        addAdmin: -1,
-                        setting: insulinSettings.first,
-                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
-                    NearDefaultAdministrationButton(
-                        administration: insulinSettings.first?.administration ?? 0,
-                        addAdmin: 1,
-                        setting: insulinSettings.first,
-                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
-                    NearDefaultAdministrationButton(
-                        administration: insulinSettings.first?.administration ?? 0,
-                        addAdmin: 2,
-                        setting: insulinSettings.first,
-                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
-                    NearDefaultAdministrationButton(
-                        administration: insulinSettings.first?.administration ?? 0,
-                        addAdmin: 3,
-                        setting: insulinSettings.first,
-                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
-                }
-                GridRow{ //직접입력
-                    DirectInputAdministrationView()
-                    
-                }
-                GridRow{ //시간 피커 default는 now
-                    //DatePickerView()
-                    RecordsView()
-                        .gridCellColumns(4)
-                }
-                GridRow{
-                    HStack(alignment: .center){
-                        Circle()
-                        Circle()
-                        Circle()
-                    }
-                    .frame(height: 8)
+        Grid{
+            GridRow{ //인슐린 이름
+                InsulinNameView(insulinName: insulinSettings.first?.insulinProductName ?? "오류")
                     .gridCellColumns(4)
-                }
+            }
+            GridRow{ //기본 투여양
+                DefaultInsulinAdministrationButton(
+                    administration: insulinSettings.first?.administration ?? 0,
+                    setting: insulinSettings.first, createNewInsulinRecord: createNewInsulinRecord(_:_:)
+                )
+                .gridCellColumns(4)
+            }
+            GridRow{ //-1, +1, +2, +3
+                NearDefaultAdministrationButton(
+                    administration: insulinSettings.first?.administration ?? 0,
+                    addAdmin: -1,
+                    setting: insulinSettings.first,
+                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
+                NearDefaultAdministrationButton(
+                    administration: insulinSettings.first?.administration ?? 0,
+                    addAdmin: 1,
+                    setting: insulinSettings.first,
+                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
+                NearDefaultAdministrationButton(
+                    administration: insulinSettings.first?.administration ?? 0,
+                    addAdmin: 2,
+                    setting: insulinSettings.first,
+                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
+                NearDefaultAdministrationButton(
+                    administration: insulinSettings.first?.administration ?? 0,
+                    addAdmin: 3,
+                    setting: insulinSettings.first,
+                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
+            }
+            GridRow{ //직접입력
+                DirectInputAdministrationView(
+                    directInput: $directInput,
+                    setting: insulinSettings.first,
+                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
                 
             }
-            .padding()
-            //.frame(maxWidth: geometry.size.width * 0.9)
+            GridRow{ //시간 피커 default는 now
+                //DatePickerView()
+                RecordsView()
+                    .gridCellColumns(4)
+            }
+            GridRow{
+                HStack(alignment: .center){
+                    Circle()
+                    Circle()
+                    Circle()
+                }
+                .frame(height: 8)
+                .gridCellColumns(4)
+            }
+            
+        }
+        .padding()
+        //.frame(maxWidth: geometry.size.width * 0.9)
         //}
         
     }
@@ -115,5 +118,5 @@ struct MainView: View {
     }
     
     return MainView().modelContainer(container)
-     
+    
 }

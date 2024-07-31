@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct DirectInputAdministrationView: View {
-    @State var directInput: String = ""
+    @Binding var directInput: String
+    
+    var setting :InsulinSettingModel?
+    
+    var createNewInsulinRecord: (InsulinSettingModel?, Int) -> ()
     var body: some View {
         ZStack(alignment:.center){
             Rectangle()
@@ -18,19 +22,18 @@ struct DirectInputAdministrationView: View {
         }
         .gridCellColumns(2)
         Button{
-            
+            if !directInput.isEmpty{
+                createNewInsulinRecord(setting, Int(directInput) ?? setting?.administration ?? 0)
+                directInput = ""
+            }
         }label: {
             ZStack{
                 Rectangle()
                     .foregroundStyle(.yellow)
-                Text("+3")
+                Text("추가")
                     .foregroundStyle(.black)
             }
         }
         .gridCellColumns(2)
     }
-}
-
-#Preview {
-    DirectInputAdministrationView()
 }

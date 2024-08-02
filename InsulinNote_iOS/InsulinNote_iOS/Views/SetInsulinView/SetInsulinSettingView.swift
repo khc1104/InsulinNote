@@ -11,9 +11,10 @@ import SwiftData
 struct SetInsulinSettingView: View {
 
     @Environment(\.modelContext) var insulinContext
-    @Query var insulinSettings: [InsulinSettingModel]
+    @Query(sort: \InsulinSettingModel.createdAt) var insulinSettings: [InsulinSettingModel]
     
     @State var selectedInsulin: InsulinSettingModel?
+    @State var removeSelectedInsulin: InsulinSettingModel?
     
     @State private var isSheetViewing: Bool = false
     @State private var isAlertShowing: Bool = false
@@ -29,25 +30,26 @@ struct SetInsulinSettingView: View {
                                 UpdateInsulinView(setting: setting, selectedInsulin: $selectedInsulin)
                             }else{
                                 InsulinSettingColumnView(setting: setting, selectedInsulin: $selectedInsulin){
-                                    removeButtonTapped()
+                                    removeButtonTapped(setting: setting)
                                 }
                             }
                         }
-                        .alert(
-                            Text("이 설정을 삭제 하시겠습니까?"),
-                            isPresented: $isAlertShowing
-                        ){
-                            Button("예"){
-                                confirmRemoveButtonTapped(setting: setting)
-                            }
-                            Button("아니오"){
-                                
-                            }
-                        } message: {
-                            Text("")
-                        }
+                        
                         Divider()
                     }
+                }
+                .alert(
+                    Text("이 설정을 삭제 하시겠습니까?"),
+                    isPresented: $isAlertShowing
+                ){
+                    Button("예"){
+                        confirmRemoveButtonTapped()
+                    }
+                    Button("아니오"){
+                        
+                    }
+                } message: {
+                    Text("")
                 }
                 
             }
@@ -88,12 +90,18 @@ struct SetInsulinSettingView: View {
         print(selectedInsulin?.insulinProductName ?? "없어짐")
     }
     
-    func removeButtonTapped(){
+    func removeButtonTapped(setting: InsulinSettingModel){
         //삭제 버튼 탭 했을 때
+        removeSelectedInsulin = setting
         isAlertShowing.toggle()
+        
     }
-    func confirmRemoveButtonTapped( setting: InsulinSettingModel){
-        insulinContext.delete(setting)
+    func confirmRemoveButtonTapped(){
+        if removeSelectedInsulin != nil{
+            insulinContext.delete(removeSelectedInsulin!)
+        }else{
+            fatalError()
+        }
     }
 }
 
@@ -104,6 +112,7 @@ struct SetInsulinSettingView: View {
     let container = try! ModelContainer(for: InsulinSettingModel.self)
     for i in 1..<20{
         let insulin = InsulinSettingModel(insulinProductName: "TestInsulin\(i)", administration: 55, records: [], updatedAt: .now)
+
         container.mainContext.insert(insulin)
     }
     

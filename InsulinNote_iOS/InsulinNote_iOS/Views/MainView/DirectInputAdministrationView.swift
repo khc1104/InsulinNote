@@ -19,6 +19,7 @@ struct DirectInputAdministrationView: View {
                 .foregroundStyle(.orange)
             TextField("투여량 직접입력", text: $directInput)
                 .foregroundStyle(.black)
+                .padding(.leading, 10)
         }
         .gridCellColumns(3)
         Button{

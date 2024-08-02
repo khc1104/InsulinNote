@@ -10,61 +10,71 @@ import SwiftData
 
 struct RecordInsulinView: View {
     @Environment(\.modelContext) var insulinContext
-    @Query var insulinSettings: [InsulinSettingModel]
+    //@Query var insulinSettings: [InsulinSettingModel]
+    
+    var insulinSetting: InsulinSettingModel
     
     @State var directInput: String = ""
     @State var date: Date = .now
     
-    
+    @State var showRecords: Bool = false
     var body: some View {
         //GeometryReader{ geometry in
         Grid{
             GridRow{ //인슐린 이름
-                InsulinNameView(insulinName: insulinSettings.first?.insulinProductName ?? "오류")
+                InsulinNameView(insulinName: insulinSetting.insulinProductName)
                     .gridCellColumns(4)
             }
             GridRow{ //기본 투여양
                 DefaultInsulinAdministrationButton(
-                    administration: insulinSettings.first?.administration ?? 0,
-                    setting: insulinSettings.first, createNewInsulinRecord: createNewInsulinRecord(_:_:)
+                    administration: insulinSetting.administration,
+                    setting: insulinSetting, createNewInsulinRecord: createNewInsulinRecord(_:_:)
                 )
                 .gridCellColumns(4)
             }
             GridRow{ //-1, +1, +2, +3
                 NearDefaultAdministrationButton(
-                    administration: insulinSettings.first?.administration ?? 0,
+                    administration: insulinSetting.administration,
                     addAdmin: -1,
-                    setting: insulinSettings.first,
+                    setting: insulinSetting,
                     createNewInsulinRecord: createNewInsulinRecord(_:_:))
                 NearDefaultAdministrationButton(
-                    administration: insulinSettings.first?.administration ?? 0,
+                    administration: insulinSetting.administration,
                     addAdmin: 1,
-                    setting: insulinSettings.first,
+                    setting: insulinSetting,
                     createNewInsulinRecord: createNewInsulinRecord(_:_:))
                 NearDefaultAdministrationButton(
-                    administration: insulinSettings.first?.administration ?? 0,
+                    administration: insulinSetting.administration,
                     addAdmin: 2,
-                    setting: insulinSettings.first,
+                    setting: insulinSetting,
                     createNewInsulinRecord: createNewInsulinRecord(_:_:))
                 NearDefaultAdministrationButton(
-                    administration: insulinSettings.first?.administration ?? 0,
+                    administration: insulinSetting.administration,
                     addAdmin: 3,
-                    setting: insulinSettings.first,
+                    setting: insulinSetting,
                     createNewInsulinRecord: createNewInsulinRecord(_:_:))
             }
             GridRow{ //직접입력
                 DirectInputAdministrationView(
                     directInput: $directInput,
-                    setting: insulinSettings.first,
+                    setting: insulinSetting,
                     createNewInsulinRecord: createNewInsulinRecord(_:_:))
                 
             }
             GridRow{ //기록 보러 가기
-                ZStack{
-                    Rectangle().foregroundStyle(.green)
-                    Text("기록들 보러 가기버튼(예정)")
+                Button{
+                    showRecords.toggle()
+                }label:{
+                    ZStack{
+                        Rectangle().foregroundStyle(.green)
+                        Text("기록들 보러 가기버튼(예정)")
+                    }
                 }
                 .gridCellColumns(4)
+                
+            }
+            .navigationDestination(isPresented: $showRecords) {
+                RecordsView(insulinSetting: insulinSetting)
             }
 //            GridRow{
 //                HStack(alignment: .center){
@@ -103,6 +113,7 @@ struct RecordInsulinView: View {
         
     }
     
-    return RecordInsulinView().modelContainer(container)
+    return RecordInsulinView(insulinSetting: InsulinSettingModel(insulinProductName: "dd", administration: 12, records: [], updatedAt: .now))
+        .modelContainer(container)
     
 }

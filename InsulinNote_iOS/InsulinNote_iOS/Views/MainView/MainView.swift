@@ -24,28 +24,22 @@ struct MainView: View {
     @State var windowWidth : CGFloat?
     
     var body: some View {
-        ScrollView(.horizontal){
-            HStack(spacing:0){
-                RecordInsulinView()
-                    .frame(width: windowWidth)
-                    .background(.blue, in: .rect)
-                    //.frame(width: geometry.size.width)
-                    //.containerRelativeFrame([.horizontal])
-                RecordInsulinView()
-                    .frame(width: windowWidth)
-                    .background(.red, in: .rect)
-                    //.containerRelativeFrame([.horizontal])
-                RecordInsulinView()
-                    .background(.blue, in: .rect)
-                    .frame(width: windowWidth)
-                    //.containerRelativeFrame([.horizontal])
+        NavigationStack{
+            ScrollView(.horizontal){
+                HStack(spacing:0){
+                    ForEach(insulinSettings){ setting in
+                        RecordInsulinView(insulinSetting: setting)
+                            .frame(width: windowWidth)
+                            .background(.blue, in: .rect)
+                    }
+                }
+                .scrollTargetLayout()
             }
-            .scrollTargetLayout()
-        }
-        .scrollIndicators(.hidden)
-        .scrollTargetBehavior(.paging)
-        .onAppear{
-            windowWidth = window?.screen.bounds.width ?? .zero
+            .scrollIndicators(.hidden)
+            .scrollTargetBehavior(.paging)
+            .onAppear{
+                windowWidth = window?.screen.bounds.width ?? .zero
+            }
         }
     }
     

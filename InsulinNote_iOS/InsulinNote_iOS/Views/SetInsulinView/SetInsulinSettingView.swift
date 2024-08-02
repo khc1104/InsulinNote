@@ -67,7 +67,6 @@ struct SetInsulinSettingView: View {
                 AddInsulinSettingView(isSheetViewing: $isSheetViewing)
             }
         }
-        
     }
     
     func addButtonTapped(){
@@ -109,11 +108,11 @@ struct SetInsulinSettingView: View {
 
 
 #Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: InsulinSettingModel.self
-                                        , configurations: config)
-    for i in 1..<5{
-        let insulin = InsulinSettingModel(insulinProductName: "TestInsulin\(i)", administration: 55, updatedAt: .now)
+    //let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: InsulinSettingModel.self)
+    for i in 1..<20{
+        let insulin = InsulinSettingModel(insulinProductName: "TestInsulin\(i)", administration: 55, records: [], updatedAt: .now)
+
         container.mainContext.insert(insulin)
     }
     

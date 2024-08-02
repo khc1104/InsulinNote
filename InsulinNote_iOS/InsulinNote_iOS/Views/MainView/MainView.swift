@@ -25,18 +25,16 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack{
-            ScrollView(.horizontal){
-                HStack(spacing:0){
-                    ForEach(insulinSettings){ setting in
+            TabView{
+                ForEach(insulinSettings){ setting in
+                    VStack{
                         RecordInsulinView(insulinSetting: setting)
                             .frame(width: windowWidth)
                             .background(.blue, in: .rect)
                     }
                 }
-                .scrollTargetLayout()
             }
-            .scrollIndicators(.hidden)
-            .scrollTargetBehavior(.paging)
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
             .onAppear{
                 windowWidth = window?.screen.bounds.width ?? .zero
             }

@@ -26,7 +26,3 @@ struct DefaultInsulinAdministrationButton: View {
         }
     }
 }
-
-//#Preview {
-//    DefaultInsulinAdministrationButton()
-//}

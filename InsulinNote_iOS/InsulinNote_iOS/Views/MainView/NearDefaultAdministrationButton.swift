@@ -16,7 +16,6 @@ struct NearDefaultAdministrationButton: View {
     var createNewInsulinRecord: (InsulinSettingModel?, Int) -> ()
     var body: some View {
         Button{
-            print("버튼 \(administration) + \(addAdmin)")
             createNewInsulinRecord(setting, (administration + addAdmin))
         }label: {
             ZStack{
@@ -25,11 +24,8 @@ struct NearDefaultAdministrationButton: View {
                 Text("\(addAdmin < 0 ? "" : "+")\(addAdmin)")
                     .foregroundStyle(.black)
             }
-            //.aspectRatio(CGSize(width: 1, height: 1), contentMode: .fill)
+            
         }
     }
 }
-//
-//#Preview {
-//    NearDefaultAdministrationButton()
-//}
+

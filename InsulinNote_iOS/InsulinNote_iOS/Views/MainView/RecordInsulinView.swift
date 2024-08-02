@@ -76,15 +76,7 @@ struct RecordInsulinView: View {
             .navigationDestination(isPresented: $showRecords) {
                 RecordsView(insulinSetting: insulinSetting)
             }
-//            GridRow{
-//                HStack(alignment: .center){
-//                    Circle()
-//                    Circle()
-//                    Circle()
-//                }
-//                .frame(height: 8)
-//                .gridCellColumns(4)
-//            }
+
             
         }
         .padding()

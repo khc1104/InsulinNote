@@ -20,7 +20,7 @@ class InsulinRecordModel: Identifiable{
     
     init(administion: Int, createdAt: Date, updatedAt: Date) {
         self.administion = administion
-        self.createdAt = .now
+        self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
 }

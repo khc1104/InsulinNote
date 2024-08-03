@@ -77,7 +77,6 @@ struct RecordInsulinView: View {
                 RecordsView(insulinSetting: insulinSetting)
             }
 
-            
         }
         .padding()
         

@@ -8,13 +8,15 @@
 
 ## 개발 환경
 1. Xcode Version 15.4
-2. iOS 17.5(시뮬레이터 아이폰 15 Pro)
-3. iOS 17.1.1(아이폰 12 mini)
+1. iOS 17.5(시뮬레이터 아이폰 15 Pro)
+1. iOS 17.1.1(아이폰 12 mini)
 
 ## 개발할 기능
-1. 인슐린 투여양 기록
-2. 평소 투여하는 양을 설정 및 저장
-3. 인슐린 투여 기록을 종합하여 다음 처방받을 펜 or 바이알의 개수 계산
-4. 위젯 기능을 사용하여 홈 화면에서 터치 한번으로 인슐린 투여양을 기록
+1. 인슐린 투여 기록을 종합하여 다음 처방받을 펜 or 바이알의 개수 계산
+1. 위젯 기능을 사용하여 홈 화면에서 터치 한번으로 인슐린 투여양을 기록
 
 ## 개발한 기능
+|평소 투여하는 양 설정하는 페이지|인슐린 투여량 기록 페이지|
+|------------------------|-------------------|
+|![Simulator Screen Recording - iPhone 15 Pro - 2024-08-03 at 16 53 01](https://github.com/user-attachments/assets/9b38c068-91df-431f-96ba-d72e961fe553)|![Simulator Screen Recording - iPhone 15 Pro - 2024-08-03 at 17 00 41](https://github.com/user-attachments/assets/cd91d595-5130-4e8f-b45a-634dbf296443)|
+

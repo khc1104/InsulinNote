@@ -10,7 +10,9 @@ import SwiftUI
 struct InsulinSettingColumnView: View {
     var setting: InsulinSettingModel
     
-    @Binding var selectedInsulin : InsulinSettingModel?
+    @Binding var selectedInsulin: InsulinSettingModel?
+    
+    @State private var isGetProductSheetShowing: Bool = false
 
     var removeButtonTapped: () -> ()
     
@@ -29,12 +31,18 @@ struct InsulinSettingColumnView: View {
                 Button{
                     
                 }label: {
-                    ZStack{
-                        Rectangle()
-                            .foregroundStyle(.mint)
-                        Text("제품 수 환산")
-                            .foregroundStyle(.black)
+                    Button{
+                        isGetProductSheetShowing.toggle()
+                    }label: {
+                        ZStack{
+                            Rectangle()
+                                .foregroundStyle(.mint)
+                            Text("제품 수 환산")
+                                .padding(.horizontal, 2)
+                                .foregroundStyle(.black)
+                        }
                     }
+                    
                 }
                 .gridCellColumns(1)
             }
@@ -73,7 +81,11 @@ struct InsulinSettingColumnView: View {
                 
             }
             
-        }.frame(maxWidth: .infinity)
+        }
+        .frame(maxWidth: .infinity)
+        .sheet(isPresented: $isGetProductSheetShowing, content: {
+            HowManyGetProductView(records: setting.records)
+        })
             
     }
     

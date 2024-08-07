@@ -12,14 +12,9 @@ struct HowManyGetProductView: View {
     @State var unitsOfProduct: String = "300"
     var records: [InsulinRecordModel]
     
-//    private var testRecords: [InsulinRecordModel]{
-//        return records.filter{
-//            $0.createdAt > (Calendar.current.date(byAdding: .month, value: -(Int(months) ?? 6), to: Date()) ?? .now)
-//        }
-//    }
+
     
     private var administration: Int{
-        //var admin: Int = 0
         return records.filter{
             $0.createdAt > (Calendar.current.date(byAdding: .month, value: -(Int(months) ?? 6), to: .now) ?? .now)
         }.reduce(0){
@@ -39,6 +34,7 @@ struct HowManyGetProductView: View {
                 VStack{
                     Text("개월 수")
                     TextField("개월 수를 입력", text: $months)
+                        .textFieldStyle(.roundedBorder)
                         .padding()
                 }
             }
@@ -48,6 +44,8 @@ struct HowManyGetProductView: View {
                 VStack{
                     Text("제품 단위 수")
                     TextField("단위 수를 입력", text: $unitsOfProduct)
+                        .textFieldStyle(.roundedBorder)
+                        .padding()
                 }
             }
             ZStack{
@@ -62,11 +60,7 @@ struct HowManyGetProductView: View {
             }
         }
         
-//        Text("\((Calendar.current.date(byAdding: .month, value: (Int(months) ?? 6), to: Date()) ?? .now))")
-//        List(testRecords){record in
-//            Text("\(record.administion)")
-//            Text("\(record.createdAt)")
-//        }
+
     }
 }
 
@@ -77,10 +71,6 @@ struct HowManyGetProductView: View {
 
     for i in 0..<720{
         dateCompo.weekOfYear = -i
-//        let record = InsulinRecordModel(
-//            administion: i,
-//            createdAt: Calendar.current.date(byAdding: .day, value: -i*10, to: Date())!,
-//            updatedAt: .now)
         let record = InsulinRecordModel(
             administion: 17,
             createdAt: Calendar.current.date(byAdding: .day, value: -1, to: Date())!,

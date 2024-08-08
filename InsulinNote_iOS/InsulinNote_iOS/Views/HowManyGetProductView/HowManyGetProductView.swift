@@ -7,13 +7,18 @@
 
 import SwiftUI
 
+enum TextFieldFocus{
+    case month
+    case units
+}
+
 struct HowManyGetProductView: View {
     @State var months: String = "6"
     @State var unitsOfProduct: String = "300"
     var records: [InsulinRecordModel]
     
-
     
+    @FocusState var textFieldFocus: TextFieldFocus?
     private var administration: Int{
         return records.filter{
             $0.createdAt > (Calendar.current.date(byAdding: .month, value: -(Int(months) ?? 6), to: .now) ?? .now)
@@ -23,28 +28,33 @@ struct HowManyGetProductView: View {
     
     }
     private var productNumber: Int {
-        administration/(Int(unitsOfProduct) ?? 300)
+        let unitsOfProductDouble = Double(unitsOfProduct) ?? 1
+        return Int(ceil(Double(administration)/unitsOfProductDouble))
     }
     
     var body: some View {
         VStack{
             ZStack{
                 Rectangle()
-                    .foregroundStyle(.green)
+                    .foregroundStyle(.gray)
                 VStack{
                     Text("개월 수")
                     TextField("개월 수를 입력", text: $months)
+                        .keyboardType(.numberPad)
                         .textFieldStyle(.roundedBorder)
+                        .focused($textFieldFocus, equals: .month)
                         .padding()
                 }
             }
             ZStack{
                 Rectangle()
-                    .foregroundStyle(.green)
+                    .foregroundStyle(.gray)
                 VStack{
                     Text("제품 단위 수")
                     TextField("단위 수를 입력", text: $unitsOfProduct)
+                        .keyboardType(.numberPad)
                         .textFieldStyle(.roundedBorder)
+                        .focused($textFieldFocus, equals: .units)
                         .padding()
                 }
             }
@@ -59,6 +69,9 @@ struct HowManyGetProductView: View {
                 Text("\(unitsOfProduct)단위 펜(바이알) 개수: \(productNumber)")
             }
         }
+        .onTapGesture {
+            textFieldFocus = nil
+        }
         
 
     }
@@ -72,7 +85,7 @@ struct HowManyGetProductView: View {
     for i in 0..<720{
         dateCompo.weekOfYear = -i
         let record = InsulinRecordModel(
-            administion: 17,
+            administion: 1,
             createdAt: Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
             updatedAt: .now)
         tempRecords.append(record)

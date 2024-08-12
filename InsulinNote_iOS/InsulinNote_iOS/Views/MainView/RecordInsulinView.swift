@@ -20,66 +20,67 @@ struct RecordInsulinView: View {
     @State var showRecords: Bool = false
     var body: some View {
         //GeometryReader{ geometry in
-        Grid{
-            GridRow{ //인슐린 이름
-                InsulinNameView(insulinName: insulinSetting.insulinProductName)
-                    .gridCellColumns(4)
-            }
-            GridRow{ //기본 투여양
-                DefaultInsulinAdministrationButton(
-                    administration: insulinSetting.administration,
-                    setting: insulinSetting, createNewInsulinRecord: createNewInsulinRecord(_:_:)
-                )
-                .gridCellColumns(4)
-            }
-            GridRow{ //-1, +1, +2, +3
-                NearDefaultAdministrationButton(
-                    administration: insulinSetting.administration,
-                    addAdmin: -1,
-                    setting: insulinSetting,
-                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
-                NearDefaultAdministrationButton(
-                    administration: insulinSetting.administration,
-                    addAdmin: 1,
-                    setting: insulinSetting,
-                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
-                NearDefaultAdministrationButton(
-                    administration: insulinSetting.administration,
-                    addAdmin: 2,
-                    setting: insulinSetting,
-                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
-                NearDefaultAdministrationButton(
-                    administration: insulinSetting.administration,
-                    addAdmin: 3,
-                    setting: insulinSetting,
-                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
-            }
-            GridRow{ //직접입력
-                DirectInputAdministrationView(
-                    directInput: $directInput,
-                    setting: insulinSetting,
-                    createNewInsulinRecord: createNewInsulinRecord(_:_:))
-                
-            }
-            GridRow{ //기록 보러 가기
-                Button{
-                    showRecords.toggle()
-                }label:{
-                    ZStack{
-                        Rectangle().foregroundStyle(.green)
-                        Text("기록들 보러 가기버튼(예정)")
-                    }
+        NavigationStack{
+            Grid{
+                GridRow{ //인슐린 이름
+                    InsulinNameView(insulinName: insulinSetting.insulinProductName)
+                        .gridCellColumns(4)
                 }
-                .gridCellColumns(4)
+                GridRow{ //기본 투여양
+                    DefaultInsulinAdministrationButton(
+                        administration: insulinSetting.administration,
+                        setting: insulinSetting, createNewInsulinRecord: createNewInsulinRecord(_:_:)
+                    )
+                    .gridCellColumns(4)
+                }
+                GridRow{ //-1, +1, +2, +3
+                    NearDefaultAdministrationButton(
+                        administration: insulinSetting.administration,
+                        addAdmin: -1,
+                        setting: insulinSetting,
+                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
+                    NearDefaultAdministrationButton(
+                        administration: insulinSetting.administration,
+                        addAdmin: 1,
+                        setting: insulinSetting,
+                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
+                    NearDefaultAdministrationButton(
+                        administration: insulinSetting.administration,
+                        addAdmin: 2,
+                        setting: insulinSetting,
+                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
+                    NearDefaultAdministrationButton(
+                        administration: insulinSetting.administration,
+                        addAdmin: 3,
+                        setting: insulinSetting,
+                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
+                }
+                GridRow{ //직접입력
+                    DirectInputAdministrationView(
+                        directInput: $directInput,
+                        setting: insulinSetting,
+                        createNewInsulinRecord: createNewInsulinRecord(_:_:))
+                    
+                }
+                GridRow{ //기록 보러 가기
+                    Button{
+                        showRecords.toggle()
+                    }label:{
+                        ZStack{
+                            Rectangle().foregroundStyle(.green)
+                            Text("기록들 보러 가기버튼(예정)")
+                        }
+                    }
+                    .gridCellColumns(4)
+                    
+                }
+                .navigationDestination(isPresented: $showRecords) {
+                    RecordsView(insulinSetting: insulinSetting)
+                }
                 
             }
-            .navigationDestination(isPresented: $showRecords) {
-                RecordsView(insulinSetting: insulinSetting)
-            }
-
-            
+            .padding()
         }
-        .padding()
         
     }
     func createNewInsulinRecord(_ insulinSetting:InsulinSettingModel?, _ administration:Int){ //인슐린 설정의 기록 추가

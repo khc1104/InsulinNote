@@ -16,7 +16,7 @@ struct SetInsulinSettingView: View {
     @State var selectedInsulin: InsulinSettingModel?
     @State var removeSelectedInsulin: InsulinSettingModel?
     
-    @State private var isSheetViewing: Bool = false
+    @State private var isAddSheetShowing: Bool = false
     @State private var isAlertShowing: Bool = false
     
     
@@ -57,21 +57,22 @@ struct SetInsulinSettingView: View {
             .toolbar{
                 ToolbarItem(placement: .confirmationAction) {
                     Button{
-                        isSheetViewing.toggle()
+                        isAddSheetShowing.toggle()
                     }label: {
                         Text("추가")
                     }
                 }
             }
-            .sheet(isPresented: $isSheetViewing){
-                AddInsulinSettingView(isSheetViewing: $isSheetViewing)
+            .sheet(isPresented: $isAddSheetShowing){
+                AddInsulinSettingView(isSheetViewing: $isAddSheetShowing)
             }
+            
         }
     }
     
     func addButtonTapped(){
         // 추가 버튼 탭 했을 때
-        isSheetViewing.toggle()
+        isAddSheetShowing.toggle()
     }
     
     func editButtonTapped(setting: InsulinSettingModel){

@@ -13,6 +13,12 @@
 		252562372C4538F800F7ECA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 252562362C4538F800F7ECA1 /* Preview Assets.xcassets */; };
 		252562402C46956400F7ECA1 /* InsulinRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2525623F2C46956400F7ECA1 /* InsulinRecordModel.swift */; };
 		252562422C4697CC00F7ECA1 /* InsulinSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252562412C4697CC00F7ECA1 /* InsulinSettingModel.swift */; };
+		2529936E2C6B73620064C2F9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2529936D2C6B73620064C2F9 /* WidgetKit.framework */; };
+		252993702C6B73620064C2F9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2529936F2C6B73620064C2F9 /* SwiftUI.framework */; };
+		252993732C6B73620064C2F9 /* RecordingWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252993722C6B73620064C2F9 /* RecordingWidgetBundle.swift */; };
+		252993752C6B73620064C2F9 /* RecordingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252993742C6B73620064C2F9 /* RecordingWidget.swift */; };
+		252993772C6B73640064C2F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 252993762C6B73640064C2F9 /* Assets.xcassets */; };
+		2529937B2C6B73640064C2F9 /* RecordingWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2529936B2C6B73620064C2F9 /* RecordingWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		25E53F242C4B8EFA009DA024 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F232C4B8EFA009DA024 /* MainView.swift */; };
 		25E53F262C4B8F4D009DA024 /* RecordInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F252C4B8F4D009DA024 /* RecordInsulinView.swift */; };
 		25E53F292C4B9066009DA024 /* SetInsulinSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F282C4B9066009DA024 /* SetInsulinSettingView.swift */; };
@@ -30,6 +36,30 @@
 		25E53FF72C5E3AD2009DA024 /* HowManyGetProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FF62C5E3AD2009DA024 /* HowManyGetProductView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		252993792C6B73640064C2F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 252562222C4538F700F7ECA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2529936A2C6B73620064C2F9;
+			remoteInfo = RecordingWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2529937F2C6B73640064C2F9 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2529937B2C6B73640064C2F9 /* RecordingWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2525622A2C4538F700F7ECA1 /* InsulinNote_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsulinNote_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2525622D2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinNote_iOSApp.swift; sourceTree = "<group>"; };
@@ -38,6 +68,13 @@
 		252562362C4538F800F7ECA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2525623F2C46956400F7ECA1 /* InsulinRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinRecordModel.swift; sourceTree = "<group>"; };
 		252562412C4697CC00F7ECA1 /* InsulinSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinSettingModel.swift; sourceTree = "<group>"; };
+		2529936B2C6B73620064C2F9 /* RecordingWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RecordingWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2529936D2C6B73620064C2F9 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		2529936F2C6B73620064C2F9 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		252993722C6B73620064C2F9 /* RecordingWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingWidgetBundle.swift; sourceTree = "<group>"; };
+		252993742C6B73620064C2F9 /* RecordingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingWidget.swift; sourceTree = "<group>"; };
+		252993762C6B73640064C2F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		252993782C6B73640064C2F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25E53F232C4B8EFA009DA024 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		25E53F252C4B8F4D009DA024 /* RecordInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInsulinView.swift; sourceTree = "<group>"; };
 		25E53F282C4B9066009DA024 /* SetInsulinSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInsulinSettingView.swift; sourceTree = "<group>"; };
@@ -63,6 +100,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		252993682C6B73620064C2F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				252993702C6B73620064C2F9 /* SwiftUI.framework in Frameworks */,
+				2529936E2C6B73620064C2F9 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -70,6 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				2525622C2C4538F700F7ECA1 /* InsulinNote_iOS */,
+				252993712C6B73620064C2F9 /* RecordingWidget */,
+				2529936C2C6B73620064C2F9 /* Frameworks */,
 				2525622B2C4538F700F7ECA1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				2525622A2C4538F700F7ECA1 /* InsulinNote_iOS.app */,
+				2529936B2C6B73620064C2F9 /* RecordingWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,12 +164,32 @@
 		2525623E2C46954500F7ECA1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				25E53FF52C5E3AAF009DA024 /* HowManyGetProductView */,
 				2525622F2C4538F700F7ECA1 /* ContentView.swift */,
+				25E53FF52C5E3AAF009DA024 /* HowManyGetProductView */,
 				25E53F272C4B8FF5009DA024 /* SetInsulinView */,
 				25E53F222C4B8EE5009DA024 /* MainView */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2529936C2C6B73620064C2F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2529936D2C6B73620064C2F9 /* WidgetKit.framework */,
+				2529936F2C6B73620064C2F9 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		252993712C6B73620064C2F9 /* RecordingWidget */ = {
+			isa = PBXGroup;
+			children = (
+				252993722C6B73620064C2F9 /* RecordingWidgetBundle.swift */,
+				252993742C6B73620064C2F9 /* RecordingWidget.swift */,
+				252993762C6B73640064C2F9 /* Assets.xcassets */,
+				252993782C6B73640064C2F9 /* Info.plist */,
+			);
+			path = RecordingWidget;
 			sourceTree = "<group>";
 		};
 		25E53F222C4B8EE5009DA024 /* MainView */ = {
@@ -168,15 +237,34 @@
 				252562262C4538F700F7ECA1 /* Sources */,
 				252562272C4538F700F7ECA1 /* Frameworks */,
 				252562282C4538F700F7ECA1 /* Resources */,
+				2529937F2C6B73640064C2F9 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2529937A2C6B73640064C2F9 /* PBXTargetDependency */,
 			);
 			name = InsulinNote_iOS;
 			productName = InsulinNote_iOS;
 			productReference = 2525622A2C4538F700F7ECA1 /* InsulinNote_iOS.app */;
 			productType = "com.apple.product-type.application";
+		};
+		2529936A2C6B73620064C2F9 /* RecordingWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2529937C2C6B73640064C2F9 /* Build configuration list for PBXNativeTarget "RecordingWidgetExtension" */;
+			buildPhases = (
+				252993672C6B73620064C2F9 /* Sources */,
+				252993682C6B73620064C2F9 /* Frameworks */,
+				252993692C6B73620064C2F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RecordingWidgetExtension;
+			productName = RecordingWidgetExtension;
+			productReference = 2529936B2C6B73620064C2F9 /* RecordingWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -189,6 +277,9 @@
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					252562292C4538F700F7ECA1 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					2529936A2C6B73620064C2F9 = {
 						CreatedOnToolsVersion = 15.4;
 					};
 				};
@@ -207,6 +298,7 @@
 			projectRoot = "";
 			targets = (
 				252562292C4538F700F7ECA1 /* InsulinNote_iOS */,
+				2529936A2C6B73620064C2F9 /* RecordingWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -218,6 +310,14 @@
 			files = (
 				252562372C4538F800F7ECA1 /* Preview Assets.xcassets in Resources */,
 				252562342C4538F800F7ECA1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		252993692C6B73620064C2F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				252993772C6B73640064C2F9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +350,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		252993672C6B73620064C2F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				252993732C6B73620064C2F9 /* RecordingWidgetBundle.swift in Sources */,
+				252993752C6B73620064C2F9 /* RecordingWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2529937A2C6B73640064C2F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2529936A2C6B73620064C2F9 /* RecordingWidgetExtension */;
+			targetProxy = 252993792C6B73640064C2F9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		252562382C4538F800F7ECA1 /* Debug */ = {
@@ -375,6 +492,7 @@
 		2525623B2C4538F800F7ECA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -404,6 +522,7 @@
 		2525623C2C4538F800F7ECA1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -430,6 +549,60 @@
 			};
 			name = Release;
 		};
+		2529937D2C6B73640064C2F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PA7VULA6F;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RecordingWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RecordingWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HeeCheol.InsulinNote-iOS.RecordingWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2529937E2C6B73640064C2F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PA7VULA6F;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RecordingWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RecordingWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HeeCheol.InsulinNote-iOS.RecordingWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -447,6 +620,15 @@
 			buildConfigurations = (
 				2525623B2C4538F800F7ECA1 /* Debug */,
 				2525623C2C4538F800F7ECA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2529937C2C6B73640064C2F9 /* Build configuration list for PBXNativeTarget "RecordingWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2529937D2C6B73640064C2F9 /* Debug */,
+				2529937E2C6B73640064C2F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

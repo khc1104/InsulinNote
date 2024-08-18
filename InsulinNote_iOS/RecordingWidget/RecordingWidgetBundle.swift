@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import SwiftData
 
 @main
 struct RecordingWidgetBundle: WidgetBundle {

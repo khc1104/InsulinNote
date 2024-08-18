@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import SwiftData
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
@@ -41,38 +42,46 @@ struct SimpleEntry: TimelineEntry {
 
 struct RecordingWidgetEntryView : View {
     var entry: Provider.Entry
-
+    
+    @Environment(\.modelContext) var insulinContext
+    @Query var insulinSettings: [InsulinSettingModel]
+    
     var body: some View {
         VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
+            Text(insulinSettings.first?.insulinProductName ?? "insulinName")
+                .font(.largeTitle)
+            //Text("Time:")
+            HStack{
+                Text(insulinSettings.first?.records.first?.createdAt ?? .now, style: .relative)
+                    .multilineTextAlignment(.trailing)
+                Text("전")
+                
+            }
+            Button(intent: RecodingIntent()) {
+                Image(systemName: "syringe")
+            }.buttonStyle(.borderedProminent)
+            
+            Toggle(isOn: false ,intent: RecodingIntent()) { //CustomToggleStyle 만들 수 있음
+                Image(systemName: "syringe")
+            }
 
-            Text("Emoji:")
-            Text(entry.emoji)
         }
     }
 }
 
 struct RecordingWidget: Widget {
     let kind: String = "RecordingWidget"
-
-    var body: some WidgetConfiguration {
+    
+    var body: some WidgetConfiguration{
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            if #available(iOS 17.0, *) {
-                RecordingWidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
-            } else {
-                RecordingWidgetEntryView(entry: entry)
-                    .padding()
-                    .background()
-            }
+            RecordingWidgetEntryView(entry:entry)
+                .containerBackground(.fill.tertiary, for: .widget)
+                .modelContainer(for: [InsulinSettingModel.self])
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
     }
 }
 
-#Preview(as: .systemSmall) {
+#Preview(as: .systemMedium) {
     RecordingWidget()
 } timeline: {
     SimpleEntry(date: .now, emoji: "😀")

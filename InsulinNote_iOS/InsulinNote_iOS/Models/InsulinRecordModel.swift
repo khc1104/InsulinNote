@@ -10,7 +10,7 @@ import SwiftData
 
 
 @Model
-class InsulinRecordModel: Identifiable{
+final class InsulinRecordModel: Identifiable{
     @Attribute(.unique) var id: UUID = UUID() //id
     
     var administion: Int //투여양

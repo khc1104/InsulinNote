@@ -18,6 +18,8 @@ final class InsulinRecordModel: Identifiable{
     var createdAt: Date //생성시간
     var updatedAt: Date //변경시간
     
+    var setting: InsulinSettingModel?
+    
     init(administion: Int, createdAt: Date, updatedAt: Date) {
         self.administion = administion
         self.createdAt = createdAt

@@ -13,15 +13,15 @@ struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), emoji: "😀")
     }
-
+    
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let entry = SimpleEntry(date: Date(), emoji: "😀")
         completion(entry)
     }
-
+    
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
-
+        
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
@@ -29,7 +29,7 @@ struct Provider: TimelineProvider {
             let entry = SimpleEntry(date: entryDate, emoji: "😀")
             entries.append(entry)
         }
-
+        
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
@@ -47,12 +47,30 @@ struct RecordingWidgetEntryView : View {
     @Query var insulinSettings: [InsulinSettingModel]
     
     var body: some View {
+        //        ForEach(insulinSettings){ setting in
+        //            VStack {
+        //                Text(setting.insulinProductName)
+        //                    .font(.largeTitle)
+        //                HStack{
+        //                    Text(setting.records?.first?.createdAt ?? .now, style: .relative)
+        //                        .multilineTextAlignment(.trailing)
+        //                    Text("전")
+        //
+        //                }
+        //                //                    Button(intent: RecodingIntent()) {
+        //                //                        Image(systemName: "syringe")
+        //                //                    }.buttonStyle(.borderedProminent)
+        //                Toggle(isOn: false ,intent: RecodingIntent()) { //CustomToggleStyle 만들 수 있음
+        //                    Image(systemName: "syringe")
+        //                }
+        //
+        //            }
+        //        }
         VStack {
             Text(insulinSettings.first?.insulinProductName ?? "insulinName")
                 .font(.largeTitle)
-            //Text("Time:")
             HStack{
-                Text(insulinSettings.first?.records.first?.createdAt ?? .now, style: .relative)
+                Text(insulinSettings.first?.records?.first?.createdAt ?? .now, style: .relative)
                     .multilineTextAlignment(.trailing)
                 Text("전")
                 
@@ -64,7 +82,7 @@ struct RecordingWidgetEntryView : View {
             Toggle(isOn: false ,intent: RecodingIntent()) { //CustomToggleStyle 만들 수 있음
                 Image(systemName: "syringe")
             }
-
+            
         }
     }
 }

@@ -15,7 +15,7 @@ struct RecordsView: View{
     
     var body: some View{
         List{
-            ForEach(insulinSetting.records){ record in
+            ForEach(insulinSetting.records ?? []){ record in
                 Text("투여량: \(record.administion)")
                 Text("투여시간: \(record.createdAt)")
             }

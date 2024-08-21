@@ -15,8 +15,8 @@ final class InsulinSettingModel: Identifiable{
     var insulinProductName: String //인슐린 제품 명
     var administration: Int //기본 투여량
     
-    @Relationship(deleteRule: .cascade)
-    var records: [InsulinRecordModel] //해당 설정으로 등록한 투여기록
+    @Relationship(deleteRule: .cascade, inverse: \InsulinRecordModel.setting)
+    var records: [InsulinRecordModel]? = [] //해당 설정으로 등록한 투여기록
     
     var createdAt: Date //생성시간
     var updatedAt: Date //변경시간

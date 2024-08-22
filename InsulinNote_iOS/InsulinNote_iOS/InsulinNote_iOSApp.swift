@@ -9,25 +9,26 @@ import SwiftUI
 import SwiftData
 import AppIntents
 
-fileprivate let modelContainer: ModelContainer = {
-    do{
-        let schema = Schema([InsulinSettingModel.self])
-        return try ModelContainer(
-            for: schema,
-            configurations: ModelConfiguration(
-                schema: schema,
-                isStoredInMemoryOnly: false
-            )
-            )
-    }catch{
-        fatalError("Could not create ModelContainer: \(error)")
-    }
-}()
+//fileprivate let modelContainer: ModelContainer = {
+//    do{
+//        let schema = Schema([InsulinSettingModel.self])
+//        return try ModelContainer(
+//            for: schema,
+//            configurations: ModelConfiguration(
+//                schema: schema,
+//                isStoredInMemoryOnly: false
+//            )
+//            )
+//    }catch{
+//        fatalError("Could not create ModelContainer: \(error)")
+//    }
+//}()
 
 @main
 struct InsulinNote_iOSApp: App {
+    let context = ModelContextStore.sharedModelContext
     init(){
-        AppDependencyManager.shared.add(dependency: modelContainer)
+        //AppDependencyManager.shared.add(dependency: modelContainer)
         
         
     }
@@ -36,6 +37,6 @@ struct InsulinNote_iOSApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(modelContainer)
+        .modelContainer(context.container)
     }
 }

@@ -30,6 +30,8 @@
 		252993D12C6F75090064C2F9 /* intent-click-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 252993CF2C6F75090064C2F9 /* intent-click-sound.mp3 */; };
 		252994042C7639AF0064C2F9 /* InsulinModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252994032C7639AF0064C2F9 /* InsulinModelContainer.swift */; };
 		252994052C7639B10064C2F9 /* InsulinModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252994032C7639AF0064C2F9 /* InsulinModelContainer.swift */; };
+		252994092C7728F60064C2F9 /* ModelContextStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252994082C7728F60064C2F9 /* ModelContextStore.swift */; };
+		2529940A2C772B340064C2F9 /* ModelContextStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252994082C7728F60064C2F9 /* ModelContextStore.swift */; };
 		25E53F242C4B8EFA009DA024 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F232C4B8EFA009DA024 /* MainView.swift */; };
 		25E53F262C4B8F4D009DA024 /* RecordInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F252C4B8F4D009DA024 /* RecordInsulinView.swift */; };
 		25E53F292C4B9066009DA024 /* SetInsulinSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F282C4B9066009DA024 /* SetInsulinSettingView.swift */; };
@@ -43,7 +45,6 @@
 		25E53FC82C5550D4009DA024 /* DirectInputAdministrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FC72C5550D4009DA024 /* DirectInputAdministrationView.swift */; };
 		25E53FCA2C55516A009DA024 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FC92C55516A009DA024 /* DatePickerView.swift */; };
 		25E53FF22C57BA20009DA024 /* RecordsVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FF12C57BA20009DA024 /* RecordsVIew.swift */; };
-		25E53FF42C5A58C0009DA024 /* SizePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FF32C5A58C0009DA024 /* SizePreferenceKey.swift */; };
 		25E53FF72C5E3AD2009DA024 /* HowManyGetProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FF62C5E3AD2009DA024 /* HowManyGetProductView.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		252993CC2C6F74EB0064C2F9 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		252993CF2C6F75090064C2F9 /* intent-click-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "intent-click-sound.mp3"; sourceTree = "<group>"; };
 		252994032C7639AF0064C2F9 /* InsulinModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinModelContainer.swift; sourceTree = "<group>"; };
+		252994082C7728F60064C2F9 /* ModelContextStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContextStore.swift; sourceTree = "<group>"; };
 		25E53F232C4B8EFA009DA024 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		25E53F252C4B8F4D009DA024 /* RecordInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInsulinView.swift; sourceTree = "<group>"; };
 		25E53F282C4B9066009DA024 /* SetInsulinSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInsulinSettingView.swift; sourceTree = "<group>"; };
@@ -105,7 +107,6 @@
 		25E53FC72C5550D4009DA024 /* DirectInputAdministrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectInputAdministrationView.swift; sourceTree = "<group>"; };
 		25E53FC92C55516A009DA024 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		25E53FF12C57BA20009DA024 /* RecordsVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsVIew.swift; sourceTree = "<group>"; };
-		25E53FF32C5A58C0009DA024 /* SizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePreferenceKey.swift; sourceTree = "<group>"; };
 		25E53FF62C5E3AD2009DA024 /* HowManyGetProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowManyGetProductView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +133,7 @@
 		252562212C4538F700F7ECA1 = {
 			isa = PBXGroup;
 			children = (
+				252994082C7728F60064C2F9 /* ModelContextStore.swift */,
 				252993822C6D01D70064C2F9 /* RecordingWidgetExtension.entitlements */,
 				2525622C2C4538F700F7ECA1 /* InsulinNote_iOS */,
 				252993712C6B73620064C2F9 /* RecordingWidget */,
@@ -158,7 +160,6 @@
 				2525622D2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift */,
 				252562332C4538F800F7ECA1 /* Assets.xcassets */,
 				252562352C4538F800F7ECA1 /* Preview Content */,
-				25E53FF32C5A58C0009DA024 /* SizePreferenceKey.swift */,
 			);
 			path = InsulinNote_iOS;
 			sourceTree = "<group>";
@@ -363,12 +364,12 @@
 				252993802C6CF64A0064C2F9 /* RecordingWidget.swift in Sources */,
 				25E53FC42C554FDC009DA024 /* DefaultInsulinAdministrationButton.swift in Sources */,
 				25E53FCA2C55516A009DA024 /* DatePickerView.swift in Sources */,
+				252994092C7728F60064C2F9 /* ModelContextStore.swift in Sources */,
 				25E53FF72C5E3AD2009DA024 /* HowManyGetProductView.swift in Sources */,
 				25E53F242C4B8EFA009DA024 /* MainView.swift in Sources */,
 				25E53F262C4B8F4D009DA024 /* RecordInsulinView.swift in Sources */,
 				2525622E2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift in Sources */,
 				252562402C46956400F7ECA1 /* InsulinRecordModel.swift in Sources */,
-				25E53FF42C5A58C0009DA024 /* SizePreferenceKey.swift in Sources */,
 				25E53FF22C57BA20009DA024 /* RecordsVIew.swift in Sources */,
 				252993CA2C6F70C00064C2F9 /* RecodingIntent.swift in Sources */,
 				25E53F762C514DD8009DA024 /* insulinSettingAlertView.swift in Sources */,
@@ -388,6 +389,7 @@
 				252993732C6B73620064C2F9 /* RecordingWidgetBundle.swift in Sources */,
 				252994052C7639B10064C2F9 /* InsulinModelContainer.swift in Sources */,
 				252993752C6B73620064C2F9 /* RecordingWidget.swift in Sources */,
+				2529940A2C772B340064C2F9 /* ModelContextStore.swift in Sources */,
 				252993CE2C6F74EB0064C2F9 /* SoundPlayer.swift in Sources */,
 				252993CB2C6F70C00064C2F9 /* RecodingIntent.swift in Sources */,
 			);

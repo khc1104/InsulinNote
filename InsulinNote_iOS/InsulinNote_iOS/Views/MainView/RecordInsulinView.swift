@@ -86,7 +86,7 @@ struct RecordInsulinView: View {
     func createNewInsulinRecord(_ insulinSetting:InsulinSettingModel?, _ administration:Int){ //인슐린 설정의 기록 추가
         let record: InsulinRecordModel = InsulinRecordModel(administion: administration, createdAt: date, updatedAt: .now)
         if let insulinSetting{
-            insulinSetting.records?.append(record)
+            insulinSetting.records.append(record)
         }else{
             print("기록 추가 실패")
         }

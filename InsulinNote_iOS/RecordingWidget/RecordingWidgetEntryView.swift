@@ -16,19 +16,16 @@ struct RecordingWidgetEntryView : View {
     
     var body: some View {
         VStack {
-            Text(insulinSettings.first?.insulinProductName ?? "insulinName")
+            Text(entry.setting.insulinSetting.insulinProductName)
                 .font(.largeTitle)
             HStack{
-                Text(insulinSettings.first?.records?.first?.createdAt ?? .now, style: .relative)
+                Text(entry.setting.insulinSetting.records.first?.createdAt ?? .now, style: .relative)
                     .multilineTextAlignment(.trailing)
                 Text("전")
                 
             }
-            Button(intent: RecodingIntent()) {
-                Image(systemName: "syringe")
-            }.buttonStyle(.borderedProminent)
-            
-            Toggle(isOn: false ,intent: RecodingIntent()) { //CustomToggleStyle 만들 수 있음
+            Text("\(entry.setting.insulinSetting.administration)단위")
+            Toggle(isOn: false ,intent: RecordingIntent(id: entry.setting.insulinSetting.id.uuidString)) { //CustomToggleStyle 만들 수 있음
                 Image(systemName: "syringe")
             }
             

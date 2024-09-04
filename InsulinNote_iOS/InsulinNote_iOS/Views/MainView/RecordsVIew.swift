@@ -13,7 +13,7 @@ struct RecordsView: View{
     //@Query var insulinSettings: [InsulinSettingModel]
     var insulinSetting: InsulinSettingModel
     var records: [InsulinRecordModel]{
-        insulinSetting.records?.sorted{ $0.createdAt > $1.createdAt} ?? []
+        insulinSetting.records.sorted{ $0.createdAt > $1.createdAt}
     }
     
     var body: some View{

@@ -84,7 +84,7 @@ struct InsulinSettingColumnView: View {
         }
         .frame(maxWidth: .infinity)
         .sheet(isPresented: $isGetProductSheetShowing, content: {
-            HowManyGetProductView(records: setting.records)
+            HowManyGetProductView(records: setting.records ?? [])
         })
             
     }

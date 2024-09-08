@@ -36,8 +36,6 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
         
         let context = ModelContextStore.sharedModelContext
         let insulinSettings = try context.fetch(descriptor)
-        print(insulinSettings.first?.id.uuidString)
-        print(seletedInsulinSettingId)
         let insulinSetting = insulinSettings.filter{$0.id.uuidString == seletedInsulinSettingId}.first
         //print(insulinSetting?.insulinProductName)
         let record =  InsulinRecordModel(administion: insulinSetting?.administration ?? 99, createdAt: .now, updatedAt: .now)
@@ -98,6 +96,7 @@ struct RecordingQuery: EntityQuery{
         return insulinSettings.map{
             RecordingEntity(id: $0.id, insulinSetting: $0)
         }
+        
     }
     
     func defaultResult() async -> RecordingEntity? {

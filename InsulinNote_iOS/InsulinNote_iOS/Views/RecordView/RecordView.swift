@@ -15,6 +15,18 @@ struct RecordView:View {
     @Environment(\.modelContext) var insulinContext
     @Query var insulinSettings: [InsulinSettingModel]
     
+    var longActingInsulin: InsulinSettingModel? {
+        insulinSettings.filter{
+            $0.actingType == .long
+        }.first
+    }
+    
+    var fastActingInsulin: InsulinSettingModel? {
+        insulinSettings.filter{
+            $0.actingType == .fast
+        }.first
+    }
+    
     var today: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_kr")
@@ -27,8 +39,11 @@ struct RecordView:View {
             VStack(alignment: .leading, spacing: 10){
                 Text("\(today)")
                     .font(.largeTitle)
-                LongActingInsulinView(proxy: proxy, isInjected: $isInjected)
-                FastActingInsulinView()
+                LongActingInsulinView(
+                    insulingSetting: longActingInsulin,
+                    proxy: proxy,
+                    isInjected: $isInjected)
+                FastActingInsulinView(insulinSetting: fastActingInsulin)
                 Button{
                     
                 }label: {
@@ -49,21 +64,22 @@ struct RecordView:View {
 }
 
 #Preview{
-    
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: InsulinSettingModel.self
                                         , configurations: config)
-    
-    let insulin1 = InsulinSettingModel(insulinProductName: "트레시바", dosage: 22, records: [
-        InsulinRecordModel(administion: 22, createdAt: .now, updatedAt: .now)
+
+    let insulin1 = InsulinSettingModel(insulinProductName: "트레시바", actingType: .long, dosage: 22, records: [
+        InsulinRecordModel(dosage: 22, createdAt: .now, updatedAt: .now)
     ], updatedAt: .now)
     container.mainContext.insert(insulin1)
     
-    let insulin2 = InsulinSettingModel(insulinProductName: "노보래피드", dosage: 17, records: [
-        InsulinRecordModel(administion: 17, createdAt: .now, updatedAt: .now)
+    let insulin2 = InsulinSettingModel(insulinProductName: "노보래피드", actingType: .fast, dosage: 17, records: [
+        InsulinRecordModel(dosage: 17, createdAt: .now, updatedAt: .now)
     ], updatedAt: .now)
     container.mainContext.insert(insulin2)
     
     
+    
     return RecordView().modelContainer(container)
+    
 }

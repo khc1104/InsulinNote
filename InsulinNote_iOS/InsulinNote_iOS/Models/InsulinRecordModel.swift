@@ -20,8 +20,8 @@ final class InsulinRecordModel: Identifiable{
     
     var setting: InsulinSettingModel?
     
-    init(administion: Int, createdAt: Date, updatedAt: Date) {
-        self.dosage = administion
+    init(dosage: Int, createdAt: Date, updatedAt: Date) {
+        self.dosage = dosage
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }

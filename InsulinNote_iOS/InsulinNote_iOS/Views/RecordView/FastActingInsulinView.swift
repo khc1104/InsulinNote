@@ -8,18 +8,22 @@
 import SwiftUI
 
 struct FastActingInsulinView:View {
+    var insulinSetting: InsulinSettingModel?
+    
     var body: some View {
-        VStack(alignment: .leading){
-            Text("노보래피드")
-                .font(.title)
-            ScrollView(.horizontal){
-                HStack{
-                    ForEach(0..<10){ _ in
-                        FastActingInsulingRecordCardView()
+        if let insulinSetting{
+            VStack(alignment: .leading){
+                Text(insulinSetting.insulinProductName)
+                    .font(.title)
+                ScrollView(.horizontal){
+                    HStack{
+                        ForEach(0..<10){ _ in
+                            FastActingInsulingRecordCardView()
+                        }
                     }
                 }
+                .border(Color.black, width: 1)
             }
-            .border(Color.black, width: 1)
         }
     }
 }

@@ -85,7 +85,7 @@ struct HowManyGetProductView: View {
     for i in 0..<720{
         dateCompo.weekOfYear = -i
         let record = InsulinRecordModel(
-            administion: 1,
+            dosage: 1,
             createdAt: Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
             updatedAt: .now)
         tempRecords.append(record)

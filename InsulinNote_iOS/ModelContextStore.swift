@@ -9,10 +9,9 @@ import SwiftData
 final class ModelContextStore{
     static private var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            InsulinSettingModel.self,
+            InsulinSettingModel.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-        
         do{
             return try ModelContainer(for:schema, configurations: [modelConfiguration])
         }catch{

@@ -17,7 +17,7 @@ struct RecordProvider: AppIntentTimelineProvider{
             setting: RecordingEntity(id: UUID(),
                                      insulinSetting:
                                         InsulinSettingModel(
-                                            insulinProductName: "none",
+                                            insulinProductName: "none", actingType: .fast,
                                             dosage: 99,
                                             records: [],
                                             updatedAt: .now))

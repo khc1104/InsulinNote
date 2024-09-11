@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LongActingInsulinIsNotInjectedView:View {
+    
     var proxy: GeometryProxy
     @Binding var isInjected: Bool
     var body: some View {

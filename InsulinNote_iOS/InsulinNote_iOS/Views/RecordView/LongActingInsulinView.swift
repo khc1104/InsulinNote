@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct LongActingInsulinView:View {
+    var insulingSetting: InsulinSettingModel?
     var proxy: GeometryProxy
     @Binding var isInjected: Bool
     
     var body: some View {
-        Text("트레시바")
-            .font(.title)
-        if isInjected{
-            LongActingInsulinIsInjectedView(proxy: proxy)
-        }else{
-            LongActingInsulinIsNotInjectedView(proxy: proxy, isInjected: $isInjected)
+        if let insulingSetting{
+            Text(insulingSetting.insulinProductName)
+                .font(.title)
+            if isInjected{
+                LongActingInsulinIsInjectedView(proxy: proxy)
+            }else{
+                LongActingInsulinIsNotInjectedView(proxy: proxy, isInjected: $isInjected)
+            }
         }
-        
     }
 }
 

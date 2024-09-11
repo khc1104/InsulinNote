@@ -43,7 +43,7 @@ struct AddInsulinSettingView: View {
         //데이터 생성
         if !insulinProductName.isEmpty && !adminString.isEmpty{
             let newInsulin = InsulinSettingModel(insulinProductName: insulinProductName,
-                                                 administration: administration, records: [],
+                                                 dosage: administration, records: [],
                                                  updatedAt: .now)
             insulinContext.insert(newInsulin)
             isSheetViewing.toggle()

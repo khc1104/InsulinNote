@@ -13,7 +13,7 @@ import SwiftData
 final class InsulinRecordModel: Identifiable{
     @Attribute(.unique) var id: UUID = UUID() //id
     
-    var administion: Int //투여양
+    var dosage: Int //투여양
     
     var createdAt: Date //생성시간
     var updatedAt: Date //변경시간
@@ -21,7 +21,7 @@ final class InsulinRecordModel: Identifiable{
     var setting: InsulinSettingModel?
     
     init(administion: Int, createdAt: Date, updatedAt: Date) {
-        self.administion = administion
+        self.dosage = administion
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }

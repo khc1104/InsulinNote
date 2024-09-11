@@ -23,7 +23,7 @@ struct HowManyGetProductView: View {
         return records.filter{
             $0.createdAt > (Calendar.current.date(byAdding: .month, value: -(Int(months) ?? 6), to: .now) ?? .now)
         }.reduce(0){
-            $0 + $1.administion
+            $0 + $1.dosage
         }
     
     }

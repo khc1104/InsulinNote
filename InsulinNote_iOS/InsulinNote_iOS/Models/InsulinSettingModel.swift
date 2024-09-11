@@ -13,7 +13,8 @@ final class InsulinSettingModel: Identifiable, Sendable{
     @Attribute(.unique) var id: UUID = UUID() //id
     
     var insulinProductName: String //인슐린 제품 명
-    var administration: Int //기본 투여량
+    var type: ActingType
+    var dosage: Int //기본 투여량
     
     @Relationship(deleteRule: .cascade, inverse: \InsulinRecordModel.setting)
     var records: [InsulinRecordModel] = [] //해당 설정으로 등록한 투여기록
@@ -21,13 +22,18 @@ final class InsulinSettingModel: Identifiable, Sendable{
     var createdAt: Date //생성시간
     var updatedAt: Date //변경시간
     
-    init(insulinProductName: String, administration: Int, records: [InsulinRecordModel], updatedAt: Date) {
+    init(insulinProductName: String, dosage: Int, records: [InsulinRecordModel], updatedAt: Date) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm a"
         self.insulinProductName = insulinProductName
-        self.administration = administration
+        self.dosage = dosage
         self.records = records
         self.createdAt = .now
         self.updatedAt = updatedAt
     }
+}
+
+enum ActingType{ //인슐린 타입
+    case long //지효성
+    case fast //속효성
 }

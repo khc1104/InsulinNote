@@ -54,12 +54,12 @@ struct RecordView:View {
     let container = try! ModelContainer(for: InsulinSettingModel.self
                                         , configurations: config)
     
-    let insulin1 = InsulinSettingModel(insulinProductName: "트레시바", administration: 22, records: [
+    let insulin1 = InsulinSettingModel(insulinProductName: "트레시바", dosage: 22, records: [
         InsulinRecordModel(administion: 22, createdAt: .now, updatedAt: .now)
     ], updatedAt: .now)
     container.mainContext.insert(insulin1)
     
-    let insulin2 = InsulinSettingModel(insulinProductName: "노보래피드", administration: 17, records: [
+    let insulin2 = InsulinSettingModel(insulinProductName: "노보래피드", dosage: 17, records: [
         InsulinRecordModel(administion: 17, createdAt: .now, updatedAt: .now)
     ], updatedAt: .now)
     container.mainContext.insert(insulin2)

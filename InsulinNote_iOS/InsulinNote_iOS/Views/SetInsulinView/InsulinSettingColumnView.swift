@@ -22,7 +22,7 @@ struct InsulinSettingColumnView: View {
                 HStack{
                     VStack(alignment: .leading){
                         Text("제품명 : \(setting.insulinProductName)")
-                        Text("단위 : \(setting.administration)")
+                        Text("단위 : \(setting.dosage)")
                     }
                     Spacer()
                 }

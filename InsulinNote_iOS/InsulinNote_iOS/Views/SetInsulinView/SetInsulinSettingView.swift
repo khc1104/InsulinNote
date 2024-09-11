@@ -85,7 +85,7 @@ struct SetInsulinSettingView: View {
     func updateInsulinButtonTapped(setting: InsulinSettingModel, insulinProductName: String, administration: String ){
         guard let administration = Int(administration) else {return}
         setting.insulinProductName = insulinProductName
-        setting.administration = Int(administration)
+        setting.dosage = Int(administration)
         setting.updatedAt = .now
         selectedInsulin = nil
         print(selectedInsulin?.insulinProductName ?? "없어짐")
@@ -112,7 +112,7 @@ struct SetInsulinSettingView: View {
     //let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: InsulinSettingModel.self)
     for i in 1..<20{
-        let insulin = InsulinSettingModel(insulinProductName: "TestInsulin\(i)", administration: 55, records: [], updatedAt: .now)
+        let insulin = InsulinSettingModel(insulinProductName: "TestInsulin\(i)", dosage: 55, records: [], updatedAt: .now)
 
         container.mainContext.insert(insulin)
     }

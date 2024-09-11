@@ -28,29 +28,29 @@ struct RecordInsulinView: View {
                 }
                 GridRow{ //기본 투여양
                     DefaultInsulinAdministrationButton(
-                        administration: insulinSetting.administration,
+                        administration: insulinSetting.dosage,
                         setting: insulinSetting, createNewInsulinRecord: createNewInsulinRecord(_:_:)
                     )
                     .gridCellColumns(4)
                 }
                 GridRow{ //-1, +1, +2, +3
                     NearDefaultAdministrationButton(
-                        administration: insulinSetting.administration,
+                        administration: insulinSetting.dosage,
                         addAdmin: -1,
                         setting: insulinSetting,
                         createNewInsulinRecord: createNewInsulinRecord(_:_:))
                     NearDefaultAdministrationButton(
-                        administration: insulinSetting.administration,
+                        administration: insulinSetting.dosage,
                         addAdmin: 1,
                         setting: insulinSetting,
                         createNewInsulinRecord: createNewInsulinRecord(_:_:))
                     NearDefaultAdministrationButton(
-                        administration: insulinSetting.administration,
+                        administration: insulinSetting.dosage,
                         addAdmin: 2,
                         setting: insulinSetting,
                         createNewInsulinRecord: createNewInsulinRecord(_:_:))
                     NearDefaultAdministrationButton(
-                        administration: insulinSetting.administration,
+                        administration: insulinSetting.dosage,
                         addAdmin: 3,
                         setting: insulinSetting,
                         createNewInsulinRecord: createNewInsulinRecord(_:_:))
@@ -99,14 +99,14 @@ struct RecordInsulinView: View {
     let container = try! ModelContainer(for: InsulinSettingModel.self
                                         , configurations: config)
     for i in 1..<4{
-        let insulin = InsulinSettingModel(insulinProductName: "TestInsulin\(i)", administration: 55, records: [
+        let insulin = InsulinSettingModel(insulinProductName: "TestInsulin\(i)", dosage: 55, records: [
             InsulinRecordModel(administion: 17, createdAt: .now, updatedAt: .now)
         ], updatedAt: .now)
         container.mainContext.insert(insulin)
         
     }
     
-    return RecordInsulinView(insulinSetting: InsulinSettingModel(insulinProductName: "dd", administration: 12, records: [], updatedAt: .now))
+    return RecordInsulinView(insulinSetting: InsulinSettingModel(insulinProductName: "dd", dosage: 12, records: [], updatedAt: .now))
         .modelContainer(container)
     
 }

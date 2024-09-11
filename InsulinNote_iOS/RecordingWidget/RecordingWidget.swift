@@ -18,7 +18,7 @@ struct RecordProvider: AppIntentTimelineProvider{
                                      insulinSetting:
                                         InsulinSettingModel(
                                             insulinProductName: "none",
-                                            administration: 99,
+                                            dosage: 99,
                                             records: [],
                                             updatedAt: .now))
             )

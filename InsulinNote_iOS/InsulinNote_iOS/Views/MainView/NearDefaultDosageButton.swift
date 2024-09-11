@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct NearDefaultAdministrationButton: View {
-    var administration: Int = 0
+struct NearDefaultDosageButton: View {
+    var dosage: Int = 0
     var addAdmin: Int = 1
     
     var setting :InsulinSettingModel?
@@ -16,7 +16,7 @@ struct NearDefaultAdministrationButton: View {
     var createNewInsulinRecord: (InsulinSettingModel?, Int) -> ()
     var body: some View {
         Button{
-            createNewInsulinRecord(setting, (administration + addAdmin))
+            createNewInsulinRecord(setting, (dosage + addAdmin))
         }label: {
             ZStack{
                 Rectangle()

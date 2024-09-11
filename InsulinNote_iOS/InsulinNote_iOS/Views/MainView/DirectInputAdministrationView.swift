@@ -24,7 +24,7 @@ struct DirectInputAdministrationView: View {
         .gridCellColumns(3)
         Button{
             if !directInput.isEmpty{
-                createNewInsulinRecord(setting, Int(directInput) ?? setting?.administration ?? 0)
+                createNewInsulinRecord(setting, Int(directInput) ?? setting?.dosage ?? 0)
                 directInput = ""
             }
         }label: {

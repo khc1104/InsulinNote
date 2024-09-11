@@ -19,7 +19,7 @@ struct RecordsView: View{
     var body: some View{
         List{
             ForEach(records){ record in
-                Text("투여량: \(record.administion)")
+                Text("투여량: \(record.dosage)")
                 Text("투여시간: \(record.createdAt)")
             }
         }

@@ -26,5 +26,7 @@ struct FastActingInsulingRecordCardView: View {
         }
         .border(Color.black, width: 1)
         .padding()
+        .padding(.horizontal, 3)
+        
     }
 }

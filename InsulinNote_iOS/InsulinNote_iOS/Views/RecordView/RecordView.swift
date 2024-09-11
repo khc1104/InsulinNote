@@ -10,6 +10,8 @@ import SwiftData
 
 struct RecordView:View {
     @State var date: Date = .now
+    @State var isInjected: Bool = false
+    
     @Environment(\.modelContext) var insulinContext
     @Query var insulinSettings: [InsulinSettingModel]
     
@@ -25,7 +27,7 @@ struct RecordView:View {
             VStack(alignment: .leading, spacing: 10){
                 Text("\(today)")
                     .font(.largeTitle)
-                LongActingInsulinView(proxy: proxy)
+                LongActingInsulinView(proxy: proxy, isInjected: $isInjected)
                 FastActingInsulinView()
                 Button{
                     

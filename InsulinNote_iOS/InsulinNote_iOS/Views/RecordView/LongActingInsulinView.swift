@@ -9,32 +9,22 @@ import SwiftUI
 
 struct LongActingInsulinView:View {
     var proxy: GeometryProxy
+    @Binding var isInjected: Bool
+    
     var body: some View {
         Text("트레시바")
             .font(.title)
-        VStack{
-            Text("미 투여")
-                .font(.title)
-            Button{
-                
-            }label: {
-                ZStack{
-                    Rectangle()
-                        .frame(width: 200, height: 50)
-                        .foregroundStyle(.clear)
-                        .border(Color.black, width: 1)
-                    Text("투여")
-                        .font(.title3)
-                }
-            }
+        if isInjected{
+            LongActingInsulinIsInjectedView(proxy: proxy)
+        }else{
+            LongActingInsulinIsNotInjectedView(proxy: proxy, isInjected: $isInjected)
         }
-        .frame(maxWidth: .infinity, maxHeight: proxy.size.height * 0.4)
-        .border(Color.black, width: 1)
+        
     }
 }
 
-#Preview {
-    GeometryReader{ proxy in
-        LongActingInsulinView(proxy: proxy)
-    }
-}
+//#Preview {
+//    GeometryReader{ proxy in
+//        LongActingInsulinView(proxy: proxy)
+//    }
+//}

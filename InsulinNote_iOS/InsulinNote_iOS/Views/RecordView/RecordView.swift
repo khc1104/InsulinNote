@@ -39,10 +39,7 @@ struct RecordView:View {
             VStack(alignment: .leading, spacing: 10){
                 Text("\(today)")
                     .font(.largeTitle)
-                LongActingInsulinView(
-                    insulingSetting: longActingInsulin,
-                    proxy: proxy,
-                    isInjected: $isInjected)
+                LongActingInsulinView(longActingInsulinSetting: longActingInsulin, proxy: proxy)
                 FastActingInsulinView(insulinSetting: fastActingInsulin)
                 Button{
                     
@@ -68,15 +65,15 @@ struct RecordView:View {
     let container = try! ModelContainer(for: InsulinSettingModel.self
                                         , configurations: config)
 
-    let insulin1 = InsulinSettingModel(insulinProductName: "트레시바", actingType: .long, dosage: 22, records: [
-        InsulinRecordModel(dosage: 22, createdAt: .now, updatedAt: .now)
-    ], updatedAt: .now)
-    container.mainContext.insert(insulin1)
-    
-    let insulin2 = InsulinSettingModel(insulinProductName: "노보래피드", actingType: .fast, dosage: 17, records: [
-        InsulinRecordModel(dosage: 17, createdAt: .now, updatedAt: .now)
-    ], updatedAt: .now)
-    container.mainContext.insert(insulin2)
+//    let insulin1 = InsulinSettingModel(insulinProductName: "트레시바", actingType: .long, dosage: 22, records: [
+//        InsulinRecordModel(dosage: 22, createdAt: .now, updatedAt: .now)
+//    ], updatedAt: .now)
+//    container.mainContext.insert(insulin1)
+//    
+//    let insulin2 = InsulinSettingModel(insulinProductName: "노보래피드", actingType: .fast, dosage: 17, records: [
+//        InsulinRecordModel(dosage: 17, createdAt: .now, updatedAt: .now)
+//    ], updatedAt: .now)
+//    container.mainContext.insert(insulin2)
     
     
     

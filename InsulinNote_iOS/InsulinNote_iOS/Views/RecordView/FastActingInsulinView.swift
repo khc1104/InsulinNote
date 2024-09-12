@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct FastActingInsulinView:View {
+    @Environment(\.modelContext) var insulinContext
+    @Query var insulinSettings: [InsulinSettingModel]
     var insulinSetting: InsulinSettingModel?
     
     var body: some View {
@@ -18,7 +21,7 @@ struct FastActingInsulinView:View {
                 ScrollView(.horizontal){
                     HStack{
                         ForEach(0..<10){ _ in
-                            FastActingInsulingRecordCardView()
+                            FastActingInsulinRecordCardView()
                         }
                     }
                 }

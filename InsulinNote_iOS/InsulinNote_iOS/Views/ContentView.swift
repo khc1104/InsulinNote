@@ -32,9 +32,7 @@ struct ContentView: View {
                 }
         }.onAppear{
             if !isLaunched{
-                let insulin1 = InsulinSettingModel(insulinProductName: "트레시바", actingType: .long, dosage: 22, records: [
-                    InsulinRecordModel(dosage: 22, createdAt: .now, updatedAt: .now)
-                ], updatedAt: .now)
+                let insulin1 = InsulinSettingModel(insulinProductName: "트레시바", actingType: .long, dosage: 22, records: [], updatedAt: .now)
                 modelContext.insert(insulin1)
                 
                 let insulin2 = InsulinSettingModel(insulinProductName: "노보래피드", actingType: .fast, dosage: 17, records: [

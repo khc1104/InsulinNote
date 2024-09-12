@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class InsulinSettingModel: Identifiable, Sendable{
+final class InsulinSettingModel: Identifiable{
     @Attribute(.unique) var id: UUID = UUID() //id
     
     var insulinProductName: String //인슐린 제품 명
@@ -31,6 +31,15 @@ final class InsulinSettingModel: Identifiable, Sendable{
         self.records = records
         self.createdAt = .now
         self.updatedAt = updatedAt
+    }
+    
+    init(){
+        self.insulinProductName = "none"
+        self.actingType = .long
+        self.dosage = 99
+        self.records = []
+        self.createdAt = .now
+        self.updatedAt = .now
     }
     
     enum ActingType: Codable{

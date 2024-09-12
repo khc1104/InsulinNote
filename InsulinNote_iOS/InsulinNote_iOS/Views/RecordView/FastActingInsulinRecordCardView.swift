@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FastActingInsulingRecordCardView: View {
+struct FastActingInsulinRecordCardView: View {
     var body: some View {
         VStack(alignment: .leading){ //카드
             VStack(alignment: .leading){

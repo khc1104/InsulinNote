@@ -50,7 +50,7 @@
 		25E53FF72C5E3AD2009DA024 /* HowManyGetProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FF62C5E3AD2009DA024 /* HowManyGetProductView.swift */; };
 		25FB36492C8F35E200BC0DA7 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FB36482C8F35E200BC0DA7 /* RecordView.swift */; };
 		25FB364B2C8F429A00BC0DA7 /* FastActingInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FB364A2C8F429A00BC0DA7 /* FastActingInsulinView.swift */; };
-		25FB364D2C8F497300BC0DA7 /* FastActingInsulingRecordCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FB364C2C8F497300BC0DA7 /* FastActingInsulingRecordCardView.swift */; };
+		25FB364D2C8F497300BC0DA7 /* FastActingInsulinRecordCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FB364C2C8F497300BC0DA7 /* FastActingInsulinRecordCardView.swift */; };
 		25FB364F2C8F4A4A00BC0DA7 /* LongActingInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FB364E2C8F4A4A00BC0DA7 /* LongActingInsulinView.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,7 +118,7 @@
 		25E53FF62C5E3AD2009DA024 /* HowManyGetProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowManyGetProductView.swift; sourceTree = "<group>"; };
 		25FB36482C8F35E200BC0DA7 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		25FB364A2C8F429A00BC0DA7 /* FastActingInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastActingInsulinView.swift; sourceTree = "<group>"; };
-		25FB364C2C8F497300BC0DA7 /* FastActingInsulingRecordCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastActingInsulingRecordCardView.swift; sourceTree = "<group>"; };
+		25FB364C2C8F497300BC0DA7 /* FastActingInsulinRecordCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastActingInsulinRecordCardView.swift; sourceTree = "<group>"; };
 		25FB364E2C8F4A4A00BC0DA7 /* LongActingInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongActingInsulinView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -269,7 +269,7 @@
 			children = (
 				25FB36482C8F35E200BC0DA7 /* RecordView.swift */,
 				25FB364A2C8F429A00BC0DA7 /* FastActingInsulinView.swift */,
-				25FB364C2C8F497300BC0DA7 /* FastActingInsulingRecordCardView.swift */,
+				25FB364C2C8F497300BC0DA7 /* FastActingInsulinRecordCardView.swift */,
 				25FB364E2C8F4A4A00BC0DA7 /* LongActingInsulinView.swift */,
 				25484BE12C91A4CD005119AC /* LongActingInsulinIsInjectedView.swift */,
 				25484BE32C91A8D9005119AC /* LongActingInsulinIsNotInjectedView.swift */,
@@ -389,7 +389,7 @@
 				25E53F2B2C4C11EB009DA024 /* AddInsulinSettingView.swift in Sources */,
 				25E53F782C5282AA009DA024 /* UpdateInsulinView.swift in Sources */,
 				25484BE62C91BB8A005119AC /* InsulinSettingModel.swift in Sources */,
-				25FB364D2C8F497300BC0DA7 /* FastActingInsulingRecordCardView.swift in Sources */,
+				25FB364D2C8F497300BC0DA7 /* FastActingInsulinRecordCardView.swift in Sources */,
 				252993802C6CF64A0064C2F9 /* RecordingWidget.swift in Sources */,
 				25E53FC42C554FDC009DA024 /* DefaultInsulinAdministrationButton.swift in Sources */,
 				25FB364B2C8F429A00BC0DA7 /* FastActingInsulinView.swift in Sources */,

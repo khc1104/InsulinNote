@@ -6,24 +6,33 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct LongActingInsulinIsInjectedView:View {
+    
+    var insulinRecord: InsulinRecordModel?
     var proxy: GeometryProxy
-    var date: Date = Date()
+    
     
     var today: String {
         let formatter = DateFormatter()
         formatter.locale = .init(identifier: "ko_KR")
         formatter.dateFormat = "yyyy년 M월 d일\na h시 mm분"
-        return formatter.string(from: date)
+        if let insulinRecord{
+            return formatter.string(from: insulinRecord.createdAt)
+        }else{
+            return "없음"
+        }
     }
     
     var body: some View {
         VStack{
             Text("투여 함")
                 .font(.largeTitle)
-            Text("22")
-                .font(.title)
+            if let insulinRecord{
+                Text("\(insulinRecord.dosage)")
+                    .font(.title)
+            }
             Text("\(today)")
                 .foregroundStyle(.gray)
             

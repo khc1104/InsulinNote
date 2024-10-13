@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct FastActingInsulinRecordCardView: View {
+    var insulinRecord: InsulinRecordModel
     var body: some View {
         VStack(alignment: .leading){ //카드
             VStack(alignment: .leading){
                 Text("투여")
                     .font(.title2)
-                Text("17")
+                Text(String(insulinRecord.dosage))
                     .font(.title3)
                 VStack(alignment: .leading){
-                    Text("2024년 9월 4일")
-                    Text("오후 1시 11분")
+                    Text(insulinRecord.dateString)
+                    Text(insulinRecord.timeString)
                 }
                 .font(.footnote)
                 .foregroundStyle(.gray)

@@ -41,18 +41,7 @@ struct RecordView:View {
                     .font(.largeTitle)
                 LongActingInsulinView(longActingInsulinSetting: longActingInsulin, proxy: proxy)
                 FastActingInsulinView(insulinSetting: fastActingInsulin)
-                Button{
-                    
-                }label: {
-                    ZStack{
-                        Rectangle()
-                            .frame(width: proxy.size.width - 20, height: 50)
-                            .foregroundStyle(.clear)
-                            .border(Color.black, width: 1)
-                        Text("투여")
-                            .font(.title3)
-                    }
-                }
+                
                 
             }
             .padding(.horizontal, 10)

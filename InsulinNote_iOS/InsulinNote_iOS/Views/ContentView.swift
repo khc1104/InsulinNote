@@ -9,11 +9,14 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    
     @Environment(\.modelContext) private var modelContext
     //@Query private var items: [Item]
+    @AppStorage("firstLaunched") var isLaunched: Bool = false
     var body: some View {
         TabView{
-            MainView()
+            //MainView()
+            RecordView()
                 .tabItem {
                     Label(
                         title: { Text("Main") },
@@ -27,6 +30,17 @@ struct ContentView: View {
                           icon: { Image(systemName: "syringe.fill") }
                     )
                 }
+        }.onAppear{
+            if !isLaunched{
+                let insulin1 = InsulinSettingModel(insulinProductName: "트레시바", actingType: .long, dosage: 22, records: [], updatedAt: .now)
+                modelContext.insert(insulin1)
+                
+                let insulin2 = InsulinSettingModel(insulinProductName: "노보래피드", actingType: .fast, dosage: 17, records: [
+                    InsulinRecordModel(dosage: 17, createdAt: .now, updatedAt: .now)
+                ], updatedAt: .now)
+                modelContext.insert(insulin2)
+                isLaunched.toggle()
+            }
         }
     }
 }

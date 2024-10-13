@@ -38,7 +38,7 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
         let insulinSettings = try context.fetch(descriptor)
         let insulinSetting = insulinSettings.filter{$0.id.uuidString == seletedInsulinSettingId}.first
         //print(insulinSetting?.insulinProductName)
-        let record =  InsulinRecordModel(administion: insulinSetting?.administration ?? 99, createdAt: .now, updatedAt: .now)
+        let record =  InsulinRecordModel(dosage: insulinSetting?.dosage ?? 99, createdAt: .now, updatedAt: .now)
         insulinSetting?.records.append(record)
         try await requestConfirmation()
         
@@ -59,7 +59,7 @@ struct RecordingEntity: AppEntity{
     static var defaultQuery = RecordingQuery()
     
     var displayRepresentation: DisplayRepresentation{
-        DisplayRepresentation(title: "\(insulinSetting.insulinProductName) | \(insulinSetting.administration)")
+        DisplayRepresentation(title: "\(insulinSetting.insulinProductName) | \(insulinSetting.dosage)")
     }
 
 }

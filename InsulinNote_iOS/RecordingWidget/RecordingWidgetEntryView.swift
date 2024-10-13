@@ -24,7 +24,7 @@ struct RecordingWidgetEntryView : View {
                 Text("전")
                 
             }
-            Text("\(entry.setting.insulinSetting.administration)단위")
+            Text("\(entry.setting.insulinSetting.dosage)단위")
             Toggle(isOn: false ,intent: RecordingIntent(id: entry.setting.insulinSetting.id.uuidString)) { //CustomToggleStyle 만들 수 있음
                 Image(systemName: "syringe")
             }

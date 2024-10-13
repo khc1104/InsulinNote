@@ -22,7 +22,7 @@ struct InsulinSettingColumnView: View {
                 HStack{
                     VStack(alignment: .leading){
                         Text("제품명 : \(setting.insulinProductName)")
-                        Text("단위 : \(setting.administration)")
+                        Text("단위 : \(setting.dosage)")
                     }
                     Spacer()
                 }
@@ -84,7 +84,7 @@ struct InsulinSettingColumnView: View {
         }
         .frame(maxWidth: .infinity)
         .sheet(isPresented: $isGetProductSheetShowing, content: {
-            HowManyGetProductView(records: setting.records ?? [])
+            HowManyGetProductView(records: setting.records)
         })
             
     }

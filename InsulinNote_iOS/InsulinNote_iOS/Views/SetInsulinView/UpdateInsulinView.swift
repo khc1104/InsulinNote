@@ -10,7 +10,7 @@ import SwiftUI
 struct UpdateInsulinView: View {
     
     @State var insulinProductName: String = ""
-    @State var administration: String = ""
+    @State var dosage: String = ""
     
     var setting: InsulinSettingModel
     @Binding var selectedInsulin : InsulinSettingModel?
@@ -25,7 +25,7 @@ struct UpdateInsulinView: View {
                     Text("제품 명")
                 }.textFieldStyle(.roundedBorder)
                     .shadow(radius: 2)
-                TextField(text: $administration) {
+                TextField(text: $dosage) {
                     Text("단위")
                 }.textFieldStyle(.roundedBorder)
                     .shadow(radius: 2)
@@ -35,9 +35,9 @@ struct UpdateInsulinView: View {
             
             VStack{
                 Button{
-                    guard let administration = Int(administration) else {return}
+                    guard let dosage = Int(dosage) else {return}
                     setting.insulinProductName = insulinProductName
-                    setting.administration = Int(administration)
+                    setting.dosage = Int(dosage)
                     setting.updatedAt = .now
                     selectedInsulin = nil
                     //updateInsulinButtonTapped(setting, insulinProductName, administration)
@@ -50,7 +50,7 @@ struct UpdateInsulinView: View {
         .frame(maxWidth: .infinity)
         .onAppear{
             insulinProductName = setting.insulinProductName
-            administration = String(setting.administration)
+            dosage = String(setting.dosage)
         }
     }
 }

@@ -27,7 +27,7 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
     func perform() async throws -> some ProvidesDialog{
         SoundPlayer.shared.play()
         
-        let descriptor = FetchDescriptor<InsulinSettingModel>(ㅇ
+        let descriptor = FetchDescriptor<InsulinSettingModel>(
             //predicate: #Predicate{ $},
             sortBy: [
                 .init(\.createdAt)

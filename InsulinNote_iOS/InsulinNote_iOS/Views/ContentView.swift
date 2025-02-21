@@ -23,7 +23,8 @@ struct ContentView: View {
                         icon: { Image(systemName: "house.fill") }
                     )
                 }
-            SetInsulinSettingView()
+            //SetInsulinSettingView()
+            SwiftDataTestView()
                 .tabItem {
                     Label(
                         title: { Text("InsulinSetting") },

@@ -42,14 +42,14 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
         insulinSetting?.records.append(record)
         try await requestConfirmation()
         
-        
+        try context.save()
         return .result(dialog: IntentDialog("\(insulinSetting?.insulinProductName ?? "dd")"))
         
     }
     
 }
 
-struct RecordingEntity: AppEntity{
+struct RecordingEntity: AppEntity, Identifiable{
     let id: UUID
     
     let insulinSetting: InsulinSettingModel

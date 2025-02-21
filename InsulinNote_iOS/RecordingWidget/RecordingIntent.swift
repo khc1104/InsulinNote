@@ -27,7 +27,7 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
     func perform() async throws -> some ProvidesDialog{
         SoundPlayer.shared.play()
         
-        let descriptor = FetchDescriptor<InsulinSettingModel>(
+        let descriptor = FetchDescriptor<InsulinSettingModel>(ㅇ
             //predicate: #Predicate{ $},
             sortBy: [
                 .init(\.createdAt)
@@ -42,14 +42,14 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
         insulinSetting?.records.append(record)
         try await requestConfirmation()
         
-        
+        try context.save()
         return .result(dialog: IntentDialog("\(insulinSetting?.insulinProductName ?? "dd")"))
         
     }
     
 }
 
-struct RecordingEntity: AppEntity{
+struct RecordingEntity: AppEntity, Identifiable{
     let id: UUID
     
     let insulinSetting: InsulinSettingModel

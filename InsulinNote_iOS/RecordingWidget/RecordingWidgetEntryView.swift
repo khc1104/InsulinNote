@@ -46,11 +46,11 @@ struct RecordingWidgetEntryView : View {
                         }
                     }else{
                         Text("이미 맞음")
-                    }
+                    }d
                     
                 }
             }
-        }
+        }.containerBackground(for: .widget){}
         
     }
     private func getIsInjected(records: [InsulinRecordModel]) -> Bool{

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import AppIntents
 
 struct RecordingWidgetEntryView : View {
     var entry: RecordProvider.Entry
@@ -27,7 +28,11 @@ struct RecordingWidgetEntryView : View {
             switch family{
             case .accessoryCircular:
                 ZStack{
-                    Text("test")
+                    if !getIsInjected(records: entry.setting.insulinSetting.records){
+                        Button("\(entry.setting.insulinSetting.insulinProductName)", intent: RecordingIntent(id: entry.setting.insulinSetting.id.uuidString))
+                    }else{
+                        Text("맞음")
+                    }
                 }
             default:
                 VStack(alignment: .leading) {

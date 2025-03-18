@@ -49,7 +49,7 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
     
 }
 
-struct RecordingEntity: AppEntity{
+struct RecordingEntity: AppEntity, Identifiable{
     let id: UUID
     
     let insulinSetting: InsulinSettingModel

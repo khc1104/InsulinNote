@@ -62,6 +62,7 @@ struct RecordingWidget: Widget {
             }
             .configurationDisplayName("insulin Recording Display")
             .description("인슐린 설명")
+            .supportedFamilies([.accessoryCircular, .systemSmall])
     }
 }
 

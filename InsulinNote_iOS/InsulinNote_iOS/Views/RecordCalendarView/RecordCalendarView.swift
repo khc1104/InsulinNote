@@ -43,6 +43,30 @@ struct RecordCalendarView: View {
     @State var selectedYear: Int = 2025
     @State var selectedMonth: Int = 4
     var body: some View {
+        HStack{
+            Button{
+                selectedMonth -= 1
+                if selectedMonth == 0{
+                    selectedYear -= 1
+                    selectedMonth = 12
+                }
+                startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
+            } label: {
+                Image(systemName: "chevron.left")
+            }
+            Text("\(selectedYear.description)년 \(selectedMonth)월")
+                .font(.title)
+            Button{
+                selectedMonth += 1
+                if selectedMonth == 13{
+                    selectedYear += 1
+                    selectedMonth = 1
+                }
+                startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
+            } label: {
+                Image(systemName: "chevron.right")
+            }
+        }
         LazyVGrid(columns: gridItems) {
             ForEach(Weekday.allCases, id: \.self){ dow in
                 Text("\(dow.getString())")

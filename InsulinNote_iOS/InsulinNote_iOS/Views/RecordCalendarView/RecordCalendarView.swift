@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 enum Weekday: Int, CaseIterable {
     
@@ -39,9 +40,23 @@ enum Weekday: Int, CaseIterable {
 
 struct RecordCalendarView: View {
     let gridItems = Array(repeating: GridItem(.flexible()), count: 7)
+    
     @State var startDayOfWeek: Int = 0
     @State var selectedYear: Int = 2025
     @State var selectedMonth: Int = 4
+    
+    var today: [Int]{
+        var dateElements: [Int] = []
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateString = formatter.string(from: Date())
+        let dateArray = dateString.split(separator: "-")
+        dateElements.append(Int(dateArray[0])!)
+        dateElements.append(Int(dateArray[1])!)
+        dateElements.append(Int(dateArray[2])!)
+        return dateElements
+    }
+    
     var body: some View {
         HStack{
             Button{
@@ -73,7 +88,12 @@ struct RecordCalendarView: View {
             }
             ForEach(1..<(startDayOfWeek + getLastDayOfMonth(selectedYear, selectedMonth)!), id: \.self){ item in
                 if item >= startDayOfWeek{
-                    Text("\(item - startDayOfWeek + 1)")
+                    ZStack{
+                        if selectedYear == today[0] && selectedYear == today[0] && selectedMonth == today[1] && (item - startDayOfWeek + 1) == today[2]{ //오늘이 맞는지 
+                            Circle().fill(.yellow).opacity(0.3).frame(maxWidth: 30, maxHeight: 30)
+                        }
+                        Text("\(item - startDayOfWeek + 1)").frame(maxWidth: 40, maxHeight: 40)
+                    }
                 }else{
                     Text("")
                 }

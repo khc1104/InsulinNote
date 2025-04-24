@@ -1,4 +1,4 @@
-# InsulinNote
+![Simulator Screen Recording - iPhone 16 Pro - 2025-04-24 at 10 46 57](https://github.com/user-attachments/assets/ff7d9579-13ad-4b47-a708-ae70d710130c)# InsulinNote
 인슐린 투여 여부를 기록하는 iOS어플리케이션
 
 ## 개요
@@ -11,11 +11,13 @@
 1. iOS 17.0
 
 ## 개발한 기능
-|평소 투여하는 양 설정하는 페이지|인슐린 투여량 기록 페이지|
-|------------------------|-------------------|
-|![Simulator Screen Recording - iPhone 15 Pro - 2024-08-03 at 16 53 01](https://github.com/user-attachments/assets/9b38c068-91df-431f-96ba-d72e961fe553)|![Simulator Screen Recording - iPhone 15 Pro - 2024-08-03 at 17 00 41](https://github.com/user-attachments/assets/cd91d595-5130-4e8f-b45a-634dbf296443)|
-|인슐린 투여 기록을 바탕으로 다음 처방 받을 펜 계산하는 페이지|인터렉티브 위젯으로 기록하기|
-|![Simulator Screen Recording - iPhone 15 Pro - 2024-09-08 at 18 08 42](https://github.com/user-attachments/assets/31c4df0f-c2a2-4f62-b108-fbde583ca7e3)|![Simulator Screen Recording - iPhone 15 Pro - 2024-09-08 at 18 13 41](https://github.com/user-attachments/assets/30d9aa5b-e01c-4def-934f-d661b1ea3549)|
+|홈화면 위젯|잠금화면 위젯|
+|--------|----------|
+|![Simulator Screen Recording - iPhone 16 Pro - 2025-04-24 at 10 42 07](https://github.com/user-attachments/assets/2e145e62-2825-4802-98ce-96d2ef35293e)|![Simulator Screen Recording - iPhone 16 Pro - 2025-04-24 at 10 46 57](https://github.com/user-attachments/assets/1bcf8c04-ed31-46c5-bfcc-fd7b64252e6f)|
+|지효성 인슐린 투여|속효성 인슐린 투여|
+|![Simulator Screen Recording - iPhone 16 Pro - 2025-04-24 at 10 44 18](https://github.com/user-attachments/assets/cb851a91-caea-4b31-bd1d-c93437cf9836)|![Simulator Screen Recording - iPhone 16 Pro - 2025-04-24 at 10 43 38](https://github.com/user-attachments/assets/b3874943-0a99-4abf-8734-a147efb7886b)|
+
+
 
 
 ## UI/UX 피드백
@@ -39,7 +41,6 @@
 
 ## 현재 완성된 작업
 1. UI피드백 받은 모양으로 메인 페이지 변경
-   ![스크린샷 2024-10-13 오후 10 15 29](https://github.com/user-attachments/assets/cd5c259a-9edb-462d-a0b3-59313a35e94a)
 2. 인슐린을 등록하는 기능
 3. 인터랙티브 위젯으로 선택한 인슐린의 기록을 추가하는 기능
 4. 위젯에서 당일 인슐린 투여 여부로 버튼 표시가 바뀌는 기능

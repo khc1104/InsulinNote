@@ -57,6 +57,9 @@ struct RecordCalendarView: View {
         return dateElements
     }
     
+    @Environment(\.modelContext) var insulinContext
+    @Query var insulinSettings: [InsulinSettingModel]
+    
     var body: some View {
         HStack{
             Button{
@@ -92,6 +95,12 @@ struct RecordCalendarView: View {
                         if selectedYear == today[0] && selectedYear == today[0] && selectedMonth == today[1] && (item - startDayOfWeek + 1) == today[2]{ //오늘이 맞는지 
                             Circle().fill(.yellow).opacity(0.3).frame(maxWidth: 30, maxHeight: 30)
                         }
+                        if getIsInjected(year: selectedYear, month: selectedMonth, day: (item - startDayOfWeek + 1)){
+                            Circle().stroke(
+                                Color.green,
+                                style: StrokeStyle(lineWidth: 1.0 ))
+                            .frame(maxWidth: 30, maxHeight: 30)
+                        }
                         Text("\(item - startDayOfWeek + 1)").frame(maxWidth: 40, maxHeight: 40)
                     }
                 }else{
@@ -111,6 +120,7 @@ struct RecordCalendarView: View {
         }
         return 0
     }
+    
     func getLastDayOfMonth(_ year:Int, _ month: Int) -> Int?{
         let calendar = Calendar.current
         let formatter = DateFormatter()
@@ -121,6 +131,19 @@ struct RecordCalendarView: View {
         
         guard let day = end.day else { return nil }
         return day
+    }
+    
+    func getIsInjected(year:Int, month: Int, day: Int) -> Bool{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let checkDate = "\(year)-\(month)-\(day)"
+        var injectedRecords = insulinSettings.map{
+            $0.records.filter{
+                let injectedDate = formatter.string(from: $0.createdAt)
+                return checkDate == injectedDate
+            }
+        }
+        return true
     }
 }
 

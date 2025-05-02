@@ -43,7 +43,7 @@ struct RecordCalendarView: View {
     
     @State var startDayOfWeek: Int = 0
     @State var selectedYear: Int = 2025
-    @State var selectedMonth: Int = 4
+    @State var selectedMonth: Int = 5
     
     var today: [Int]{
         var dateElements: [Int] = []
@@ -58,59 +58,65 @@ struct RecordCalendarView: View {
     }
     
     @Environment(\.modelContext) var insulinContext
-    @Query var insulinSettings: [InsulinSettingModel]
+    @Query var records: [InsulinRecordModel]
     
     var body: some View {
-        HStack{
-            Button{
-                selectedMonth -= 1
-                if selectedMonth == 0{
-                    selectedYear -= 1
-                    selectedMonth = 12
-                }
-                startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
-            } label: {
-                Image(systemName: "chevron.left")
-            }
-            Text("\(selectedYear.description)년 \(selectedMonth)월")
-                .font(.title)
-            Button{
-                selectedMonth += 1
-                if selectedMonth == 13{
-                    selectedYear += 1
-                    selectedMonth = 1
-                }
-                startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
-            } label: {
-                Image(systemName: "chevron.right")
-            }
-        }
-        LazyVGrid(columns: gridItems) {
-            ForEach(Weekday.allCases, id: \.self){ dow in
-                Text("\(dow.getString())")
-            }
-            ForEach(1..<(startDayOfWeek + getLastDayOfMonth(selectedYear, selectedMonth)!), id: \.self){ item in
-                if item >= startDayOfWeek{
-                    ZStack{
-                        if selectedYear == today[0] && selectedYear == today[0] && selectedMonth == today[1] && (item - startDayOfWeek + 1) == today[2]{ //오늘이 맞는지 
-                            Circle().fill(.yellow).opacity(0.3).frame(maxWidth: 30, maxHeight: 30)
-                        }
-                        if getIsInjected(year: selectedYear, month: selectedMonth, day: (item - startDayOfWeek + 1)){
-                            Circle().stroke(
-                                Color.green,
-                                style: StrokeStyle(lineWidth: 1.0 ))
-                            .frame(maxWidth: 30, maxHeight: 30)
-                        }
-                        Text("\(item - startDayOfWeek + 1)").frame(maxWidth: 40, maxHeight: 40)
+        VStack{
+            HStack{
+                Button{
+                    selectedMonth -= 1
+                    if selectedMonth == 0{
+                        selectedYear -= 1
+                        selectedMonth = 12
                     }
-                }else{
-                    Text("")
+                    startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
+                } label: {
+                    Image(systemName: "chevron.left")
                 }
+                Text("\(selectedYear.description)년 \(selectedMonth)월")
+                    .font(.title)
+                Button{
+                    selectedMonth += 1
+                    if selectedMonth == 13{
+                        selectedYear += 1
+                        selectedMonth = 1
+                    }
+                    startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
+                } label: {
+                    Image(systemName: "chevron.right")
+                }
+            }
+            LazyVGrid(columns: gridItems) {
+                ForEach(Weekday.allCases, id: \.self){ dow in
+                    Text("\(dow.getString())")
+                }
+                ForEach(1..<(startDayOfWeek + getLastDayOfMonth(selectedYear, selectedMonth)!), id: \.self){ item in
+                    if item >= startDayOfWeek{
+                        ZStack{
+                            if selectedYear == today[0] && selectedYear == today[0] && selectedMonth == today[1] && (item - startDayOfWeek + 1) == today[2]{ //오늘이 맞는지
+                                Circle().fill(.yellow).opacity(0.3).frame(maxWidth: 30, maxHeight: 30)
+                            }
+                            if !getIsInjected(year: selectedYear, month: selectedMonth, day: (item - startDayOfWeek + 1)).isEmpty{
+                                Circle().stroke(
+                                    Color.green,
+                                    style: StrokeStyle(lineWidth: 1.0 ))
+                                .frame(maxWidth: 30, maxHeight: 30)
+                            }
+                            Text("\(item - startDayOfWeek + 1)").frame(maxWidth: 40, maxHeight: 40)
+                        }
+                    }else{
+                        Text("")
+                    }
+                }
+            }.onAppear{
+                startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
             }
         }.onAppear{
-            startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
+            selectedYear = today[0]
+            selectedMonth = today[1]
         }
     }
+    //1일이 무슨 요일인지 찾는 함수
     func getDayOfTheWeek(_ year:Int, _ month: Int) -> Int{
         let calendar = Calendar.current
         let components = DateComponents(year: year, month: month, day: 1)
@@ -120,7 +126,7 @@ struct RecordCalendarView: View {
         }
         return 0
     }
-    
+    //월의 마지막날을 찾는 함수
     func getLastDayOfMonth(_ year:Int, _ month: Int) -> Int?{
         let calendar = Calendar.current
         let formatter = DateFormatter()
@@ -132,18 +138,16 @@ struct RecordCalendarView: View {
         guard let day = end.day else { return nil }
         return day
     }
-    
-    func getIsInjected(year:Int, month: Int, day: Int) -> Bool{
+    //해당 날짜에 투여 기록이 있는지 반환
+    func getIsInjected(year:Int, month: Int, day: Int) -> [InsulinRecordModel]{
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let checkDate = "\(year)-\(month)-\(day)"
-        var injectedRecords = insulinSettings.map{
-            $0.records.filter{
-                let injectedDate = formatter.string(from: $0.createdAt)
-                return checkDate == injectedDate
-            }
+        let checkDate = "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day))"
+        let injectedRecords = records.filter{
+            let createdDate = formatter.string(from: $0.createdAt)
+            return createdDate == checkDate
         }
-        return true
+        return injectedRecords
     }
 }
 

@@ -24,7 +24,7 @@ struct ContentView: View {
                     )
                 }
             //SetInsulinSettingView()
-            SwiftDataTestView()
+            RecordCalendarView()
                 .tabItem {
                     Label(
                         title: { Text("InsulinSetting") },

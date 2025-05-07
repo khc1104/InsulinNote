@@ -41,9 +41,11 @@ enum Weekday: Int, CaseIterable {
 struct RecordCalendarView: View {
     let gridItems = Array(repeating: GridItem(.flexible()), count: 7)
     
+    @State var isSheetPresented: Bool = false
     @State var startDayOfWeek: Int = 0
     @State var selectedYear: Int = 2025
-    @State var selectedMonth: Int = 5
+    @State var selectedMonth: Int = 4
+    @State var selectedDay: Int = 1
     
     var today: [Int]{
         var dateElements: [Int] = []
@@ -101,6 +103,11 @@ struct RecordCalendarView: View {
                                     Color.green,
                                     style: StrokeStyle(lineWidth: 1.0 ))
                                 .frame(maxWidth: 30, maxHeight: 30)
+                                .onTapGesture {
+                                    print(item - startDayOfWeek + 1)
+                                    selectedDay = item - startDayOfWeek + 1
+                                    isSheetPresented.toggle()
+                                }
                             }
                             Text("\(item - startDayOfWeek + 1)").frame(maxWidth: 40, maxHeight: 40)
                         }
@@ -113,6 +120,8 @@ struct RecordCalendarView: View {
             selectedYear = today[0]
             selectedMonth = today[1]
             startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
+        }.sheet(isPresented: $isSheetPresented) {
+            RecordCalendarLogView(selectedDate: "\(selectedYear)-\(String(format: "%02d", selectedMonth))-\(String(format: "%02d", selectedDay))")
         }
     }
     //1일이 무슨 요일인지 찾는 함수

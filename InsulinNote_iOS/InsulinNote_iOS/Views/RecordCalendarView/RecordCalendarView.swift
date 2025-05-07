@@ -108,12 +108,11 @@ struct RecordCalendarView: View {
                         Text("")
                     }
                 }
-            }.onAppear{
-                startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
             }
         }.onAppear{
             selectedYear = today[0]
             selectedMonth = today[1]
+            startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
         }
     }
     //1일이 무슨 요일인지 찾는 함수

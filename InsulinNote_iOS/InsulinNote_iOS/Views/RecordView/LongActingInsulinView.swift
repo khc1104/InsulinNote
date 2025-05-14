@@ -10,10 +10,10 @@ import SwiftData
 
 struct LongActingInsulinView:View {
 
+    var date: Date = Date()
     var longActingInsulinSetting: InsulinSettingModel?
     var proxy: GeometryProxy
     
-    @State var date: Date = Date()
     @State var isInjected: Bool = false
     @State var injectedRecordToday: InsulinRecordModel? = nil
     
@@ -58,8 +58,7 @@ struct LongActingInsulinView:View {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "yyyy-MM-dd"
-        let today = Date()
-        let strToday = formatter.string(from: today)
+        let strToday = formatter.string(from: date)
         
         return records.filter{
             return formatter.string(from: $0.createdAt) == strToday

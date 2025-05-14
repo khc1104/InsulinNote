@@ -40,7 +40,7 @@ struct RecordTestView:View {
             VStack(alignment: .leading, spacing: 10){
                 Text("\(selectedDate)")
                     .font(.largeTitle)
-                LongActingInsulinView(longActingInsulinSetting: longActingInsulin, proxy: proxy)
+                LongActingInsulinView(date: date, longActingInsulinSetting: longActingInsulin, proxy: proxy)
                 FastActingInsulinView(insulinSetting: fastActingInsulin)
                 
                 

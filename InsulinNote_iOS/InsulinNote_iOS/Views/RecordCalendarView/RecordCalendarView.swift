@@ -121,7 +121,8 @@ struct RecordCalendarView: View {
             selectedMonth = today[1]
             startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
         }.sheet(isPresented: $isSheetPresented) {
-            RecordCalendarLogView(selectedDate: "\(selectedYear)-\(String(format: "%02d", selectedMonth))-\(String(format: "%02d", selectedDay))")
+            //RecordCalendarLogView(selectedDate: "\(selectedYear)-\(String(format: "%02d", selectedMonth))-\(String(format: "%02d", selectedDay))")
+            RecordTestView(date: intToDate(year: selectedYear, month: selectedMonth, day: selectedDay))
         }
     }
     //1일이 무슨 요일인지 찾는 함수
@@ -156,6 +157,13 @@ struct RecordCalendarView: View {
             return createdDate == checkDate
         }
         return injectedRecords
+    }
+    
+    func intToDate(year: Int, month: Int, day: Int) -> Date{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateString = "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day))"
+        return formatter.date(from: dateString) ?? Date()
     }
 }
 

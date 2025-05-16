@@ -46,6 +46,8 @@ struct RecordTestView:View {
                 
             }
             .padding(.horizontal, 10)
+        }.onAppear{
+            print(selectedDate)
         }
     }
 }

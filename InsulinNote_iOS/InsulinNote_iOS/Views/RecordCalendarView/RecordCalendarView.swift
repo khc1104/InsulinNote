@@ -93,23 +93,29 @@ struct RecordCalendarView: View {
                     Text("\(dow.getString())")
                 }
                 ForEach(1..<(startDayOfWeek + getLastDayOfMonth(selectedYear, selectedMonth)!), id: \.self){ item in
+                    let day = item - startDayOfWeek + 1
                     if item >= startDayOfWeek{
                         ZStack{
-                            if selectedYear == today[0] && selectedYear == today[0] && selectedMonth == today[1] && (item - startDayOfWeek + 1) == today[2]{ //오늘이 맞는지
+                            if selectedYear == today[0] && selectedYear == today[0] && selectedMonth == today[1] && (day) == today[2]{ //오늘이 맞는지
                                 Circle().fill(.yellow).opacity(0.3).frame(maxWidth: 30, maxHeight: 30)
                             }
-                            if !getIsInjected(year: selectedYear, month: selectedMonth, day: (item - startDayOfWeek + 1)).isEmpty{
+                            if !getIsInjected(year: selectedYear, month: selectedMonth, day: (day)).isEmpty{
                                 Circle().stroke(
                                     Color.green,
                                     style: StrokeStyle(lineWidth: 1.0 ))
                                 .frame(maxWidth: 30, maxHeight: 30)
-                                .onTapGesture {
-                                    print(item - startDayOfWeek + 1)
-                                    selectedDay = item - startDayOfWeek + 1
-                                    isSheetPresented.toggle()
-                                }
+                                
                             }
-                            Text("\(item - startDayOfWeek + 1)").frame(maxWidth: 40, maxHeight: 40)
+                            if selectedYear < today[0] || selectedMonth < today[1] || day <= today[2] {
+                                Text("\(day)").frame(maxWidth: 40, maxHeight: 40)
+                                    .onTapGesture {
+                                        selectedDay = day
+                                        isSheetPresented.toggle()
+                                    }
+                            }else{
+                                Text("\(day)").frame(maxWidth: 40, maxHeight: 40)
+                            }
+                            
                         }
                     }else{
                         Text("")
@@ -121,7 +127,6 @@ struct RecordCalendarView: View {
             selectedMonth = today[1]
             startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
         }.sheet(isPresented: $isSheetPresented) {
-            //RecordCalendarLogView(selectedDate: "\(selectedYear)-\(String(format: "%02d", selectedMonth))-\(String(format: "%02d", selectedDay))")
             RecordTestView(date: intToDate(year: selectedYear, month: selectedMonth, day: selectedDay))
         }
     }

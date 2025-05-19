@@ -45,7 +45,8 @@ struct RecordCalendarView: View {
     @State var startDayOfWeek: Int = 0
     @State var selectedYear: Int = 2025
     @State var selectedMonth: Int = 4
-    @State var selectedDay: Int = 1
+    
+    @State var selectedDate: Date? = nil
     
     var today: [Int]{
         var dateElements: [Int] = []
@@ -109,8 +110,8 @@ struct RecordCalendarView: View {
                             if selectedYear < today[0] || selectedMonth < today[1] || day <= today[2] {
                                 Text("\(day)").frame(maxWidth: 40, maxHeight: 40)
                                     .onTapGesture {
-                                        selectedDay = day
-                                        isSheetPresented.toggle()
+                                        selectedDate = intToDate(year: selectedYear, month: selectedMonth, day: day)
+                                        //isSheetPresented.toggle()
                                     }
                             }else{
                                 Text("\(day)").frame(maxWidth: 40, maxHeight: 40)
@@ -126,8 +127,8 @@ struct RecordCalendarView: View {
             selectedYear = today[0]
             selectedMonth = today[1]
             startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
-        }.sheet(isPresented: $isSheetPresented) {
-            RecordTestView(date: intToDate(year: selectedYear, month: selectedMonth, day: selectedDay))
+        }.sheet(item: $selectedDate) { date in
+            RecordTestView(date: date)
         }
     }
     //1일이 무슨 요일인지 찾는 함수

@@ -17,7 +17,7 @@ struct LongActingInsulinIsInjectedView:View {
     var injectedDate: String {
         let formatter = DateFormatter()
         formatter.locale = .init(identifier: "ko_KR")
-        formatter.dateFormat = "h시 mm분"
+        formatter.dateFormat = "a h시 mm분"
         if let insulinRecord{
             return formatter.string(from: insulinRecord.createdAt)
         }else{

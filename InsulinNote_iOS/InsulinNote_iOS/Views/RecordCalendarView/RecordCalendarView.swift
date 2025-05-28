@@ -131,7 +131,7 @@ struct RecordCalendarView: View {
             selectedMonth = today[1]
             startDayOfWeek = getDayOfTheWeek(selectedYear, selectedMonth)
         }.sheet(item: $selectedDate) { date in
-            RecordTestView(date: date)
+            RecordView(date: date)
         }
     }
     //1일이 무슨 요일인지 찾는 함수

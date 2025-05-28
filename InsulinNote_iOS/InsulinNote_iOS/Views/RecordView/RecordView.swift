@@ -69,3 +69,4 @@ struct RecordView:View {
     return RecordView().modelContainer(container)
     
 }
+

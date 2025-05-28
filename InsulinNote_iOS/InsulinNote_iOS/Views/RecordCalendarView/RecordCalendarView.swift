@@ -110,8 +110,11 @@ struct RecordCalendarView: View {
                             if selectedYear < today[0] || selectedMonth < today[1] || day <= today[2] {
                                 Text("\(day)").frame(maxWidth: 40, maxHeight: 40)
                                     .onTapGesture {
-                                        selectedDate = intToDate(year: selectedYear, month: selectedMonth, day: day)
-                                        //isSheetPresented.toggle()
+                                        if selectedYear == today[0] && selectedMonth == today[1] && day == today[2]{
+                                            selectedDate = .now
+                                        }else{
+                                            selectedDate = intToDate(year: selectedYear, month: selectedMonth, day: day)
+                                        }
                                     }
                             }else{
                                 Text("\(day)").frame(maxWidth: 40, maxHeight: 40)
@@ -167,8 +170,8 @@ struct RecordCalendarView: View {
     
     func intToDate(year: Int, month: Int, day: Int) -> Date{
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let dateString = "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day))"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateString = "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day)) 23:59:59"
         return formatter.date(from: dateString) ?? Date()
     }
 }

@@ -19,16 +19,23 @@ struct ContentView: View {
             RecordView()
                 .tabItem {
                     Label(
-                        title: { Text("Main") },
+                        title: { Text("main") },
                         icon: { Image(systemName: "house.fill") }
                     )
                 }
             //SetInsulinSettingView()
-            SwiftDataTestView()
+            RecordCalendarView()
                 .tabItem {
                     Label(
-                        title: { Text("InsulinSetting") },
-                          icon: { Image(systemName: "syringe.fill") }
+                        title: { Text("calendar") },
+                          icon: { Image(systemName: "calendar") }
+                    )
+                }
+            SetInsulinSettingView()
+                .tabItem {
+                    Label(
+                        title: { Text("setting") },
+                          icon: { Image(systemName: "gear") }
                     )
                 }
         }.onAppear{

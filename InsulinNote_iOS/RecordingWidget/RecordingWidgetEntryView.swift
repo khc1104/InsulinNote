@@ -46,7 +46,7 @@ struct RecordingWidgetEntryView : View {
                         }
                     }else{
                         Text("이미 맞음")
-                    }d
+                    }
                     
                 }
             }

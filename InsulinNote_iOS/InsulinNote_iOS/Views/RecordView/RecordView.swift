@@ -9,7 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct RecordView:View {
-    @State var date: Date = .now
+    @State var date: Date = Date()
+    //@State var date: Date = .now
     @State var isInjected: Bool = false
     
     @Environment(\.modelContext) var insulinContext
@@ -27,7 +28,7 @@ struct RecordView:View {
         }.first
     }
     
-    var today: String {
+    var selectedDate: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_kr")
         formatter.dateFormat = "yyyy년 M월 d일 E"
@@ -37,14 +38,16 @@ struct RecordView:View {
     var body: some View {
         GeometryReader{proxy in
             VStack(alignment: .leading, spacing: 10){
-                Text("\(today)")
+                Text("\(selectedDate)")
                     .font(.largeTitle)
-                LongActingInsulinView(longActingInsulinSetting: longActingInsulin, proxy: proxy)
+                LongActingInsulinView(date: date, longActingInsulinSetting: longActingInsulin, proxy: proxy)
                 FastActingInsulinView(insulinSetting: fastActingInsulin)
                 
                 
             }
             .padding(.horizontal, 10)
+        }.onAppear{
+            print(selectedDate)
         }
     }
 }
@@ -58,7 +61,7 @@ struct RecordView:View {
 //        InsulinRecordModel(dosage: 22, createdAt: .now, updatedAt: .now)
 //    ], updatedAt: .now)
 //    container.mainContext.insert(insulin1)
-//    
+//
 //    let insulin2 = InsulinSettingModel(insulinProductName: "노보래피드", actingType: .fast, dosage: 17, records: [
 //        InsulinRecordModel(dosage: 17, createdAt: .now, updatedAt: .now)
 //    ], updatedAt: .now)

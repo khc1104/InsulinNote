@@ -14,10 +14,10 @@ struct LongActingInsulinIsInjectedView:View {
     var proxy: GeometryProxy
     
     
-    var today: String {
+    var injectedDate: String {
         let formatter = DateFormatter()
         formatter.locale = .init(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy년 M월 d일\na h시 mm분"
+        formatter.dateFormat = "a h시 mm분"
         if let insulinRecord{
             return formatter.string(from: insulinRecord.createdAt)
         }else{
@@ -33,7 +33,7 @@ struct LongActingInsulinIsInjectedView:View {
                 Text("\(insulinRecord.dosage)")
                     .font(.title)
             }
-            Text("\(today)")
+            Text("\(injectedDate)")
                 .foregroundStyle(.gray)
             
             

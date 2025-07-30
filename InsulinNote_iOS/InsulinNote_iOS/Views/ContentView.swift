@@ -31,7 +31,7 @@ struct ContentView: View {
                           icon: { Image(systemName: "calendar") }
                     )
                 }
-            SetInsulinSettingView()
+            SettingInsulinView()
                 .tabItem {
                     Label(
                         title: { Text("setting") },

@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct EditInsulinSettingView: View {
     var insulinSetting: InsulinSettingModel?
     
+    @State private var isPresentingEditSheet = false
+    
+    @State private var productName = ""
+    @State private var dosage = "0"
     var body: some View {
         VStack(alignment: .leading){
             Text("\(insulinSetting?.actingType == .fast ? "속효성 인슐린" : "지효성 인슐린")")
@@ -21,20 +26,52 @@ struct EditInsulinSettingView: View {
                     Text("투여량: \(insulinSetting?.dosage ?? 0)")
                     Spacer()
                     Button {
-                        
+                        isPresentingEditSheet.toggle()
                     }label: {
                         Text("수정")
                             .frame(width: 50, height: 50)
                             .clipShape(Circle())
                             .overlay(
-                                Circle().stroke(Color.black, lineWidth: 1)
+                                Circle().stroke(Color.primary, lineWidth: 1)
                             )
                     }
                     Spacer()
                 }.font(.title2)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .border(.black, width: 1.0)
+            .border(.primary, width: 1.0)
+            .sheet(isPresented: $isPresentingEditSheet) {
+                Form {
+                    VStack{
+                        HStack(){
+                            Text("제품명")
+                            Divider()
+                            TextEditor(text: $productName)
+                        }
+                        HStack{
+                            Text("투여량")
+                            Divider()
+                            TextEditor(text: $dosage)
+                                .keyboardType(.numberPad)
+                        }
+                        Button{
+                            guard let dosage = Int(dosage) else  {
+                                print("정수가 아님")
+                                return
+                            }
+                            insulinSetting?.insulinProductName = productName
+                            insulinSetting?.dosage = dosage
+                            
+                            isPresentingEditSheet.toggle()
+                        }label: {
+                            Text("수정")
+                        }
+                    }
+                }.onAppear{
+                    productName = insulinSetting?.insulinProductName ?? ""
+                    dosage = String(insulinSetting?.dosage ?? 0)
+                }
+            }
         }
     }
 }

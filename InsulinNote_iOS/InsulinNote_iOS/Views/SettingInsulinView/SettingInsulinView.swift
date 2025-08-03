@@ -19,6 +19,7 @@ struct SettingInsulinView: View {
             EditInsulinSettingView(insulinSetting: insulinSettings.first(where: { $0.actingType == .fast}))
         }
         .padding(.horizontal, 10)
+        .padding(.bottom, 10)
     }
 }
 

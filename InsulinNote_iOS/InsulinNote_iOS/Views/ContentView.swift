@@ -22,22 +22,21 @@ struct ContentView: View {
                         title: { Text("main") },
                         icon: { Image(systemName: "house.fill") }
                     )
-                }
-            //SetInsulinSettingView()
+                }.padding(.bottom, 10)
             RecordCalendarView()
                 .tabItem {
                     Label(
                         title: { Text("calendar") },
                           icon: { Image(systemName: "calendar") }
                     )
-                }
+                }.padding(.bottom, 10)
             SettingInsulinView()
                 .tabItem {
                     Label(
                         title: { Text("setting") },
                           icon: { Image(systemName: "gear") }
                     )
-                }
+                }.padding(.bottom, 10)
         }.onAppear{
             if !isLaunched{
                 let insulin1 = InsulinSettingModel(insulinProductName: "트레시바", actingType: .long, dosage: 22, records: [], updatedAt: .now)

@@ -42,7 +42,7 @@ struct FastActingInsulinView:View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .border(Color.black, width: 1)
+                .border(Color.primary, width: 1)
             }.onAppear{
                 //print(insulinSetting.actingType)
                 print(insulinSetting.records)
@@ -56,7 +56,7 @@ struct FastActingInsulinView:View {
                     //.frame(width: proxy.size.width - 20, height: 50)
                         .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
                         .foregroundStyle(.clear)
-                        .border(Color.black, width: 1)
+                        .border(Color.primary, width: 1)
                     Text("투여")
                         .font(.title3)
                 }

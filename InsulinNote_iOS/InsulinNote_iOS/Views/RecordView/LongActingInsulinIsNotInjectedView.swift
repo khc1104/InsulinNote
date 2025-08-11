@@ -23,14 +23,14 @@ struct LongActingInsulinIsNotInjectedView:View {
                     Rectangle()
                         .frame(width: 200, height: 50)
                         .foregroundStyle(.clear)
-                        .border(Color.black, width: 1)
+                        .border(Color.primary, width: 1)
                     Text("투여")
                         .font(.title3)
                 }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: proxy.size.height * 0.4)
-        .border(Color.black, width: 1)
+        .border(Color.primary, width: 1)
     }
 }
 

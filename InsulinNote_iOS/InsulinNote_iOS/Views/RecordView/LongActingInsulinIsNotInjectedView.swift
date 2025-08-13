@@ -9,15 +9,16 @@ import SwiftUI
 
 struct LongActingInsulinIsNotInjectedView:View {
     var proxy: GeometryProxy
-    @Binding var isInjected:Bool
-    var injectButtonAction: () -> ()
+    //@Binding var isInjected:Bool
+    
+    //@Binding var isPresented: Bool
+    var action: ()-> ()
     var body: some View {
         VStack{
             Text("미 투여")
                 .font(.title)
             Button{
-                    injectButtonAction()
-                    isInjected.toggle()
+                action()
             }label: {
                 ZStack{
                     Rectangle()

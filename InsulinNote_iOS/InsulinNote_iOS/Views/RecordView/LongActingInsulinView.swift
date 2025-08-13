@@ -17,6 +17,10 @@ struct LongActingInsulinView:View {
     @State var isInjected: Bool = false
     @State var injectedRecordToday: InsulinRecordModel? = nil
     
+    @Binding var isPresented: Bool
+    @Binding var dosage: Int
+    @Binding var recordClosure: ()->()
+    
     var body: some View {
         VStack(alignment: .leading){
             if let longActingInsulinSetting{
@@ -25,9 +29,7 @@ struct LongActingInsulinView:View {
                 if isInjected{
                     LongActingInsulinIsInjectedView(insulinRecord:injectedRecordToday ,proxy: proxy)
                 }else{
-                    LongActingInsulinIsNotInjectedView(proxy: proxy, isInjected: $isInjected){
-                        createNewInsulinRecord()
-                    }
+                    LongActingInsulinIsNotInjectedView(proxy: proxy, action: actingButtonAction)
                 }
             }
         }.onAppear{
@@ -42,15 +44,24 @@ struct LongActingInsulinView:View {
             }
         }
     }
+    func actingButtonAction() -> () {
+        if let longActingInsulinSetting{
+            dosage = longActingInsulinSetting.dosage
+        }else{
+            dosage = 0
+        }
+        recordClosure = {createNewInsulinRecord()}
+        isPresented.toggle()
+    }
     
     func createNewInsulinRecord() -> (){ //인슐린 설정의 기록 추가
         if let longActingInsulinSetting{
-            let record: InsulinRecordModel = InsulinRecordModel(dosage: longActingInsulinSetting.dosage, createdAt: date, updatedAt: date)
+            let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: date, updatedAt: date)
             longActingInsulinSetting.records.append(record)
             injectedRecordToday = record
+            isInjected.toggle()
         }else{
             print("세팅이 없음")
-            
         }
     }
     

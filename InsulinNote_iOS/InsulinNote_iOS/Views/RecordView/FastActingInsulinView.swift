@@ -10,12 +10,12 @@ import SwiftData
 
 struct FastActingInsulinView:View {
     @Environment(\.modelContext) var insulinContext
-//    @Query(
-//        filter: #Predicate<InsulinRecordModel>{ $0.createdAt < $0.today},
-//        sort: \.createdAt
-//    )
-//    var insulinRecords: [InsulinRecordModel]
+
     var insulinSetting: InsulinSettingModel?
+    
+    @Binding var isPresented: Bool
+    @Binding var dosage: Int
+    @Binding var recordClosure: ()->()
     
     private var todayRecords: [InsulinRecordModel]{
         if let insulinSetting{
@@ -49,7 +49,10 @@ struct FastActingInsulinView:View {
             }
             
             Button{
-                createFastInsulinRecord()
+                //createFastInsulinRecord()
+                dosage = insulinSetting.dosage
+                recordClosure = { createFastInsulinRecord() }
+                isPresented.toggle()
             }label: {
                 ZStack{
                     Rectangle()
@@ -66,7 +69,7 @@ struct FastActingInsulinView:View {
     
     func createFastInsulinRecord() -> (){ //인슐린 설정의 기록 추가
         if let insulinSetting{
-            let record: InsulinRecordModel = InsulinRecordModel(dosage: insulinSetting.dosage, createdAt: .now, updatedAt: .now)
+            let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: .now, updatedAt: .now)
             insulinSetting.records.append(record)
             //injectedRecordToday = record
         }else{
@@ -76,6 +79,3 @@ struct FastActingInsulinView:View {
     }
 }
 
-#Preview{
-    FastActingInsulinView()
-}

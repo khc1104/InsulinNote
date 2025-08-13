@@ -9,12 +9,16 @@ import SwiftUI
 import SwiftData
 
 struct RecordView:View {
-    @State var date: Date = Date()
+    var date: Date = Date()
     //@State var date: Date = .now
-    @State var isInjected: Bool = false
+    @State private var isInjected: Bool = false
     
     @Environment(\.modelContext) var insulinContext
     @Query var insulinSettings: [InsulinSettingModel]
+    
+    @State private var isPresented: Bool = false
+    @State private var editedDosage: Int = 0
+    @State private var recordClosure: (() -> Void) = {print("기록 에러")}
     
     var longActingInsulin: InsulinSettingModel? {
         insulinSettings.filter{
@@ -40,14 +44,21 @@ struct RecordView:View {
             VStack(alignment: .leading, spacing: 10){
                 Text("\(selectedDate)")
                     .font(.largeTitle)
-                LongActingInsulinView(date: date, longActingInsulinSetting: longActingInsulin, proxy: proxy)
-                FastActingInsulinView(insulinSetting: fastActingInsulin)
+                LongActingInsulinView(date: date, longActingInsulinSetting: longActingInsulin, proxy: proxy, isPresented: $isPresented, dosage: $editedDosage, recordClosure: $recordClosure)
+                FastActingInsulinView(insulinSetting: fastActingInsulin, isPresented: $isPresented, dosage: $editedDosage, recordClosure: $recordClosure)
                 
                 
             }
             .padding(.horizontal, 10)
         }.onAppear{
             print(selectedDate)
+        }
+        .sheet(isPresented: $isPresented) {
+            RecordDetailSheetView(dosage: $editedDosage) {
+                recordClosure()
+                    
+            }
+            .presentationDetents([.medium])
         }
     }
 }

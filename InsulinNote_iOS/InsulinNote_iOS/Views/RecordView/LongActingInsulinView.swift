@@ -26,13 +26,17 @@ struct LongActingInsulinView:View {
             if let longActingInsulinSetting{
                 Text(longActingInsulinSetting.insulinProductName)
                     .font(.title)
-                if isInjected{
-                    LongActingInsulinIsInjectedView(insulinRecord:injectedRecordToday ,proxy: proxy)
-                }else{
-                    LongActingInsulinIsNotInjectedView(proxy: proxy, action: actingButtonAction)
-                }
+                    .foregroundStyle(Color.longActing)
+                VStack{
+                    if isInjected{
+                        LongActingInsulinIsInjectedView(insulinRecord:injectedRecordToday ,proxy: proxy)
+                    }else{
+                        LongActingInsulinIsNotInjectedView(proxy: proxy, action: actingButtonAction)
+                    }
+                }.border(Color.longActing, width: 1)
             }
-        }.onAppear{
+        }
+        .onAppear{
             if let longActingInsulinSetting{
                 injectedRecordToday = getIsInjected(records: longActingInsulinSetting.records)
                 if self.injectedRecordToday == nil{

@@ -19,6 +19,7 @@ struct EditInsulinSettingView: View {
         VStack(alignment: .leading){
             Text("\(insulinSetting?.actingType == .fast ? "속효성 인슐린" : "지효성 인슐린")")
                 .font(.title)
+                .foregroundStyle(insulinSetting?.actingType == .fast ? .fastActing : .longActing)
             ZStack(alignment: .center){
                 VStack{
                     Spacer()
@@ -29,6 +30,7 @@ struct EditInsulinSettingView: View {
                         isPresentingEditSheet.toggle()
                     }label: {
                         Text("수정")
+                            .foregroundStyle(insulinSetting?.actingType == .fast ? .fastActing : .longActing)
                             .frame(width: 50, height: 50)
                             .clipShape(Circle())
                             .overlay(
@@ -39,7 +41,7 @@ struct EditInsulinSettingView: View {
                 }.font(.title2)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .border(.primary, width: 1.0)
+            .border(insulinSetting?.actingType == .fast ? .fastActing : .longActing, width: 1.0)
             .sheet(isPresented: $isPresentingEditSheet) {
                 Form {
                     VStack{

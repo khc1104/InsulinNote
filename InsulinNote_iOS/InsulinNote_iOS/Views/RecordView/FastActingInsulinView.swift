@@ -34,6 +34,7 @@ struct FastActingInsulinView:View {
             VStack(alignment: .leading){
                 Text(insulinSetting.insulinProductName)
                     .font(.title)
+                    .foregroundStyle(Color.fastActing)
                 ScrollView(.horizontal){
                     HStack{
                         ForEach(todayRecords){ record in
@@ -42,14 +43,9 @@ struct FastActingInsulinView:View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .border(Color.primary, width: 1)
-            }.onAppear{
-                //print(insulinSetting.actingType)
-                print(insulinSetting.records)
+                .border(Color.fastActing, width: 1)
             }
-            
             Button{
-                //createFastInsulinRecord()
                 dosage = insulinSetting.dosage
                 recordClosure = { createFastInsulinRecord() }
                 isPresented.toggle()
@@ -59,7 +55,7 @@ struct FastActingInsulinView:View {
                     //.frame(width: proxy.size.width - 20, height: 50)
                         .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
                         .foregroundStyle(.clear)
-                        .border(Color.primary, width: 1)
+                        .border(Color.fastActing, width: 1)
                     Text("투여")
                         .font(.title3)
                 }

@@ -36,7 +36,7 @@ struct RecordingWidgetEntryView : View {
                 }
             default:
                 VStack(alignment: .leading) {
-                    Text(entry.setting.insulinSetting.insulinProductName)
+                    Text(entry.setting.insulinSetting.actingType == .fast ? "속효성" : "지효성")
                         .font(.largeTitle)
                     Text("\(formatter.string(from: .now))")
                     Text("\(entry.setting.insulinSetting.dosage)단위")
@@ -50,7 +50,10 @@ struct RecordingWidgetEntryView : View {
                     
                 }
             }
-        }.containerBackground(for: .widget){}
+        }
+        .containerBackground(for: .widget){
+            entry.setting.insulinSetting.actingType == .fast ? Color.fastActing : Color.longActing
+        }
         
     }
     private func getIsInjected(records: [InsulinRecordModel]) -> Bool{

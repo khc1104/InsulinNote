@@ -36,6 +36,10 @@
 		2561258C2E4B0F53003CA709 /* RecordDetailSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2561258B2E4B0F45003CA709 /* RecordDetailSheetView.swift */; };
 		257730D32E3A618100AE651C /* EditInsulinSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257730D22E3A618100AE651C /* EditInsulinSettingView.swift */; };
 		2591518F2E38BD4F0092F7B7 /* SettingInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2591518E2E38BD4F0092F7B7 /* SettingInsulinView.swift */; };
+		25BDD44B2E5D3E650047B0AB /* WidgetFastActingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD44A2E5D3E650047B0AB /* WidgetFastActingView.swift */; };
+		25BDD44C2E5D3E650047B0AB /* WidgetFastActingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD44A2E5D3E650047B0AB /* WidgetFastActingView.swift */; };
+		25BDD44E2E5D3E6A0047B0AB /* WidgetLongActingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD44D2E5D3E6A0047B0AB /* WidgetLongActingView.swift */; };
+		25BDD44F2E5D3E6A0047B0AB /* WidgetLongActingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD44D2E5D3E6A0047B0AB /* WidgetLongActingView.swift */; };
 		25D2224B2DCBB52200DA1D90 /* RecordCalendarLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2224A2DCBB52200DA1D90 /* RecordCalendarLogView.swift */; };
 		25D222502DDB620D00DA1D90 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2224F2DDB620A00DA1D90 /* Date.swift */; };
 		25D5FEF32C7B3EB900DCC01C /* RecordingWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5FEF22C7B3E2700DCC01C /* RecordingWidgetEntryView.swift */; };
@@ -111,6 +115,8 @@
 		2561258B2E4B0F45003CA709 /* RecordDetailSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailSheetView.swift; sourceTree = "<group>"; };
 		257730D22E3A618100AE651C /* EditInsulinSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInsulinSettingView.swift; sourceTree = "<group>"; };
 		2591518E2E38BD4F0092F7B7 /* SettingInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInsulinView.swift; sourceTree = "<group>"; };
+		25BDD44A2E5D3E650047B0AB /* WidgetFastActingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetFastActingView.swift; sourceTree = "<group>"; };
+		25BDD44D2E5D3E6A0047B0AB /* WidgetLongActingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLongActingView.swift; sourceTree = "<group>"; };
 		25D2224A2DCBB52200DA1D90 /* RecordCalendarLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCalendarLogView.swift; sourceTree = "<group>"; };
 		25D2224F2DDB620A00DA1D90 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		25D5FEF22C7B3E2700DCC01C /* RecordingWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingWidgetEntryView.swift; sourceTree = "<group>"; };
@@ -232,9 +238,9 @@
 		252993712C6B73620064C2F9 /* RecordingWidget */ = {
 			isa = PBXGroup;
 			children = (
+				25BDD4492E5D3E2D0047B0AB /* View */,
 				252993722C6B73620064C2F9 /* RecordingWidgetBundle.swift */,
 				252993742C6B73620064C2F9 /* RecordingWidget.swift */,
-				25D5FEF22C7B3E2700DCC01C /* RecordingWidgetEntryView.swift */,
 				252993C92C6F70C00064C2F9 /* RecordingIntent.swift */,
 				252993CC2C6F74EB0064C2F9 /* SoundPlayer.swift */,
 				252993CF2C6F75090064C2F9 /* intent-click-sound.mp3 */,
@@ -260,6 +266,16 @@
 				257730D22E3A618100AE651C /* EditInsulinSettingView.swift */,
 			);
 			path = SettingInsulinView;
+			sourceTree = "<group>";
+		};
+		25BDD4492E5D3E2D0047B0AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25D5FEF22C7B3E2700DCC01C /* RecordingWidgetEntryView.swift */,
+				25BDD44A2E5D3E650047B0AB /* WidgetFastActingView.swift */,
+				25BDD44D2E5D3E6A0047B0AB /* WidgetLongActingView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		25D2224E2DDB61FE00DA1D90 /* Extensions */ = {
@@ -431,6 +447,7 @@
 				25FB364F2C8F4A4A00BC0DA7 /* LongActingInsulinView.swift in Sources */,
 				25E53F2B2C4C11EB009DA024 /* AddInsulinSettingView.swift in Sources */,
 				25E53F782C5282AA009DA024 /* UpdateInsulinView.swift in Sources */,
+				25BDD44E2E5D3E6A0047B0AB /* WidgetLongActingView.swift in Sources */,
 				25484BE62C91BB8A005119AC /* InsulinSettingModel.swift in Sources */,
 				25FB364D2C8F497300BC0DA7 /* FastActingInsulinRecordCardView.swift in Sources */,
 				252993802C6CF64A0064C2F9 /* RecordingWidget.swift in Sources */,
@@ -450,6 +467,7 @@
 				25E53FF22C57BA20009DA024 /* RecordsVIew.swift in Sources */,
 				252993CA2C6F70C00064C2F9 /* RecordingIntent.swift in Sources */,
 				25E53F762C514DD8009DA024 /* insulinSettingAlertView.swift in Sources */,
+				25BDD44B2E5D3E650047B0AB /* WidgetFastActingView.swift in Sources */,
 				25E53FC82C5550D4009DA024 /* DirectInputAdministrationView.swift in Sources */,
 				25E53F2D2C4FF0D3009DA024 /* InsulinSettingColumnView.swift in Sources */,
 				257730D32E3A618100AE651C /* EditInsulinSettingView.swift in Sources */,
@@ -465,12 +483,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				252993C82C6F6C5E0064C2F9 /* InsulinRecordModel.swift in Sources */,
+				25BDD44C2E5D3E650047B0AB /* WidgetFastActingView.swift in Sources */,
 				25D5FEF42C7B3EBA00DCC01C /* RecordingWidgetEntryView.swift in Sources */,
 				252993732C6B73620064C2F9 /* RecordingWidgetBundle.swift in Sources */,
 				25484BE52C91BB89005119AC /* InsulinSettingModel.swift in Sources */,
 				252993752C6B73620064C2F9 /* RecordingWidget.swift in Sources */,
 				2529940A2C772B340064C2F9 /* ModelContextStore.swift in Sources */,
 				252993CE2C6F74EB0064C2F9 /* SoundPlayer.swift in Sources */,
+				25BDD44F2E5D3E6A0047B0AB /* WidgetLongActingView.swift in Sources */,
 				252993CB2C6F70C00064C2F9 /* RecordingIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

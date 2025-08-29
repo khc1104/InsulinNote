@@ -24,13 +24,28 @@ struct RecordProvider: AppIntentTimelineProvider{
             )
     }
     
+//    func timeline(for configuration: RecordingConfigurationIntent, in context: Context) async -> Timeline<RecordingEntry> {
+//        let entry = RecordingEntry(
+//            date: .now,
+//            setting: configuration.setting
+//        )
+//            let timeLine = Timeline(entries: [entry], policy: .never)
+//        return timeLine
+//    }r
     func timeline(for configuration: RecordingConfigurationIntent, in context: Context) async -> Timeline<RecordingEntry> {
-        let entry = RecordingEntry(
-            date: .now,
-            setting: configuration.setting
-        )
-            let timeLine = Timeline(entries: [entry], policy: .never)
-        return timeLine
+        let now = Date()
+        let calendar = Calendar.current
+        // 오늘의 날짜에서 다음 자정(내일 0시) 계산
+        guard let nextMidnight = calendar.nextDate(after: now, matching: DateComponents(hour: 0, minute: 0, second: 0), matchingPolicy: .strict) else {
+            // fallback: 업데이트 없이 현재 상태만 반환
+            let entry = RecordingEntry(date: now, setting: configuration.setting)
+            return Timeline(entries: [entry], policy: .never)
+        }
+        
+        let currentEntry = RecordingEntry(date: now, setting: configuration.setting)
+        let midnightEntry = RecordingEntry(date: nextMidnight, setting: configuration.setting)
+        // .atEnd: 마지막 엔트리의 날짜에 도달하면 다시 timeline이 호출됨
+        return Timeline(entries: [currentEntry, midnightEntry], policy: .atEnd)
     }
 
     func snapshot(for configuration: RecordingConfigurationIntent, in context: Context) async -> RecordingEntry {

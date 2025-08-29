@@ -32,7 +32,8 @@ struct RecordingWidgetEntryView: View {
                         records: entry.setting.insulinSetting.records
                     ) {
                         Button(
-                            "\(entry.setting.insulinSetting.insulinProductName)",
+                            entry.setting.insulinSetting.actingType == .fast
+                                ? "속효" : "지효",
                             intent: RecordingIntent(
                                 id: entry.setting.insulinSetting.id.uuidString
                             )
@@ -102,30 +103,6 @@ struct RecordingWidgetEntryView: View {
             return formatter
         }()
 
-        let lastInjectedRecord = records.filter {
-            let today = dateFormatter.string(from: .now)
-            let recordDate = dateFormatter.string(from: $0.createdAt)
-            return today == recordDate
-        }.sorted { $0.createdAt > $1.createdAt }
-
-        if let record = lastInjectedRecord.first {
-            return timeFormmatter.string(from: record.createdAt)
-        } else {
-            return "오늘 기록 없음"
-        }
-    }
-
-    private func testFunc(records: [InsulinRecordModel]) -> String {
-        let dateFormatter: DateFormatter = {  //날짜 비교용
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            return formatter
-        }()
-        let timeFormmatter: DateFormatter = {  //리턴할 때 사용
-            let formatter = DateFormatter()
-            formatter.dateFormat = "HH:mm"
-            return formatter
-        }()
         let lastInjectedRecord = records.filter {
             let today = dateFormatter.string(from: .now)
             let recordDate = dateFormatter.string(from: $0.createdAt)

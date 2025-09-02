@@ -25,49 +25,30 @@ struct RecordingWidgetEntryView: View {
 
     var body: some View {
         VStack {
-            switch family {
-            case .accessoryCircular:  //LockScreen
-                ZStack {
-                    if !getIsInjected(
+            switch entry.setting.insulinSetting.actingType {
+            case .fast:
+                WidgetFastActingView(
+                    lastInjectTime: getLastInjected(
                         records: entry.setting.insulinSetting.records
-                    ) {
-                        Button(
-                            entry.setting.insulinSetting.actingType == .fast
-                                ? "속효" : "지효",
-                            intent: RecordingIntent(
-                                id: entry.setting.insulinSetting.id.uuidString
-                            )
-                        )
-                    } else {
-                        Text("맞음")
-                    }
-                }
-            default:  //Home
-                switch entry.setting.insulinSetting.actingType {
-                case .fast:
-                    WidgetFastActingView(
-                        lastInjectTime: getLastInjected(
-                            records: entry.setting.insulinSetting.records
-                        ),
-                        defaultDosage: entry.setting.insulinSetting.dosage,
-                        recordingIntent: RecordingIntent(
-                            id: entry.setting.insulinSetting.id.uuidString
-                        )
+                    ),
+                    defaultDosage: entry.setting.insulinSetting.dosage,
+                    recordingIntent: RecordingIntent(
+                        id: entry.setting.insulinSetting.id.uuidString
                     )
-                case .long:
-                    WidgetLongActingView(
-                        injectTime: getLastInjected(
-                            records: entry.setting.insulinSetting.records
-                        ),
-                        defaultDosage: entry.setting.insulinSetting.dosage,
-                        isInjected: getIsInjected(
-                            records: entry.setting.insulinSetting.records
-                        ),
-                        recordingIntent: RecordingIntent(
-                            id: entry.setting.insulinSetting.id.uuidString
-                        )
+                )
+            case .long:
+                WidgetLongActingView(
+                    injectTime: getLastInjected(
+                        records: entry.setting.insulinSetting.records
+                    ),
+                    defaultDosage: entry.setting.insulinSetting.dosage,
+                    isInjected: getIsInjected(
+                        records: entry.setting.insulinSetting.records
+                    ),
+                    recordingIntent: RecordingIntent(
+                        id: entry.setting.insulinSetting.id.uuidString
                     )
-                }
+                )
             }
         }
         .containerBackground(for: .widget) {

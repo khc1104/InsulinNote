@@ -8,6 +8,7 @@
 import AppIntents
 import SwiftData
 import SwiftUI
+import WidgetKit
 
 struct RecordingIntent: AppIntent, AudioPlaybackIntent{
     init() {
@@ -43,6 +44,7 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
         try await requestConfirmation()
         
         try context.save()
+        WidgetCenter.shared.reloadAllTimelines()
         return .result(dialog: IntentDialog("\(insulinSetting?.insulinProductName ?? "dd")"))
         
     }

@@ -13,21 +13,35 @@ struct WidgetLongActingView: View {
     var isInjected: Bool
     var recordingIntent: RecordingIntent
     
+    @Environment(\.widgetFamily) var family
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("지효성")
-                .font(.largeTitle)
-            //Text("\(formatter.string(from: .now))")
-            Text("\(defaultDosage)단위")
-            if !isInjected{
-                Toggle(isOn: false ,intent: recordingIntent) { //CustomToggleStyle 만들 수 있음
-                    Image(systemName: "syringe")
+        switch family {
+        case .accessoryCircular: //LockScreen
+            VStack{
+                if isInjected{
+                   Text("맞음")
+                }else{
+                    Button("지효", intent: recordingIntent)
                 }
-            }else{
-                Text("\(injectTime) 투여됨")
-                    
             }
-            
+        default:
+            VStack(alignment: .leading) {
+                Text("지효성")
+                    .font(.largeTitle)
+                //Text("\(formatter.string(from: .now))")
+                Text("\(defaultDosage)단위")
+                if !isInjected{
+                    Toggle(isOn: false ,intent: recordingIntent) { //CustomToggleStyle 만들 수 있음
+                        Image(systemName: "syringe")
+                    }
+                }else{
+                    Text("\(injectTime) 투여됨")
+                        
+                }
+                
+            }
         }
+        
     }
 }

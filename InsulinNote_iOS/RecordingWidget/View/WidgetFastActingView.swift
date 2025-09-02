@@ -13,19 +13,27 @@ struct WidgetFastActingView: View {
     var defaultDosage: Int
     var recordingIntent: RecordingIntent
     
+    @Environment(\.widgetFamily) var family
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("속효성")
-                .font(.largeTitle)
-            Text("\(lastInjectTime)")
-            Text("\(defaultDosage)단위")
-            Toggle(
-                isOn: false,
-                intent: recordingIntent
-            ) {  //CustomToggleStyle 만들 수 있음
-                Image(systemName: "syringe")
+        switch family{
+        case .accessoryCircular: //LockScreen
+            VStack{
+                Button("속효", intent: recordingIntent)
             }
-
+        default: //home
+            VStack(alignment: .leading) {
+                Text("속효성")
+                    .font(.largeTitle)
+                Text("\(lastInjectTime)")
+                Text("\(defaultDosage)단위")
+                Toggle(
+                    isOn: false,
+                    intent: recordingIntent
+                ) {  //CustomToggleStyle 만들 수 있음
+                    Image(systemName: "syringe")
+                }
+            }
         }
     }
 }

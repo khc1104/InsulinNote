@@ -16,13 +16,9 @@ struct RecordProvider: AppIntentTimelineProvider {
             date: .now,
             setting: RecordingEntity(
                 id: UUID(),
-                insulinSetting: InsulinSettingModel(
-                    insulinProductName: "none",
-                    actingType: .fast,
-                    dosage: 99,
-                    records: [],
-                    updatedAt: .now
-                )
+                insulinProductName: "Some Insulin",
+                dosage: 0,
+                actingType: .long
             )
         )
     }
@@ -34,13 +30,9 @@ struct RecordProvider: AppIntentTimelineProvider {
         // Resolve optional configuration.setting with a safe fallback
         let resolvedSetting = configuration.setting ?? RecordingEntity(
             id: UUID(),
-            insulinSetting: InsulinSettingModel(
-                insulinProductName: "none",
-                actingType: .fast,
-                dosage: 99,
-                records: [],
-                updatedAt: .now
-            )
+            insulinProductName: "Some Insulin",
+            dosage: 0,
+            actingType: .long
         )
 
         guard let nextMidnight = calendar.nextDate(after: now,
@@ -58,13 +50,9 @@ struct RecordProvider: AppIntentTimelineProvider {
     func snapshot(for configuration: RecordingConfigurationIntent, in context: Context) async -> RecordingEntry {
         let resolvedSetting = configuration.setting ?? RecordingEntity(
             id: UUID(),
-            insulinSetting: InsulinSettingModel(
-                insulinProductName: "none",
-                actingType: .fast,
-                dosage: 99,
-                records: [],
-                updatedAt: .now
-            )
+            insulinProductName: "Some Insulin",
+            dosage: 0,
+            actingType: .long
         )
         return RecordingEntry(
             date: .now,

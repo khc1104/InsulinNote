@@ -53,15 +53,16 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
 
 struct RecordingEntity: AppEntity, Identifiable{
     let id: UUID
-    
-    let insulinSetting: InsulinSettingModel
+    let insulinProductName: String
+    let dosage: Int
+    let actingType: InsulinSettingModel.ActingType
     
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "세팅"
     static var defaultQuery = RecordingQuery()
     
     var displayRepresentation: DisplayRepresentation{
-        DisplayRepresentation(title: "\(insulinSetting.insulinProductName) | \(insulinSetting.dosage)")
+        DisplayRepresentation(title: "\(insulinProductName) | \(dosage)")
     }
 
 }
@@ -69,7 +70,6 @@ struct RecordingEntity: AppEntity, Identifiable{
 struct RecordingQuery: EntityQuery{
     func entities(for identifiers: [RecordingEntity.ID]) async throws -> [RecordingEntity] {
         let descriptor = FetchDescriptor<InsulinSettingModel>(
-            //predicate: #Predicate{ $},
             sortBy: [
                 .init(\.createdAt)
             ]
@@ -79,14 +79,17 @@ struct RecordingQuery: EntityQuery{
         let insulinSettings = try context.fetch(descriptor)
         
         return insulinSettings.map{
-            RecordingEntity(id: $0.id, insulinSetting: $0)
+            RecordingEntity(
+                id: $0.id,
+                insulinProductName: $0.insulinProductName,
+                dosage: $0.dosage,
+                actingType: $0.actingType)
         }
         
     }
     
     func suggestedEntities() async throws -> [RecordingEntity] {
         let descriptor = FetchDescriptor<InsulinSettingModel>(
-            //predicate: #Predicate{ $},
             sortBy: [
                 .init(\.createdAt)
             ]
@@ -96,7 +99,11 @@ struct RecordingQuery: EntityQuery{
         let insulinSettings = try context.fetch(descriptor)
         
         return insulinSettings.map{
-            RecordingEntity(id: $0.id, insulinSetting: $0)
+            RecordingEntity(
+                id: $0.id,
+                insulinProductName: $0.insulinProductName,
+                dosage: $0.dosage,
+                actingType: $0.actingType)
         }
         
     }

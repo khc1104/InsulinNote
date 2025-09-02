@@ -31,7 +31,7 @@ struct RecordProvider: AppIntentTimelineProvider{
 //        )
 //            let timeLine = Timeline(entries: [entry], policy: .never)
 //        return timeLine
-//    }r
+//    }
     func timeline(for configuration: RecordingConfigurationIntent, in context: Context) async -> Timeline<RecordingEntry> {
         let now = Date()
         let calendar = Calendar.current

@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class InsulinSettingModel: Identifiable, Sendable{
+final class InsulinSettingModel: Identifiable{
     @Attribute(.unique) var id: UUID = UUID() //id
     
     var insulinProductName: String //인슐린 제품 명

@@ -10,49 +10,55 @@ import SwiftData
 import SwiftUI
 
 struct RecordingWidgetEntryView: View {
-    var entry: RecordProvider.Entry
+    var entry: RecordingEntry
     @Environment(\.widgetFamily) var family
 
     @Environment(\.modelContext) var insulinContext
     @Query var insulinSettings: [InsulinSettingModel]
-
+    
+    var filteredInsulinSetting: InsulinSettingModel {
+        insulinSettings.filter { $0.actingType == entry.setting.actingType }.first!
+    }
+    
     var formatter: DateFormatter {
         let format = DateFormatter()
         format.locale = Locale(identifier: "ko_KR")
         format.dateFormat = "M월 dd일"
         return format
     }
+    
+    
 
     var body: some View {
         VStack {
-            switch entry.setting.insulinSetting.actingType {
+            switch entry.setting.actingType {
             case .fast:
                 WidgetFastActingView(
                     lastInjectTime: getLastInjected(
-                        records: entry.setting.insulinSetting.records
+                        records: filteredInsulinSetting.records
                     ),
-                    defaultDosage: entry.setting.insulinSetting.dosage,
+                    defaultDosage: filteredInsulinSetting.dosage,
                     recordingIntent: RecordingIntent(
-                        id: entry.setting.insulinSetting.id.uuidString
+                        id: filteredInsulinSetting.id.uuidString
                     )
                 )
             case .long:
                 WidgetLongActingView(
                     injectTime: getLastInjected(
-                        records: entry.setting.insulinSetting.records
+                        records: filteredInsulinSetting.records
                     ),
-                    defaultDosage: entry.setting.insulinSetting.dosage,
+                    defaultDosage: filteredInsulinSetting.dosage,
                     isInjected: getIsInjected(
-                        records: entry.setting.insulinSetting.records
+                        records: filteredInsulinSetting.records
                     ),
                     recordingIntent: RecordingIntent(
-                        id: entry.setting.insulinSetting.id.uuidString
+                        id: filteredInsulinSetting.id.uuidString
                     )
                 )
             }
         }
         .containerBackground(for: .widget) {
-            entry.setting.insulinSetting.actingType == .fast
+            entry.setting.actingType == .fast
                 ? Color.fastActing : Color.longActing
         }
 

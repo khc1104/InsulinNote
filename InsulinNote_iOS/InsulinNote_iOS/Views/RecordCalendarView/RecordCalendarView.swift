@@ -100,12 +100,11 @@ struct RecordCalendarView: View {
                             if selectedYear == today[0] && selectedYear == today[0] && selectedMonth == today[1] && (day) == today[2]{ //오늘이 맞는지
                                 Circle().fill(.yellow).opacity(0.3).frame(maxWidth: 30, maxHeight: 30)
                             }
-                            if !getIsInjected(year: selectedYear, month: selectedMonth, day: (day)).isEmpty{
+                            if getIsInjected(year: selectedYear, month: selectedMonth, day: (day)){
                                 Circle().stroke(
                                     Color.green,
                                     style: StrokeStyle(lineWidth: 1.0 ))
                                 .frame(maxWidth: 30, maxHeight: 30)
-                                
                             }
                             if selectedYear < today[0] || selectedMonth < today[1] || day <= today[2] {
                                 Text("\(day)").frame(maxWidth: 40, maxHeight: 40)
@@ -156,16 +155,17 @@ struct RecordCalendarView: View {
         guard let day = end.day else { return nil }
         return day
     }
-    //해당 날짜에 투여 기록이 있는지 반환
-    func getIsInjected(year:Int, month: Int, day: Int) -> [InsulinRecordModel]{
+    //해당 날짜에 투여 기록이 있는지 반환 있으면 true 없으면 false
+    func getIsInjected(year:Int, month: Int, day: Int) -> Bool{
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let checkDate = "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day))"
         let injectedRecords = records.filter{
             let createdDate = formatter.string(from: $0.createdAt)
-            return createdDate == checkDate
+            return createdDate == checkDate && $0.setting?.actingType == .long //해당 날짜에 투여한 기록이고 지효성인 경우 반환
         }
-        return injectedRecords
+        
+        return !injectedRecords.isEmpty
     }
     
     func intToDate(year: Int, month: Int, day: Int) -> Date{

@@ -11,6 +11,7 @@ import SwiftData
 struct FastActingInsulinView:View {
     @Environment(\.modelContext) var insulinContext
 
+    var date: Date
     var insulinSetting: InsulinSettingModel?
     
     @Binding var isPresented: Bool
@@ -22,7 +23,7 @@ struct FastActingInsulinView:View {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
             return insulinSetting.records.filter{
-                formatter.string(from: $0.createdAt) == formatter.string(from: Date())
+                formatter.string(from: $0.createdAt) == formatter.string(from: date)
             }.sorted(by: {$0.createdAt > $1.createdAt})
         }else{
             return []
@@ -36,14 +37,19 @@ struct FastActingInsulinView:View {
                     .font(.title)
                     .foregroundStyle(Color.fastActing)
                 ScrollView(.horizontal){
-                    HStack{
+                    HStack(spacing: 0){
                         ForEach(todayRecords){ record in
                             FastActingInsulinRecordCardView(insulinRecord: record)
+                                .padding(.leading, todayRecords.first == record ? 15 : 0)
+                                .padding(.trailing, 15)
+                                .padding(.vertical, 15)
                         }
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .border(Color.fastActing, width: 1)
+                .scrollIndicators(.hidden)
+                
             }
             Button{
                 dosage = insulinSetting.dosage
@@ -65,7 +71,7 @@ struct FastActingInsulinView:View {
     
     func createFastInsulinRecord() -> (){ //인슐린 설정의 기록 추가
         if let insulinSetting{
-            let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: .now, updatedAt: .now)
+            let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: date, updatedAt: .now)
             insulinSetting.records.append(record)
             //injectedRecordToday = record
         }else{

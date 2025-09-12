@@ -38,8 +38,8 @@ struct LongActingInsulinIsInjectedView:View {
             
             
         }
-        .frame(maxWidth: .infinity, maxHeight: proxy.size.height * 0.4)
-        //.border(Color.primary, width: 1)
+        //.frame(maxWidth: .infinity, maxHeight: proxy.size.height * 0.4)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

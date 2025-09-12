@@ -11,11 +11,10 @@ import SwiftData
 struct ContentView: View {
     
     @Environment(\.modelContext) private var modelContext
-    //@Query private var items: [Item]
     @AppStorage("firstLaunched") var isLaunched: Bool = false
+    
     var body: some View {
         TabView{
-            //MainView()
             RecordView()
                 .tabItem {
                     Label(
@@ -50,8 +49,4 @@ struct ContentView: View {
             }
         }
     }
-}
-
-#Preview {
-    ContentView()
 }

@@ -13,10 +13,10 @@ struct RecordDetailSheetView: View{
     var recordingAction: () -> () = {}
     
     var body: some View{
-        NavigationView{
+        NavigationStack{
             VStack{
                 Picker("dosage", selection: $dosage) {
-                    ForEach(1...100, id: \.self) {
+                    ForEach(1...80, id: \.self) {
                         Text("\($0)")
                     }
                 }

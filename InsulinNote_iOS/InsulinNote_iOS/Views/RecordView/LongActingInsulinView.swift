@@ -10,7 +10,7 @@ import SwiftData
 
 struct LongActingInsulinView:View {
 
-    var date: Date = Date()
+    var date: Date
     var longActingInsulinSetting: InsulinSettingModel?
     var proxy: GeometryProxy
     

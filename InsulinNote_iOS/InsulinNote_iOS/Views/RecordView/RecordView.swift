@@ -44,8 +44,18 @@ struct RecordView:View {
             VStack(alignment: .leading, spacing: 10){
                 Text("\(selectedDate)")
                     .font(.largeTitle)
-                LongActingInsulinView(date: date, longActingInsulinSetting: longActingInsulin, proxy: proxy, isPresented: $isPresented, dosage: $editedDosage, recordClosure: $recordClosure)
-                FastActingInsulinView(insulinSetting: fastActingInsulin, isPresented: $isPresented, dosage: $editedDosage, recordClosure: $recordClosure)
+                LongActingInsulinView(date: date,
+                                      longActingInsulinSetting:
+                                        longActingInsulin,
+                                      proxy: proxy,
+                                      isPresented: $isPresented,
+                                      dosage: $editedDosage,
+                                      recordClosure: $recordClosure)
+                FastActingInsulinView(date: date,
+                                      insulinSetting: fastActingInsulin,
+                                      isPresented: $isPresented,
+                                      dosage: $editedDosage,
+                                      recordClosure: $recordClosure)
                 
                 
             }

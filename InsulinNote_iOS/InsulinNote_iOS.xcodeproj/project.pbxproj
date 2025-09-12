@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250107C92E704027001FD959 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 250107C82E704027001FD959 /* AppIcon.icon */; };
 		2525622E2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2525622D2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift */; };
 		252562302C4538F700F7ECA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2525622F2C4538F700F7ECA1 /* ContentView.swift */; };
 		252562342C4538F800F7ECA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 252562332C4538F800F7ECA1 /* Assets.xcassets */; };
@@ -89,6 +90,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		250107C82E704027001FD959 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		2525622A2C4538F700F7ECA1 /* InsulinNote_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsulinNote_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2525622D2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinNote_iOSApp.swift; sourceTree = "<group>"; };
 		2525622F2C4538F700F7ECA1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				2525623D2C46953D00F7ECA1 /* Models */,
 				2525622D2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift */,
 				252562332C4538F800F7ECA1 /* Assets.xcassets */,
+				250107C82E704027001FD959 /* AppIcon.icon */,
 				252562352C4538F800F7ECA1 /* Preview Content */,
 			);
 			path = InsulinNote_iOS;
@@ -416,6 +419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				250107C92E704027001FD959 /* AppIcon.icon in Resources */,
 				252562372C4538F800F7ECA1 /* Preview Assets.xcassets in Resources */,
 				252993D02C6F75090064C2F9 /* intent-click-sound.mp3 in Resources */,
 				252562342C4538F800F7ECA1 /* Assets.xcassets in Resources */,

@@ -6,7 +6,8 @@
 //
 import SwiftData
 
-final actor ModelContextStore{
+
+final class ModelContextStore{
     static private var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             InsulinSettingModel.self

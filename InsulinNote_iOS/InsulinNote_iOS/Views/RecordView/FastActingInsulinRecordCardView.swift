@@ -26,8 +26,6 @@ struct FastActingInsulinRecordCardView: View {
             .padding()
         }
         .border(Color.fastActing, width: 1)
-        .padding()
-        .padding(.horizontal, 3)
         
     }
 }

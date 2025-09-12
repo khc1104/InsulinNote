@@ -37,14 +37,19 @@ struct FastActingInsulinView:View {
                     .font(.title)
                     .foregroundStyle(Color.fastActing)
                 ScrollView(.horizontal){
-                    HStack{
+                    HStack(spacing: 0){
                         ForEach(todayRecords){ record in
                             FastActingInsulinRecordCardView(insulinRecord: record)
+                                .padding(.leading, todayRecords.first == record ? 15 : 0)
+                                .padding(.trailing, 15)
+                                .padding(.vertical, 15)
                         }
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .border(Color.fastActing, width: 1)
+                .scrollIndicators(.hidden)
+                
             }
             Button{
                 dosage = insulinSetting.dosage

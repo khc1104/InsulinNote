@@ -83,7 +83,7 @@
 
 /* Begin PBXFileReference section */
 		250107C82E704027001FD959 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
-		2525622A2C4538F700F7ECA1 /* InsulinNote_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsulinNote_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2525622A2C4538F700F7ECA1 /* InsulinNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsulinNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2525622D2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinNote_iOSApp.swift; sourceTree = "<group>"; };
 		2525622F2C4538F700F7ECA1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		252562332C4538F800F7ECA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 		2525622B2C4538F700F7ECA1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2525622A2C4538F700F7ECA1 /* InsulinNote_iOS.app */,
+				2525622A2C4538F700F7ECA1 /* InsulinNote.app */,
 				2529936B2C6B73620064C2F9 /* RecordingWidgetExtension.appex */,
 			);
 			name = Products;
@@ -325,9 +325,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		252562292C4538F700F7ECA1 /* InsulinNote_iOS */ = {
+		252562292C4538F700F7ECA1 /* InsulinNote */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2525623A2C4538F800F7ECA1 /* Build configuration list for PBXNativeTarget "InsulinNote_iOS" */;
+			buildConfigurationList = 2525623A2C4538F800F7ECA1 /* Build configuration list for PBXNativeTarget "InsulinNote" */;
 			buildPhases = (
 				252562262C4538F700F7ECA1 /* Sources */,
 				252562272C4538F700F7ECA1 /* Frameworks */,
@@ -339,9 +339,9 @@
 			dependencies = (
 				2529937A2C6B73640064C2F9 /* PBXTargetDependency */,
 			);
-			name = InsulinNote_iOS;
+			name = InsulinNote;
 			productName = InsulinNote_iOS;
-			productReference = 2525622A2C4538F700F7ECA1 /* InsulinNote_iOS.app */;
+			productReference = 2525622A2C4538F700F7ECA1 /* InsulinNote.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2529936A2C6B73620064C2F9 /* RecordingWidgetExtension */ = {
@@ -379,7 +379,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 252562252C4538F700F7ECA1 /* Build configuration list for PBXProject "InsulinNote_iOS" */;
+			buildConfigurationList = 252562252C4538F700F7ECA1 /* Build configuration list for PBXProject "InsulinNote" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -392,7 +392,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				252562292C4538F700F7ECA1 /* InsulinNote_iOS */,
+				252562292C4538F700F7ECA1 /* InsulinNote */,
 				2529936A2C6B73620064C2F9 /* RecordingWidgetExtension */,
 			);
 		};
@@ -730,7 +730,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		252562252C4538F700F7ECA1 /* Build configuration list for PBXProject "InsulinNote_iOS" */ = {
+		252562252C4538F700F7ECA1 /* Build configuration list for PBXProject "InsulinNote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				252562382C4538F800F7ECA1 /* Debug */,
@@ -739,7 +739,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2525623A2C4538F800F7ECA1 /* Build configuration list for PBXNativeTarget "InsulinNote_iOS" */ = {
+		2525623A2C4538F800F7ECA1 /* Build configuration list for PBXNativeTarget "InsulinNote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2525623B2C4538F800F7ECA1 /* Debug */,

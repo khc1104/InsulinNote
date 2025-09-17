@@ -19,7 +19,7 @@
                BlueprintIdentifier = "2529936A2C6B73620064C2F9"
                BuildableName = "RecordingWidgetExtension.appex"
                BlueprintName = "RecordingWidgetExtension"
-               ReferencedContainer = "container:InsulinNote_iOS.xcodeproj">
+               ReferencedContainer = "container:InsulinNote.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,9 +31,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "252562292C4538F700F7ECA1"
-               BuildableName = "InsulinNote_iOS.app"
-               BlueprintName = "InsulinNote_iOS"
-               ReferencedContainer = "container:InsulinNote_iOS.xcodeproj">
+               BuildableName = "InsulinNote.app"
+               BlueprintName = "InsulinNote"
+               ReferencedContainer = "container:InsulinNote.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -65,16 +65,16 @@
             BlueprintIdentifier = "2529936A2C6B73620064C2F9"
             BuildableName = "RecordingWidgetExtension.appex"
             BlueprintName = "RecordingWidgetExtension"
-            ReferencedContainer = "container:InsulinNote_iOS.xcodeproj">
+            ReferencedContainer = "container:InsulinNote.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "252562292C4538F700F7ECA1"
-            BuildableName = "InsulinNote_iOS.app"
-            BlueprintName = "InsulinNote_iOS"
-            ReferencedContainer = "container:InsulinNote_iOS.xcodeproj">
+            BuildableName = "InsulinNote.app"
+            BlueprintName = "InsulinNote"
+            ReferencedContainer = "container:InsulinNote.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <EnvironmentVariables>
@@ -108,9 +108,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "252562292C4538F700F7ECA1"
-            BuildableName = "InsulinNote_iOS.app"
-            BlueprintName = "InsulinNote_iOS"
-            ReferencedContainer = "container:InsulinNote_iOS.xcodeproj">
+            BuildableName = "InsulinNote.app"
+            BlueprintName = "InsulinNote"
+            ReferencedContainer = "container:InsulinNote.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -88,7 +88,7 @@ struct RecordingConfigurationIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "인슐린 세팅"
     static var description = IntentDescription("Selects the character to display information for.")
 
-    @Parameter(title: "productName")
+    @Parameter(title: "인슐린 | 단위")
     var setting: RecordingEntity?
 
     init(setting: RecordingEntity?) {

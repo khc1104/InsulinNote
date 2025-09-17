@@ -78,8 +78,8 @@ struct RecordingWidget: Widget {
             RecordingWidgetEntryView(entry: entry)
                 .modelContainer(for: [InsulinSettingModel.self])
         }
-        .configurationDisplayName("insulin Recording Display")
-        .description("인슐린 설명")
+        .configurationDisplayName("인슐린 투여")
+        .description("인슐린 투여를 더 빠르게 기록하세요")
         .supportedFamilies([.accessoryCircular, .systemSmall])
     }
 }

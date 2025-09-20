@@ -19,8 +19,6 @@ struct LockScreenInfoView: View {
         insulinSettings.first(where: {$0.actingType == .fast}) ?? InsulinSettingModel(insulinProductName: "지효성", actingType: .fast, dosage: 20, records: [], updatedAt: .now)
     }
     
-    
-
     var body: some View {
         VStack{
             HStack{
@@ -37,11 +35,7 @@ struct LockScreenInfoView: View {
     }
     
     private func getLastInjected(records: [InsulinRecordModel]) -> String {
-        let dateFormatter: DateFormatter = {  //날짜 비교용
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            return formatter
-        }()
+        let calendar = Calendar.current
         let timeFormmatter: DateFormatter = {  //리턴할 때 사용
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:mm"
@@ -49,15 +43,13 @@ struct LockScreenInfoView: View {
         }()
 
         let lastInjectedRecord = records.filter {
-            let today = dateFormatter.string(from: .now)
-            let recordDate = dateFormatter.string(from: $0.createdAt)
-            return today == recordDate
+            calendar.isDateInToday($0.createdAt)
         }.sorted { $0.createdAt > $1.createdAt }
 
         if let record = lastInjectedRecord.first {
             return timeFormmatter.string(from: record.createdAt)
         } else {
-            return "오늘 기록 없음"
+            return "기록 없음"
         }
     }
 }

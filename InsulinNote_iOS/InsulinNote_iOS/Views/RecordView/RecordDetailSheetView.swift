@@ -24,6 +24,7 @@ struct RecordDetailSheetView: View{
                 
                 Button("기록"){
                     recordingAction()
+                    
                     dismiss()
                 }
                 Spacer()

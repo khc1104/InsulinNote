@@ -73,7 +73,6 @@ struct FastActingInsulinView:View {
         if let insulinSetting{
             let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: date, updatedAt: .now)
             insulinSetting.records.append(record)
-            //injectedRecordToday = record
         }else{
             print("세팅이 없음")
             

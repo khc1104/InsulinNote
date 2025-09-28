@@ -12,6 +12,7 @@ struct ContentView: View {
     
     @Environment(\.modelContext) private var modelContext
     @AppStorage("firstLaunched") var isLaunched: Bool = false
+    @State private var firstSettingSheetPresented: Bool = false
     
     var body: some View {
         TabView{
@@ -22,6 +23,9 @@ struct ContentView: View {
                         icon: { Image(systemName: "house.fill") }
                     )
                 }.padding(.bottom, 10)
+                .sheet(isPresented: $firstSettingSheetPresented) {
+                    FirstLunchView()
+                }
             RecordCalendarView()
                 .tabItem {
                     Label(
@@ -37,6 +41,7 @@ struct ContentView: View {
                     )
                 }.padding(.bottom, 10)
         }.onAppear{
+            firstSettingSheetPresented.toggle()
             if !isLaunched{
                 let longActionInsulin = InsulinSettingModel(insulinProductName: "지효성", actingType: .long, dosage: 20, records: [], updatedAt: .now)
                 modelContext.insert(longActionInsulin)
@@ -44,6 +49,7 @@ struct ContentView: View {
                 let fastActingInsulin = InsulinSettingModel(insulinProductName: "속효성", actingType: .fast, dosage: 15, records: [], updatedAt: .now)
                 modelContext.insert(fastActingInsulin)
                 isLaunched.toggle()
+                
             }
         }
     }

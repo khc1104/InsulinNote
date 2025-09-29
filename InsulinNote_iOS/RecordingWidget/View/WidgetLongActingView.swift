@@ -29,10 +29,9 @@ struct WidgetLongActingView: View {
             VStack(alignment: .leading) {
                 Text("지효성")
                     .font(.largeTitle)
-                //Text("\(formatter.string(from: .now))")
                 Text("\(defaultDosage)단위")
                 if !isInjected{
-                    Toggle(isOn: false ,intent: recordingIntent) { //CustomToggleStyle 만들 수 있음
+                    Toggle(isOn: false ,intent: recordingIntent) {
                         Image(systemName: "syringe")
                     }
                 }else{

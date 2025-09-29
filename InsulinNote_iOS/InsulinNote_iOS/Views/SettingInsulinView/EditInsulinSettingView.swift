@@ -7,9 +7,11 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct EditInsulinSettingView: View {
     var insulinSetting: InsulinSettingModel?
+    private let widgetCenter = WidgetCenter.shared
     
     @State private var isPresentingEditSheet = false
     
@@ -63,7 +65,7 @@ struct EditInsulinSettingView: View {
                             }
                             insulinSetting?.insulinProductName = productName
                             insulinSetting?.dosage = dosage
-                            
+                            widgetCenter.reloadAllTimelines()
                             isPresentingEditSheet.toggle()
                         }label: {
                             Text("수정")

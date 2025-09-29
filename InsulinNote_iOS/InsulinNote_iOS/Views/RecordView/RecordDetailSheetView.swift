@@ -5,9 +5,11 @@
 //  Created by 권희철 on 8/12/25.
 //
 import SwiftUI
+import WidgetKit
 
 struct RecordDetailSheetView: View{
     @Environment(\.dismiss) var dismiss
+    let widgetCenter = WidgetCenter.shared
     
     @Binding var dosage: Int
     var recordingAction: () -> () = {}
@@ -24,6 +26,7 @@ struct RecordDetailSheetView: View{
                 
                 Button("기록"){
                     recordingAction()
+                    widgetCenter.reloadAllTimelines()
                     dismiss()
                 }
                 Spacer()

@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "252562292C4538F700F7ECA1"
-               BuildableName = "InsulinNote_iOS.app"
-               BlueprintName = "InsulinNote_iOS"
-               ReferencedContainer = "container:InsulinNote_iOS.xcodeproj">
+               BuildableName = "InsulinNote.app"
+               BlueprintName = "InsulinNote"
+               ReferencedContainer = "container:InsulinNote.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "252562292C4538F700F7ECA1"
-            BuildableName = "InsulinNote_iOS.app"
-            BlueprintName = "InsulinNote_iOS"
-            ReferencedContainer = "container:InsulinNote_iOS.xcodeproj">
+            BuildableName = "InsulinNote.app"
+            BlueprintName = "InsulinNote"
+            ReferencedContainer = "container:InsulinNote.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "252562292C4538F700F7ECA1"
-            BuildableName = "InsulinNote_iOS.app"
-            BlueprintName = "InsulinNote_iOS"
-            ReferencedContainer = "container:InsulinNote_iOS.xcodeproj">
+            BuildableName = "InsulinNote.app"
+            BlueprintName = "InsulinNote"
+            ReferencedContainer = "container:InsulinNote.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

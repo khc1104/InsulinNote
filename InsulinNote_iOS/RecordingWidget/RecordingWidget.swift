@@ -78,9 +78,10 @@ struct RecordingWidget: Widget {
             RecordingWidgetEntryView(entry: entry)
                 .modelContainer(for: [InsulinSettingModel.self])
         }
-        .configurationDisplayName("insulin Recording Display")
-        .description("인슐린 설명")
+        .configurationDisplayName("인슐린 투여")
+        .description("인슐린 투여를 더 빠르게 기록하세요")
         .supportedFamilies([.accessoryCircular, .systemSmall])
+        
     }
 }
 
@@ -88,7 +89,7 @@ struct RecordingConfigurationIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "인슐린 세팅"
     static var description = IntentDescription("Selects the character to display information for.")
 
-    @Parameter(title: "productName")
+    @Parameter(title: "인슐린 | 단위")
     var setting: RecordingEntity?
 
     init(setting: RecordingEntity?) {

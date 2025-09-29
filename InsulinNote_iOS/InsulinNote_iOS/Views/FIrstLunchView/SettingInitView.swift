@@ -16,6 +16,8 @@ struct SettingInitView: View {
         case fastActingDosage
     }
 
+    @Binding var settingCompleted: Bool
+    
     @Environment(\.modelContext) var modelContext
     @Query var insulinSettings: [InsulinSettingModel]
 
@@ -128,6 +130,8 @@ struct SettingInitView: View {
                     fastActingInsulinSetting?.dosage = Int(
                         fastActingInsulin.dosage
                     )!
+                    
+                    settingCompleted.toggle()
                 } label: {
                     Text("완 료")
                         .bold()
@@ -174,6 +178,4 @@ struct SettingInsulin {
 
 }
 
-#Preview {
-    SettingInitView()
-}
+

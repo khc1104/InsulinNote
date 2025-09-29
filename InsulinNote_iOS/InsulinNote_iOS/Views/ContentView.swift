@@ -41,7 +41,6 @@ struct ContentView: View {
                     )
                 }.padding(.bottom, 10)
         }.onAppear{
-            firstSettingSheetPresented.toggle()
             if !isLaunched{
                 let longActionInsulin = InsulinSettingModel(insulinProductName: "지효성", actingType: .long, dosage: 20, records: [], updatedAt: .now)
                 modelContext.insert(longActionInsulin)
@@ -49,8 +48,9 @@ struct ContentView: View {
                 let fastActingInsulin = InsulinSettingModel(insulinProductName: "속효성", actingType: .fast, dosage: 15, records: [], updatedAt: .now)
                 modelContext.insert(fastActingInsulin)
                 isLaunched.toggle()
-                
+                firstSettingSheetPresented.toggle()
             }
+            
         }
     }
 }

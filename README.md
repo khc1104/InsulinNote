@@ -11,6 +11,7 @@
 1. iOS 17.0
 
 ## 개발한 기능
+
 |홈화면 위젯|잠금화면 위젯|
 |--------|----------|
 |![Simulator Screen Recording - iPhone 16 Pro - 2025-04-24 at 10 42 07](https://github.com/user-attachments/assets/2e145e62-2825-4802-98ce-96d2ef35293e)|![Simulator Screen Recording - iPhone 16 Pro - 2025-04-24 at 10 46 57](https://github.com/user-attachments/assets/1bcf8c04-ed31-46c5-bfcc-fd7b64252e6f)|
@@ -36,3 +37,4 @@
 ## 개선 사항
 1. Swift 6.0 적용
 1. HealthKit 사용
+

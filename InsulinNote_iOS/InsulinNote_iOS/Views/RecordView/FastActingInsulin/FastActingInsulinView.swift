@@ -71,8 +71,14 @@ struct FastActingInsulinView:View {
     
     func createFastInsulinRecord() -> (){ //인슐린 설정의 기록 추가
         if let insulinSetting{
-            let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: date, updatedAt: .now)
-            insulinSetting.records.append(record)
+            let calendar = Calendar.current
+            if  calendar.isDateInToday(date){
+                let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: .now, updatedAt: .now)
+                insulinSetting.records.append(record)
+            }else{
+                let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: date, updatedAt: .now)
+                insulinSetting.records.append(record)
+            }
         }else{
             print("세팅이 없음")
             

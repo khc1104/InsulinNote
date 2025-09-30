@@ -59,10 +59,17 @@ struct LongActingInsulinView:View {
     }
     
     func createNewInsulinRecord() -> (){ //인슐린 설정의 기록 추가
+        let calendar = Calendar.current
         if let longActingInsulinSetting{
-            let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: date, updatedAt: date)
-            longActingInsulinSetting.records.append(record)
-            injectedRecordToday = record
+            if calendar.isDateInToday(date){
+                let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: .now, updatedAt: .now)
+                longActingInsulinSetting.records.append(record)
+                injectedRecordToday = record
+            } else {
+                let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: date, updatedAt: .now)
+                longActingInsulinSetting.records.append(record)
+                injectedRecordToday = record
+            }
             isInjected.toggle()
         }else{
             print("세팅이 없음")

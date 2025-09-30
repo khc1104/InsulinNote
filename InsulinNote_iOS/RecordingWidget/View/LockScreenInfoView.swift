@@ -32,6 +32,9 @@ struct LockScreenInfoView: View {
                 Text("\(getLastInjected(records: fastActingSetting.records))")
             }
         }
+        .containerBackground(for: .widget) {
+            Color.primary
+        }
     }
     
     private func getLastInjected(records: [InsulinRecordModel]) -> String {

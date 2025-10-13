@@ -42,7 +42,6 @@ struct RecordView:View {
     var body: some View {
         GeometryReader{proxy in
             VStack(alignment: .leading, spacing: 10){
-                Text("\(date)")
                 Text("\(selectedDate)")
                     .font(.largeTitle)
                 LongActingInsulinView(date: date,

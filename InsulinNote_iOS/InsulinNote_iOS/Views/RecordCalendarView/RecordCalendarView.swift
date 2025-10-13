@@ -41,18 +41,19 @@ enum Weekday: Int, CaseIterable {
 struct RecordCalendarView: View {
     let gridItems = Array(repeating: GridItem(.flexible()), count: 7)
     
-    @State var isSheetPresented: Bool = false
-    @State var startDayOfWeek: Int = 0
-    @State var selectedYear: Int = 2025
-    @State var selectedMonth: Int = 4
+    @State private var isSheetPresented: Bool = false
+    @State private var startDayOfWeek: Int = 0
+    @State private var selectedYear: Int = 2025
+    @State private var selectedMonth: Int = 4
     
-    @State var selectedDate: Date? = nil
+    @State private var selectedDate: Date? = nil
     
-    var today: [Int]{
+    var currentDate: Date = Date()
+    private var today: [Int]{
         var dateElements: [Int] = []
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let dateString = formatter.string(from: Date())
+        let dateString = formatter.string(from: currentDate)
         let dateArray = dateString.split(separator: "-")
         dateElements.append(Int(dateArray[0])!)
         dateElements.append(Int(dateArray[1])!)

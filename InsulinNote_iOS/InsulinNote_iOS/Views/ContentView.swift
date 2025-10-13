@@ -11,12 +11,17 @@ import SwiftData
 struct ContentView: View {
     
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) private var scenePhase
     @AppStorage("firstLaunched") var isLaunched: Bool = false
     @State private var firstSettingSheetPresented: Bool = false
     
+    //탭 변경 및 앱이 백그라운드에서 돌아올 때 시간을 갱신하기 위해서 사용
+    @State private var currentDate = Date()
+    @State private var selectedTab = 0
+    
     var body: some View {
-        TabView{
-            RecordView()
+        TabView(selection: $selectedTab) {
+            RecordView(date: currentDate)
                 .tabItem {
                     Label(
                         title: { Text("main") },
@@ -26,13 +31,15 @@ struct ContentView: View {
                 .sheet(isPresented: $firstSettingSheetPresented) {
                     FirstLunchView()
                 }
-            RecordCalendarView()
+                .tag(1)
+            RecordCalendarView(currentDate: currentDate)
                 .tabItem {
                     Label(
                         title: { Text("calendar") },
                           icon: { Image(systemName: "calendar") }
                     )
                 }.padding(.bottom, 10)
+                .tag(2)
             SettingInsulinView()
                 .tabItem {
                     Label(
@@ -40,6 +47,7 @@ struct ContentView: View {
                           icon: { Image(systemName: "gear") }
                     )
                 }.padding(.bottom, 10)
+                .tag(3)
         }.onAppear{
             if !isLaunched{
                 let longActionInsulin = InsulinSettingModel(insulinProductName: "지효성", actingType: .long, dosage: 20, records: [], updatedAt: .now)
@@ -51,6 +59,14 @@ struct ContentView: View {
                 firstSettingSheetPresented.toggle()
             }
             
+        }
+        .onChange(of: selectedTab) { oldValue, newValue in
+            currentDate = Date()
+        }
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            if newPhase == .active {
+                currentDate = Date()
+            }
         }
     }
 }

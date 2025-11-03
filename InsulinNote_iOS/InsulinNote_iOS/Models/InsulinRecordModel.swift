@@ -30,8 +30,6 @@ final class InsulinRecordModel: Identifiable{
         return formatter.string(from: createdAt)
     }
     
-    var today = Date.now
-    
     var setting: InsulinSettingModel?
     
     init(dosage: Int, createdAt: Date, updatedAt: Date) {

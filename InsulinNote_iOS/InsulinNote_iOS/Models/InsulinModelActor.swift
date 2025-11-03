@@ -6,6 +6,7 @@
 //
 
 import SwiftData
+import Foundation
 
 @ModelActor
 public actor InsulinModelActor {
@@ -35,18 +36,27 @@ public actor InsulinModelActor {
         self.saveContext()
     }
     
-    func updateSetting(_ id: PersistentIdentifier, insulinProductName: String, dosage: Int) {
-        guard let record = modelContext.model(for: id) as? InsulinSettingModel else {
+    public func updateSetting(_ id: PersistentIdentifier, insulinProductName: String, dosage: Int) {
+        guard let setting = modelContext.model(for: id) as? InsulinSettingModel else {
             fatalError("Failed to find InsulinSettingModel")
         }
-        record.insulinProductName = insulinProductName
-        record.dosage = dosage
+        setting.insulinProductName = insulinProductName
+        setting.dosage = dosage
         
         self.saveContext()
     }
     
+    public func addRecord(_ id: PersistentIdentifier, dosage: Int, date: Date) {
+        guard let setting = modelContext.model(for: id) as? InsulinSettingModel else {
+            fatalError("Failed to find InsulinSettingModel")
+        }
+        let record = InsulinRecordModel(dosage: dosage, createdAt: date, updatedAt: date)
+        setting.records.append(record)
+        self.saveContext()
+    }
+    
     // 첫 실행시 초기 세팅 생성할 때 씀
-    func createInitSetting() {
+    public func createInitSetting() {
         do{
             let descriptor = FetchDescriptor<InsulinSettingModel>()
             if try modelContext.fetchCount(descriptor) == 0 {

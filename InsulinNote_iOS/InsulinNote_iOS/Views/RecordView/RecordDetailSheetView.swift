@@ -7,27 +7,28 @@
 import SwiftUI
 import WidgetKit
 
-struct RecordDetailSheetView: View{
+struct RecordDetailSheetView: View {
     @Environment(\.dismiss) var dismiss
     let widgetCenter = WidgetCenter.shared
-    
+
     @Binding var dosage: Int
-    var recordingAction: () -> () = {}
-    
-    var body: some View{
-        NavigationStack{
-            VStack{
+    var recordingAction: () -> Void = {}
+
+    var body: some View {
+        NavigationStack {
+            VStack {
                 Picker("dosage", selection: $dosage) {
                     ForEach(1...80, id: \.self) {
                         Text("\($0)")
                     }
                 }
                 .pickerStyle(.wheel)
-                
-                Button("기록"){
+
+                Button("기록") {
                     recordingAction()
                     widgetCenter.reloadAllTimelines()
                     dismiss()
+
                 }
                 Spacer()
             }

@@ -19,7 +19,7 @@ struct LongActingInsulinView:View {
     
     @Binding var isPresented: Bool
     @Binding var dosage: Int
-    @Binding var recordClosure: ()->()
+    @Binding var recordClosure: () ->()
     
     var body: some View {
         VStack(alignment: .leading){
@@ -54,7 +54,7 @@ struct LongActingInsulinView:View {
         }else{
             dosage = 0
         }
-        recordClosure = {createNewInsulinRecord()}
+        recordClosure = { createNewInsulinRecord()}
         isPresented.toggle()
     }
     

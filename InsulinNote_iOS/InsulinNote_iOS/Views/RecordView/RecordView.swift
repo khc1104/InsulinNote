@@ -18,7 +18,7 @@ struct RecordView:View {
     
     @State private var isPresented: Bool = false
     @State private var editedDosage: Int = 0
-    @State private var recordClosure: (() -> Void) = {print("기록 에러")}
+    @State private var recordClosure: (() -> ()) = {print("기록 에러")}
     
     var longActingInsulin: InsulinSettingModel? {
         insulinSettings.filter{
@@ -66,7 +66,6 @@ struct RecordView:View {
         .sheet(isPresented: $isPresented) {
             RecordDetailSheetView(dosage: $editedDosage) {
                 recordClosure()
-                    
             }
             .presentationDetents([.medium])
         }

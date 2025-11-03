@@ -70,19 +70,17 @@ struct FastActingInsulinView:View {
     }
     
     func createFastInsulinRecord() -> (){ //인슐린 설정의 기록 추가
-        if let insulinSetting{
-            let calendar = Calendar.current
-            if  calendar.isDateInToday(date){
-                let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: .now, updatedAt: .now)
-                insulinSetting.records.append(record)
-            }else{
-                let record: InsulinRecordModel = InsulinRecordModel(dosage: dosage, createdAt: date, updatedAt: .now)
-                insulinSetting.records.append(record)
-            }
-        }else{
-            print("세팅이 없음")
-            
+        guard let insulinSetting else {
+            fatalError("Can not found InsulinSetting")
         }
+        let calendar = Calendar.current
+        let date = calendar.isDateInToday(date) ? Date.now : date
+        let dosage = dosage
+        let settingId = insulinSetting.persistentModelID
+        Task{
+            await InsulinModelActor.shared.addRecord(settingId, dosage: dosage, date: date)
+        }
+        
     }
 }
 

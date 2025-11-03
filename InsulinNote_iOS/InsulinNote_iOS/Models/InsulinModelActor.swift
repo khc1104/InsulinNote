@@ -45,14 +45,22 @@ public actor InsulinModelActor {
         self.saveContext()
     }
     
-    func insertSetting() {
-        let longActionInsulin = InsulinSettingModel(insulinProductName: "지효성", actingType: .long, dosage: 20, records: [], updatedAt: .now)
-        modelContext.insert(longActionInsulin)
-        
-        let fastActingInsulin = InsulinSettingModel(insulinProductName: "속효성", actingType: .fast, dosage: 15, records: [], updatedAt: .now)
-        modelContext.insert(fastActingInsulin)
-        
-        self.saveContext()
+    // 첫 실행시 초기 세팅 생성할 때 씀
+    func createInitSetting() {
+        do{
+            let descriptor = FetchDescriptor<InsulinSettingModel>()
+            if try modelContext.fetchCount(descriptor) == 0 {
+                let longActionInsulin = InsulinSettingModel(insulinProductName: "지효성", actingType: .long, dosage: 20, records: [], updatedAt: .now)
+                modelContext.insert(longActionInsulin)
+                
+                let fastActingInsulin = InsulinSettingModel(insulinProductName: "속효성", actingType: .fast, dosage: 15, records: [], updatedAt: .now)
+                modelContext.insert(fastActingInsulin)
+                
+                self.saveContext()
+            }
+        } catch{
+            fatalError("Failed to init Settings")
+        }
     }
     
     private func saveContext() {

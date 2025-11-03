@@ -14,6 +14,6 @@ struct InsulinNote_iOSApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(InsulinModelActor.modelContainer)
+        .modelContainer(InsulinModelActor.shared.modelContainer)
     }
 }

@@ -9,23 +9,26 @@ import SwiftData
 
 @ModelActor
 public actor InsulinModelActor {
-    nonisolated static let modelContainer: ModelContainer = {
-        do {
-            let schema: Schema = .init(
-                [InsulinSettingModel.self, InsulinRecordModel.self],
-                version: Schema.Version(1, 0, 0)
-            )
-            
-            let configuration: ModelConfiguration = ModelConfiguration(
-                schema: schema,
-                isStoredInMemoryOnly: false)
-            return try ModelContainer(for: schema, configurations: configuration)
+    public static let shared = InsulinModelActor(modelContainer: {
+        do{
+             return try ModelContainer(
+                for: InsulinModelActor.schema,
+                configurations: InsulinModelActor.configuration)
         } catch {
-            fatalError("Failed to create modelContainer")
+            fatalError("Failed to create ModelContainer")
         }
-    }()
-        
-
+    }())
+    
+    private static let schema: Schema = .init(
+        [InsulinSettingModel.self, InsulinRecordModel.self],
+        version: Schema.Version(1, 0, 0)
+    )
+    
+    private static let configuration: ModelConfiguration = ModelConfiguration(
+        schema: schema,
+        isStoredInMemoryOnly: false)
+    
+    
     public func insert<T: PersistentModel>(newModel: T) {
         modelContext.insert(newModel)
         print(newModel)

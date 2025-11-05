@@ -11,8 +11,15 @@ struct RecordDetailSheetView: View {
     @Environment(\.dismiss) var dismiss
     let widgetCenter = WidgetCenter.shared
 
-    @Binding var dosage: Int
-    var recordingAction: () -> Void = {}
+    @State var dosage: Int
+    let setting: InsulinSettingModel
+    let recordingAction: (Int) -> Void
+    
+    init(setting: InsulinSettingModel, onButtonTaped: @escaping (Int) -> Void){
+        self.setting = setting
+        self.recordingAction = onButtonTaped
+        self._dosage = State(initialValue: Int(setting.dosage))
+    }
 
     var body: some View {
         NavigationStack {
@@ -25,10 +32,9 @@ struct RecordDetailSheetView: View {
                 .pickerStyle(.wheel)
 
                 Button("기록") {
-                    recordingAction()
+                    recordingAction(dosage)
                     widgetCenter.reloadAllTimelines()
                     dismiss()
-
                 }
                 Spacer()
             }
@@ -40,6 +46,18 @@ struct RecordDetailSheetView: View {
                     }
                 }
             }
+        }
+    }
+    func addRecordAction(insulinSetting: InsulinSettingModel?, date: Date) { //인슐린 설정의 기록 추가
+        guard let insulinSetting else {
+            fatalError("Can not found InsulinSetting")
+        }
+        let calendar = Calendar.current
+        let date = calendar.isDateInToday(date) ? Date.now : date
+        let dosage = dosage
+        let settingId = insulinSetting.persistentModelID
+        Task{
+            await InsulinModelActor.shared.addRecord(settingId, dosage: dosage, date: date)
         }
     }
 }

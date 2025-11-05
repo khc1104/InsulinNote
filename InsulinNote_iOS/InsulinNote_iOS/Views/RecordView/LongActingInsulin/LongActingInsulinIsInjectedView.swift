@@ -9,10 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct LongActingInsulinIsInjectedView:View {
-    
-    var insulinRecord: InsulinRecordModel?
-    var proxy: GeometryProxy
-    
+    let insulinRecord: InsulinRecordModel?
+    let proxy: GeometryProxy
     
     var injectedDate: String {
         let formatter = DateFormatter()
@@ -38,13 +36,6 @@ struct LongActingInsulinIsInjectedView:View {
             
             
         }
-        //.frame(maxWidth: .infinity, maxHeight: proxy.size.height * 0.4)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-#Preview{
-    GeometryReader{prox in
-        LongActingInsulinIsInjectedView(proxy: prox)
     }
 }

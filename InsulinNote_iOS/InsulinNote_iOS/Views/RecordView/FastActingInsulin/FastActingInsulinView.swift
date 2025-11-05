@@ -11,19 +11,15 @@ import SwiftData
 struct FastActingInsulinView:View {
     @Environment(\.modelContext) var insulinContext
 
-    var date: Date
-    var insulinSetting: InsulinSettingModel?
-    
-    @Binding var isPresented: Bool
-    @Binding var dosage: Int
-    @Binding var recordClosure: ()->()
+    let date: Date
+    let setting: InsulinSettingModel?
+    let onButtonTapped: () -> Void
     
     private var todayRecords: [InsulinRecordModel]{
-        if let insulinSetting{
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            return insulinSetting.records.filter{
-                formatter.string(from: $0.createdAt) == formatter.string(from: date)
+        if let setting{
+            let calendar = Calendar.current
+            return setting.records.filter{
+                calendar.isDateInToday($0.createdAt)
             }.sorted(by: {$0.createdAt > $1.createdAt})
         }else{
             return []
@@ -31,9 +27,9 @@ struct FastActingInsulinView:View {
     }
     
     var body: some View {
-        if let insulinSetting{
+        if let setting{
             VStack(alignment: .leading){
-                Text(insulinSetting.insulinProductName)
+                Text(setting.insulinProductName)
                     .font(.title)
                     .foregroundStyle(Color.fastActing)
                 ScrollView(.horizontal){
@@ -52,13 +48,10 @@ struct FastActingInsulinView:View {
                 
             }
             Button{
-                dosage = insulinSetting.dosage
-                recordClosure = { createFastInsulinRecord() }
-                isPresented.toggle()
+                onButtonTapped()
             }label: {
                 ZStack{
                     Rectangle()
-                    //.frame(width: proxy.size.width - 20, height: 50)
                         .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
                         .foregroundStyle(.clear)
                         .border(Color.fastActing, width: 1)
@@ -67,20 +60,6 @@ struct FastActingInsulinView:View {
                 }
             }
         }
-    }
-    
-    func createFastInsulinRecord() -> (){ //인슐린 설정의 기록 추가
-        guard let insulinSetting else {
-            fatalError("Can not found InsulinSetting")
-        }
-        let calendar = Calendar.current
-        let date = calendar.isDateInToday(date) ? Date.now : date
-        let dosage = dosage
-        let settingId = insulinSetting.persistentModelID
-        Task{
-            await InsulinModelActor.shared.addRecord(settingId, dosage: dosage, date: date)
-        }
-        
     }
 }
 

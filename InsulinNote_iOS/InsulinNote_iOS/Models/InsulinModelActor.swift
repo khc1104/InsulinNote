@@ -29,13 +29,29 @@ public actor InsulinModelActor {
         schema: schema,
         isStoredInMemoryOnly: false)
     
+    public func getSettings() -> [InsulinSettingModel] {
+        let descriptor = FetchDescriptor<InsulinSettingModel>(
+            sortBy: [.init(\InsulinSettingModel.actingType, order: .forward)]
+        )
+        do {
+            let settings = try modelContext.fetch(descriptor)
+            return settings
+        } catch {
+            fatalError("Failed to get Insulin Settings")
+        }
+    }
     
-    public func insert<T: PersistentModel>(newModel: T) {
-        modelContext.insert(newModel)
-        print(newModel)
+    // 인슐린 투여기록 추가
+    public func addRecord(_ id: PersistentIdentifier, dosage: Int, date: Date) {
+        guard let setting = modelContext.model(for: id) as? InsulinSettingModel else {
+            fatalError("Failed to find InsulinSettingModel")
+        }
+        let record = InsulinRecordModel(dosage: dosage, createdAt: date, updatedAt: date)
+        setting.records.append(record)
         self.saveContext()
     }
     
+    // 인슐린 세팅 변경( 이름, 기본 투여량)
     public func updateSetting(_ id: PersistentIdentifier, insulinProductName: String, dosage: Int) {
         guard let setting = modelContext.model(for: id) as? InsulinSettingModel else {
             fatalError("Failed to find InsulinSettingModel")
@@ -43,15 +59,6 @@ public actor InsulinModelActor {
         setting.insulinProductName = insulinProductName
         setting.dosage = dosage
         
-        self.saveContext()
-    }
-    
-    public func addRecord(_ id: PersistentIdentifier, dosage: Int, date: Date) {
-        guard let setting = modelContext.model(for: id) as? InsulinSettingModel else {
-            fatalError("Failed to find InsulinSettingModel")
-        }
-        let record = InsulinRecordModel(dosage: dosage, createdAt: date, updatedAt: date)
-        setting.records.append(record)
         self.saveContext()
     }
     

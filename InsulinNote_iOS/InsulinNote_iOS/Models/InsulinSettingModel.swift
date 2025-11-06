@@ -7,10 +7,11 @@
 
 import Foundation
 import SwiftData
+import AppIntents
 
 @Model
-final public class InsulinSettingModel: Identifiable{
-    @Attribute(.unique) public var id: UUID = UUID() //id
+final public class InsulinSettingModel: Identifiable, AppEntity, Sendable{
+    public var id: UUID = UUID() //id
     
     var insulinProductName: String //인슐린 제품 명
     var actingType: ActingType
@@ -21,6 +22,13 @@ final public class InsulinSettingModel: Identifiable{
     
     var createdAt: Date //생성시간
     var updatedAt: Date //변경시간
+    
+    public var displayRepresentation: DisplayRepresentation{
+        DisplayRepresentation(title: "\(insulinProductName)")
+    }
+    
+    static public var typeDisplayRepresentation: TypeDisplayRepresentation = "인슐린 설정"
+    static public var defaultQuery = InsulinSettingQuery()
     
     init(insulinProductName: String, actingType: ActingType, dosage: Int, records: [InsulinRecordModel], updatedAt: Date) {
         let dateFormatter = DateFormatter()

@@ -24,7 +24,7 @@ public actor InsulinModelActor {
         [InsulinSettingModel.self, InsulinRecordModel.self],
         version: Schema.Version(1, 0, 0)
     )
-    
+        
     private static let configuration: ModelConfiguration = ModelConfiguration(
         schema: schema,
         isStoredInMemoryOnly: false)
@@ -38,6 +38,31 @@ public actor InsulinModelActor {
             return settings
         } catch {
             fatalError("Failed to get Insulin Settings")
+        }
+    }
+    
+    public func fetchAllSettings() -> [InsulinSettingModel] {
+        do {
+            let descriptor = FetchDescriptor<InsulinSettingModel>(
+                sortBy: []
+            )
+            return try modelContext.fetch(descriptor)
+        } catch {
+            fatalError("Failed to get Insulin Settings")
+        }
+    }
+    
+    public func fetchSettings(with ids: [UUID]) -> [InsulinSettingModel] {
+        let predicate = #Predicate<InsulinSettingModel>{ setting in
+            ids.contains(setting.id)
+        }
+        let descriptor = FetchDescriptor<InsulinSettingModel>(
+            predicate: predicate
+        )
+        do {
+            return try modelContext.fetch(descriptor)
+        } catch {
+            fatalError("Failed to fetch Setting by id")
         }
     }
     

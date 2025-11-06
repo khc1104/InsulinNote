@@ -38,9 +38,7 @@ struct RecordingWidgetEntryView: View {
                         records: filteredInsulinSetting.records
                     ),
                     defaultDosage: filteredInsulinSetting.dosage,
-                    recordingIntent: RecordingIntent(
-                        id: filteredInsulinSetting.id.uuidString
-                    )
+                    recordingIntent: RecordingIntent()
                 )
             case .long:
                 WidgetLongActingView(
@@ -51,9 +49,7 @@ struct RecordingWidgetEntryView: View {
                     isInjected: getIsInjected(
                         records: filteredInsulinSetting.records
                     ),
-                    recordingIntent: RecordingIntent(
-                        id: filteredInsulinSetting.id.uuidString
-                    )
+                    recordingIntent: RecordingIntent()
                 )
             }
         }

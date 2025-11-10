@@ -13,6 +13,5 @@ import SwiftData
 struct RecordingWidgetBundle: WidgetBundle {
     var body: some Widget {
         RecordingWidget()
-        LockScreenInfoWidget()
     }
 }

@@ -5,66 +5,79 @@
 //  Created by 권희철 on 8/13/24.
 //
 
-import WidgetKit
-import SwiftUI
-import SwiftData
 import AppIntents
-
-struct RecordProvider: AppIntentTimelineProvider {
-    func placeholder(in context: Context) -> RecordingEntry {
-        RecordingEntry(
-            date: .now,
-            setting: RecordingEntity(
-                id: UUID(),
-                insulinProductName: "Some Insulin",
-                dosage: 0,
-                actingType: .long
-            )
-        )
-    }
-
-    func timeline(for configuration: RecordingConfigurationIntent, in context: Context) async -> Timeline<RecordingEntry> {
-        let now = Date()
-        let calendar = Calendar.current
-
-        // Resolve optional configuration.setting with a safe fallback
-        let resolvedSetting = configuration.setting ?? RecordingEntity(
-            id: UUID(),
-            insulinProductName: "Some Insulin",
-            dosage: 0,
-            actingType: .long
-        )
-
-        guard let nextMidnight = calendar.nextDate(after: now,
-                                                   matching: DateComponents(hour: 0, minute: 0, second: 0),
-                                                   matchingPolicy: .strict) else {
-            let entry = RecordingEntry(date: now, setting: resolvedSetting)
-            return Timeline(entries: [entry], policy: .never)
-        }
-
-        let currentEntry = RecordingEntry(date: now, setting: resolvedSetting)
-        let midnightEntry = RecordingEntry(date: nextMidnight, setting: resolvedSetting)
-        return Timeline(entries: [currentEntry, midnightEntry], policy: .atEnd)
-    }
-
-    func snapshot(for configuration: RecordingConfigurationIntent, in context: Context) async -> RecordingEntry {
-        let resolvedSetting = configuration.setting ?? RecordingEntity(
-            id: UUID(),
-            insulinProductName: "Some Insulin",
-            dosage: 0,
-            actingType: .long
-        )
-        return RecordingEntry(
-            date: .now,
-            setting: resolvedSetting
-        )
-    }
-}
+import SwiftData
+import SwiftUI
+import WidgetKit
 
 struct RecordingEntry: TimelineEntry {
     let date: Date
-    let setting: RecordingEntity
+    let settingId: UUID
+    let productName: String
+    let dosage: Int
+    let actingType: InsulinSettingModel.ActingType
+    let lastRecordDate: Date?
+    let lastRecordDosage: Int?
 }
+
+struct RecordProvider: AppIntentTimelineProvider {
+    func placeholder(in context: Context) -> RecordingEntry {
+        RecordingEntry(date: .now,
+                       settingId: UUID(),
+                       productName: "지효성",
+                       dosage: 99,
+                       actingType: .long,
+                       lastRecordDate: nil,
+                       lastRecordDosage: nil)
+    }
+    
+    func snapshot(for configuration: RecordingConfigurationIntent, in context: Context) async -> RecordingEntry {
+        guard let selectedSetting = configuration.setting else {
+            return RecordingEntry(date: .now,
+                                  settingId: UUID(),
+                                  productName: "지효성",
+                                  dosage: 99,
+                                  actingType: .long,
+                                  lastRecordDate: nil,
+                                  lastRecordDosage: nil)
+        }
+        
+        let lastRecord = await InsulinModelActor.shared.fetchLastRecord(for: selectedSetting.id)
+        
+        return RecordingEntry(
+            date: .now,
+            settingId: selectedSetting.id,
+            productName: selectedSetting.insulinProductName,
+            dosage: selectedSetting.dosage,
+            actingType: selectedSetting.actingType,
+            lastRecordDate: lastRecord?.createdAt,
+            lastRecordDosage: lastRecord?.dosage)
+    }
+    
+    func timeline(for configuration: RecordingConfigurationIntent, in context: Context) async -> Timeline<RecordingEntry> {
+        guard let selectedSetting = configuration.setting else {
+            return Timeline(entries: [], policy: .atEnd)
+        }
+        
+        let lastRecord = await InsulinModelActor.shared.fetchLastRecord(for: selectedSetting.id)
+        let entry = RecordingEntry(
+            date: .now,
+            settingId: selectedSetting.id,
+            productName: selectedSetting.insulinProductName,
+            dosage: selectedSetting.dosage,
+            actingType: selectedSetting.actingType,
+            lastRecordDate: lastRecord?.createdAt,
+            lastRecordDosage: lastRecord?.dosage)
+        
+        let nextDay = Calendar.current.startOfDay(for: .now.addingTimeInterval(86400))
+        let timeLine = Timeline(entries: [entry], policy: .after(nextDay))
+        
+        return timeLine
+    }
+
+}
+
+
 
 struct RecordingWidget: Widget {
     let kind: String = "RecordingWidget"
@@ -76,25 +89,23 @@ struct RecordingWidget: Widget {
             provider: RecordProvider()
         ) { entry in
             RecordingWidgetEntryView(entry: entry)
-                .modelContainer(for: [InsulinSettingModel.self])
         }
         .configurationDisplayName("인슐린 투여")
         .description("인슐린 투여를 더 빠르게 기록하세요")
         .supportedFamilies([.accessoryCircular, .systemSmall])
-        
+
     }
 }
 
 struct RecordingConfigurationIntent: WidgetConfigurationIntent {
-    static var title: LocalizedStringResource = "인슐린 세팅"
-    static var description = IntentDescription("Selects the character to display information for.")
+    static var title: LocalizedStringResource = "인슐린 설정"
+    
+    @Parameter(title: "인슐린 설정")
+    var setting: InsulinSettingModel?
 
-    @Parameter(title: "인슐린 | 단위")
-    var setting: RecordingEntity?
-
-    init(setting: RecordingEntity?) {
+    init(setting: InsulinSettingModel) {
         self.setting = setting
     }
 
-    init() { }
+    init() {}
 }

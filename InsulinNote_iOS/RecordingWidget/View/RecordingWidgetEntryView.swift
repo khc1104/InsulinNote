@@ -13,48 +13,65 @@ struct RecordingWidgetEntryView: View {
     var entry: RecordingEntry
     @Environment(\.widgetFamily) var family
 
-    @Environment(\.modelContext) var insulinContext
-    @Query var insulinSettings: [InsulinSettingModel]
-    
-    var filteredInsulinSetting: InsulinSettingModel {
-        insulinSettings.filter { $0.actingType == entry.setting.actingType }.first!
-    }
-    
-    var formatter: DateFormatter {
-        let format = DateFormatter()
-        format.locale = Locale(identifier: "ko_KR")
-        format.dateFormat = "M월 dd일"
-        return format
-    }
-    
-    
+    let formatter: DateFormatter = {  //리턴할 때 사용
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter
+    }()
 
     var body: some View {
         VStack {
-            switch entry.setting.actingType {
-            case .fast:
-                WidgetFastActingView(
-                    lastInjectTime: getLastInjected(
-                        records: filteredInsulinSetting.records
-                    ),
-                    defaultDosage: filteredInsulinSetting.dosage,
-                    recordingIntent: RecordingIntent()
-                )
-            case .long:
-                WidgetLongActingView(
-                    injectTime: getLastInjected(
-                        records: filteredInsulinSetting.records
-                    ),
-                    defaultDosage: filteredInsulinSetting.dosage,
-                    isInjected: getIsInjected(
-                        records: filteredInsulinSetting.records
-                    ),
-                    recordingIntent: RecordingIntent()
-                )
+            switch family {
+            case .accessoryCircular:
+                VStack {
+                    Button(
+                        "\(entry.actingType == .fast ? "속효" : "지효")",
+                        intent: RecordingIntent()
+                    )
+                }
+            default:
+                switch entry.actingType {
+                case .long:
+                    VStack(alignment: .leading) {
+                        Text("지효성")
+                            .font(.largeTitle)
+                        Text("\(entry.dosage)단위")
+                        if let lastRecordDate = entry.lastRecordDate {
+                            Text("\(formatter.string(from: lastRecordDate)) 투여됨")
+                        } else {
+                            Toggle(
+                                isOn: false,
+                                intent: RecordingIntent()
+                            ) {
+                                Image(systemName: "syringe")
+                            }
+
+                        }
+
+                    }
+                case .fast:
+                    VStack(alignment: .leading) {
+                        Text("속효성")
+                            .font(.largeTitle)
+                        Text("\(entry.dosage)단위")
+                        if let lastRecordDate = entry.lastRecordDate,
+                            let lastRecordDosage = entry.lastRecordDosage
+                        {
+                            Text("\(formatter.string(from: lastRecordDate))")
+                            Text("\(lastRecordDosage)단위")
+                        }
+                        Button(
+                            intent: RecordingIntent()
+                        ) {
+                            Image(systemName: "syringe")
+                        }
+                    }
+                }
+
             }
         }
         .containerBackground(for: .widget) {
-            entry.setting.actingType == .fast
+            entry.actingType == .fast
                 ? Color.fastActing : Color.longActing
         }
 

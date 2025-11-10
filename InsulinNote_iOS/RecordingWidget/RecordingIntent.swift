@@ -9,6 +9,7 @@ import AppIntents
 import SwiftData
 import SwiftUI
 import WidgetKit
+import os.log
 
 struct RecordingIntent: AppIntent, AudioPlaybackIntent{
     init() {
@@ -24,9 +25,12 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
     @Parameter(title: "투여량")
     var dosage: Int
     
-    func perform() async throws -> some ProvidesDialog{
+    private static let logger = Logger(subsystem: "com.HeeChoel.InsulinNote", category: "RecordingIntent")
+    
+    public func perform() async throws -> some ProvidesDialog{
         SoundPlayer.shared.play()
         
+        Self.logger.log("perform Called")
         await InsulinModelActor.shared.addRecord(
             setting.persistentModelID,
             dosage: self.dosage,
@@ -35,66 +39,8 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
         try await requestConfirmation()
         
         WidgetCenter.shared.reloadAllTimelines()
+        
+        Self.logger.log("perform End")
         return .result(dialog: IntentDialog("\(setting.insulinProductName)|\(setting.dosage) 투여"))
-    }
-}
-
-struct RecordingEntity: AppEntity, Identifiable{
-    let id: UUID
-    let insulinProductName: String
-    let dosage: Int
-    let actingType: InsulinSettingModel.ActingType
-    
-    static var typeDisplayRepresentation: TypeDisplayRepresentation = "세팅"
-    static var defaultQuery = RecordingQuery()
-    
-    var displayRepresentation: DisplayRepresentation{
-        DisplayRepresentation(title: "\(insulinProductName) | \(dosage)")
-    }
-}
-
-struct RecordingQuery: EntityQuery{
-    func entities(for identifiers: [RecordingEntity.ID]) async throws -> [RecordingEntity] {
-        let descriptor = FetchDescriptor<InsulinSettingModel>(
-            sortBy: [
-                .init(\.createdAt)
-            ]
-        )
-        
-        let context = ModelContextStore.sharedModelContext
-        let insulinSettings = try context.fetch(descriptor)
-        
-        return insulinSettings.map{
-            RecordingEntity(
-                id: $0.id,
-                insulinProductName: $0.insulinProductName,
-                dosage: $0.dosage,
-                actingType: $0.actingType)
-        }
-        
-    }
-    
-    func suggestedEntities() async throws -> [RecordingEntity] {
-        let descriptor = FetchDescriptor<InsulinSettingModel>(
-            sortBy: [
-                .init(\.createdAt)
-            ]
-        )
-        
-        let context = ModelContextStore.sharedModelContext
-        let insulinSettings = try context.fetch(descriptor)
-        
-        return insulinSettings.map{
-            RecordingEntity(
-                id: $0.id,
-                insulinProductName: $0.insulinProductName,
-                dosage: $0.dosage,
-                actingType: $0.actingType)
-        }
-        
-    }
-    
-    func defaultResult() async -> RecordingEntity? {
-        try? await suggestedEntities().first
     }
 }

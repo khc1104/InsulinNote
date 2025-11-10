@@ -66,6 +66,24 @@ public actor InsulinModelActor {
         }
     }
     
+    public func fetchLastRecord(for id: UUID) -> InsulinRecordModel? {
+        let todayStart = Calendar.current.startOfDay(for: .now)
+        let nextDayStart = todayStart.addingTimeInterval(86400)
+        let predicate = #Predicate<InsulinRecordModel>{ record in
+            return (record.setting?.id == id) &&
+            todayStart <= record.createdAt && record.createdAt < nextDayStart
+        }
+        let descriptor = FetchDescriptor<InsulinRecordModel>(
+            predicate: predicate,
+            sortBy: [.init(\.createdAt, order: .forward)]
+        )
+        do {
+            return try modelContext.fetch(descriptor).first
+        } catch {
+            fatalError("The problem occurred during fetch LastRecord")
+        }
+    }
+    
     // 인슐린 투여기록 추가
     public func addRecord(_ id: PersistentIdentifier, dosage: Int, date: Date) {
         guard let setting = modelContext.model(for: id) as? InsulinSettingModel else {

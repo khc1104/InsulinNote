@@ -5,9 +5,9 @@
 //  Created by 권희철 on 7/16/24.
 //
 
-import Foundation
 import SwiftData
 import AppIntents
+
 
 @Model
 final public class InsulinSettingModel: Identifiable, AppEntity, Sendable{

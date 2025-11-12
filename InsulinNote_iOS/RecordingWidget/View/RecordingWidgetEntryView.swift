@@ -41,7 +41,7 @@ struct RecordingWidgetEntryView: View {
                         } else {
                             Toggle(
                                 isOn: false,
-                                intent: RecordingIntent()
+                                intent: RecordingIntent(id: entry.settingId)
                             ) {
                                 Image(systemName: "syringe")
                             }
@@ -61,7 +61,7 @@ struct RecordingWidgetEntryView: View {
                             Text("\(lastRecordDosage)단위")
                         }
                         Button(
-                            intent: RecordingIntent()
+                            intent: RecordingIntent(id: entry.settingId)
                         ) {
                             Image(systemName: "syringe")
                         }

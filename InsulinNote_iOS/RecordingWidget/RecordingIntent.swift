@@ -16,24 +16,29 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
         
     }
     
+    init(id: UUID){
+        self.settingID = id.uuidString
+    }
+    
     static var title: LocalizedStringResource = "인슐린 기록 하기"
     static var description: IntentDescription = IntentDescription("인슐린을 기록합니다.", categoryName: "<기록>", searchKeywords: ["인슐린", "기록"])
 
-    @Parameter(title: "인슐린 설정")
-    var setting: InsulinSettingModel
-    
-    @Parameter(title: "투여량")
-    var dosage: Int
+    @Parameter(title: "setting ID")
+    var settingID: String
     
     private static let logger = Logger(subsystem: "com.HeeChoel.InsulinNote", category: "RecordingIntent")
     
+    @MainActor
     public func perform() async throws -> some ProvidesDialog{
         SoundPlayer.shared.play()
+        guard let settingUUID = UUID(uuidString: settingID) else {fatalError("Failed to convertUUID on intent") }
+        
+        guard let setting = await InsulinModelActor.shared.fetchSettings(with: [settingUUID]).first else { fatalError("Failed to fetchSetting on intent")}
         
         Self.logger.log("perform Called")
         await InsulinModelActor.shared.addRecord(
             setting.persistentModelID,
-            dosage: self.dosage,
+            dosage: setting.dosage,
             date: .now
         )
         try await requestConfirmation()

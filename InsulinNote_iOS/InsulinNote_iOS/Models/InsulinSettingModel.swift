@@ -23,13 +23,6 @@ final public class InsulinSettingModel: Identifiable, AppEntity, Sendable{
     var createdAt: Date //생성시간
     var updatedAt: Date //변경시간
     
-    public var displayRepresentation: DisplayRepresentation{
-        DisplayRepresentation(title: "\(insulinProductName)")
-    }
-    
-    static public var typeDisplayRepresentation: TypeDisplayRepresentation = "인슐린 설정"
-    static public var defaultQuery = InsulinSettingQuery()
-    
     init(insulinProductName: String, actingType: ActingType, dosage: Int, records: [InsulinRecordModel], updatedAt: Date) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm a"
@@ -49,5 +42,13 @@ final public class InsulinSettingModel: Identifiable, AppEntity, Sendable{
         }
         
     }
+    
+// MARK: - AppIntent
+    public var displayRepresentation: DisplayRepresentation{
+        DisplayRepresentation(title: "\(insulinProductName)")
+    }
+    
+    static public var typeDisplayRepresentation: TypeDisplayRepresentation = "인슐린 설정"
+    static public var defaultQuery = InsulinSettingQuery()
 }
 

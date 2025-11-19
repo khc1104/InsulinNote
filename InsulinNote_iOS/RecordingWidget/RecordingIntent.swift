@@ -25,9 +25,7 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
 
     @Parameter(title: "setting ID")
     var settingID: String
-    
-    private static let logger = Logger(subsystem: "com.HeeChoel.InsulinNote", category: "RecordingIntent")
-    
+
     @MainActor
     public func perform() async throws -> some ProvidesDialog{
         SoundPlayer.shared.play()
@@ -35,7 +33,6 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
         
         guard let setting = await InsulinModelActor.shared.fetchSettings(with: [settingUUID]).first else { fatalError("Failed to fetchSetting on intent")}
         
-        Self.logger.log("perform Called")
         await InsulinModelActor.shared.addRecord(
             setting.persistentModelID,
             dosage: setting.dosage,
@@ -45,7 +42,6 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
         
         WidgetCenter.shared.reloadAllTimelines()
         
-        Self.logger.log("perform End")
         return .result(dialog: IntentDialog("\(setting.insulinProductName)|\(setting.dosage) 투여"))
     }
 }

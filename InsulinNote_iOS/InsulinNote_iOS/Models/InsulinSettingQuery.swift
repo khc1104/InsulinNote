@@ -11,6 +11,10 @@ public struct InsulinSettingQuery: EntityQuery {
             
     }
     
+    public func defaultResult() async -> InsulinSettingModel? {
+        try? await suggestedEntities().first
+    }
+    
     public init(){}
     
 }

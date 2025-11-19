@@ -38,8 +38,8 @@ struct RecordProvider: AppIntentTimelineProvider {
                                   productName: "지효성",
                                   dosage: 99,
                                   actingType: .long,
-                                  lastRecordDate: nil,
-                                  lastRecordDosage: nil)
+                                  lastRecordDate: .now,
+                                  lastRecordDosage: 15)
         }
         
         let lastRecord = await InsulinModelActor.shared.fetchLastRecord(for: selectedSetting.id)

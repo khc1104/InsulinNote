@@ -9,7 +9,7 @@ import AppIntents
 import SwiftData
 import SwiftUI
 
-struct RecordingWidgetEntryView: View {
+struct RecordingWidgetView: View {
     var entry: RecordingEntry
     @Environment(\.widgetFamily) var family
 
@@ -23,11 +23,25 @@ struct RecordingWidgetEntryView: View {
         VStack {
             switch family {
             case .accessoryCircular:
-                VStack {
-                    Button(
-                        "\(entry.actingType == .fast ? "속효" : "지효")",
-                        intent: RecordingIntent()
-                    )
+                switch entry.actingType {
+                case .long:
+                    if entry.lastRecordDate != nil{
+                        Text("투여됨")
+                    } else {
+                        Toggle(
+                            isOn: false,
+                            intent: RecordingIntent(id: entry.settingId)
+                        ) {
+                            Text("지효")
+                        }
+                    }
+                case .fast:
+                    Toggle(
+                        isOn: false,
+                        intent: RecordingIntent(id: entry.settingId)
+                    ) {
+                        Text("속효")
+                    }
                 }
             default:
                 switch entry.actingType {
@@ -37,7 +51,9 @@ struct RecordingWidgetEntryView: View {
                             .font(.largeTitle)
                         Text("\(entry.dosage)단위")
                         if let lastRecordDate = entry.lastRecordDate {
-                            Text("\(formatter.string(from: lastRecordDate)) 투여됨")
+                            Text(
+                                "\(formatter.string(from: lastRecordDate)) 투여됨"
+                            )
                         } else {
                             Toggle(
                                 isOn: false,

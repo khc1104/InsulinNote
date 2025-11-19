@@ -8,17 +8,15 @@
 import SwiftUI
 
 struct LongActingInsulinIsNotInjectedView:View {
-    var proxy: GeometryProxy
-    //@Binding var isInjected:Bool
+    let proxy: GeometryProxy
+    let onButtonTapped: () -> Void
     
-    //@Binding var isPresented: Bool
-    var action: ()-> ()
     var body: some View {
         VStack{
             Text("미 투여")
                 .font(.title)
             Button{
-                action()
+                onButtonTapped()
             }label: {
                 ZStack{
                     Rectangle()
@@ -30,13 +28,7 @@ struct LongActingInsulinIsNotInjectedView:View {
                 }
             }
         }
-        //.frame(maxWidth: .infinity, maxHeight: proxy.size.height * 0.4)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
-//#Preview {
-//    GeometryReader{ proxy in
-//        LongActingInsulinIsNotInjectedView(proxy: proxy)
-//    }
-//}

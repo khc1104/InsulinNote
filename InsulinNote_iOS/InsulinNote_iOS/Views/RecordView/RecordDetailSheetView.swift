@@ -7,25 +7,32 @@
 import SwiftUI
 import WidgetKit
 
-struct RecordDetailSheetView: View{
+struct RecordDetailSheetView: View {
     @Environment(\.dismiss) var dismiss
     let widgetCenter = WidgetCenter.shared
+
+    @State var dosage: Int
+    let setting: InsulinSettingModel
+    let recordingAction: (Int) -> Void
     
-    @Binding var dosage: Int
-    var recordingAction: () -> () = {}
-    
-    var body: some View{
-        NavigationStack{
-            VStack{
+    init(setting: InsulinSettingModel, onButtonTaped: @escaping (Int) -> Void){
+        self.setting = setting
+        self.recordingAction = onButtonTaped
+        self._dosage = State(initialValue: Int(setting.dosage))
+    }
+
+    var body: some View {
+        NavigationStack {
+            VStack {
                 Picker("dosage", selection: $dosage) {
                     ForEach(1...80, id: \.self) {
                         Text("\($0)")
                     }
                 }
                 .pickerStyle(.wheel)
-                
-                Button("기록"){
-                    recordingAction()
+
+                Button("기록") {
+                    recordingAction(dosage)
                     widgetCenter.reloadAllTimelines()
                     dismiss()
                 }
@@ -39,6 +46,18 @@ struct RecordDetailSheetView: View{
                     }
                 }
             }
+        }
+    }
+    func addRecordAction(insulinSetting: InsulinSettingModel?, date: Date) { //인슐린 설정의 기록 추가
+        guard let insulinSetting else {
+            fatalError("Can not found InsulinSetting")
+        }
+        let calendar = Calendar.current
+        let date = calendar.isDateInToday(date) ? Date.now : date
+        let dosage = dosage
+        let settingId = insulinSetting.persistentModelID
+        Task{
+            await InsulinModelActor.shared.addRecord(settingId, dosage: dosage, date: date)
         }
     }
 }

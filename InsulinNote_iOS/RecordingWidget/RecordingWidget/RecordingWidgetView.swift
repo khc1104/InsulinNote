@@ -74,7 +74,6 @@ struct RecordingWidgetView: View {
                             let lastRecordDosage = entry.lastRecordDosage
                         {
                             Text("\(formatter.string(from: lastRecordDate))")
-                            Text("\(lastRecordDosage)단위")
                         }
                         Button(
                             intent: RecordingIntent(id: entry.settingId)

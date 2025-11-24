@@ -15,11 +15,10 @@ struct LongActingInsulinView:View {
     let proxy: GeometryProxy
     let onButtonTapped: () -> Void
     
-    private var injectedRecordToday: InsulinRecordModel? {
-        injectedAtToday(setting: setting)
+    private var recordInDate: InsulinRecordModel? {
+        dosedInDate(setting: setting)
     }
-    
-    
+
     init(date: Date, setting: InsulinSettingModel?, proxy: GeometryProxy, onButtonTapped: @escaping () -> Void) {
         self.date = date
         self.setting = setting
@@ -33,8 +32,8 @@ struct LongActingInsulinView:View {
                     .font(.title)
                     .foregroundStyle(Color.longActing)
                 VStack{
-                    if let injectedRecordToday{
-                        LongActingInsulinIsInjectedView(insulinRecord:injectedRecordToday ,proxy: proxy)
+                    if let recordInDate{
+                        LongActingInsulinIsInjectedView(insulinRecord:recordInDate ,proxy: proxy)
                     }else{
                         LongActingInsulinIsNotInjectedView(proxy: proxy, onButtonTapped: onButtonTapped)
                     }
@@ -42,20 +41,15 @@ struct LongActingInsulinView:View {
             }
         }
     }
-    
-    private func injectedAtToday(setting: InsulinSettingModel?) -> InsulinRecordModel?{
-        guard let setting else { return nil}
+
+    private func dosedInDate(setting: InsulinSettingModel?) -> InsulinRecordModel? {
+        guard let setting else { return nil }
         let calendar = Calendar.current
         
-        let recentRecord = setting.records.max(by: { lhs, rhs in
-            lhs.createdAt > rhs.createdAt
-        })
-        
-        if let recentRecord, calendar.isDateInToday(recentRecord.createdAt) {
-            return recentRecord
+        let filteredRecords = setting.records.filter{
+            calendar.isDate($0.createdAt, inSameDayAs: date)
         }
-        
-        return nil
+        return filteredRecords.first
     }
     
 }

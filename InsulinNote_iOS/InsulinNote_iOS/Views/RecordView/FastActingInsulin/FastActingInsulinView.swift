@@ -19,7 +19,7 @@ struct FastActingInsulinView:View {
         if let setting{
             let calendar = Calendar.current
             return setting.records.filter{
-                calendar.isDateInToday($0.createdAt)
+                calendar.isDate($0.createdAt, inSameDayAs: date)
             }.sorted(by: {$0.createdAt > $1.createdAt})
         }else{
             return []

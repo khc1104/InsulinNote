@@ -70,9 +70,7 @@ struct RecordingWidgetView: View {
                         Text("속효성")
                             .font(.largeTitle)
                         Text("\(entry.dosage)단위")
-                        if let lastRecordDate = entry.lastRecordDate,
-                            let lastRecordDosage = entry.lastRecordDosage
-                        {
+                        if let lastRecordDate = entry.lastRecordDate{
                             Text("\(formatter.string(from: lastRecordDate))")
                         }
                         Button(

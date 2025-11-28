@@ -48,6 +48,7 @@
 		256022A22EB7A001006CF8D5 /* ModelContextStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022A02EB79FB8006CF8D5 /* ModelContextStore.swift */; };
 		256022A62EBD01D8006CF8D5 /* InsulinSettingQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022A52EBD01CE006CF8D5 /* InsulinSettingQuery.swift */; };
 		256022A72EBD01D8006CF8D5 /* InsulinSettingQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022A52EBD01CE006CF8D5 /* InsulinSettingQuery.swift */; };
+		256022AA2ED97E20006CF8D5 /* ModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022A92ED97E04006CF8D5 /* ModelError.swift */; };
 		2561258C2E4B0F53003CA709 /* RecordDetailSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2561258B2E4B0F45003CA709 /* RecordDetailSheetView.swift */; };
 		257730D32E3A618100AE651C /* EditInsulinSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257730D22E3A618100AE651C /* EditInsulinSettingView.swift */; };
 		2591518F2E38BD4F0092F7B7 /* SettingInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2591518E2E38BD4F0092F7B7 /* SettingInsulinView.swift */; };
@@ -123,6 +124,7 @@
 		2560229D2EA4DE8A006CF8D5 /* InsulinModelActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinModelActor.swift; sourceTree = "<group>"; };
 		256022A02EB79FB8006CF8D5 /* ModelContextStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContextStore.swift; sourceTree = "<group>"; };
 		256022A52EBD01CE006CF8D5 /* InsulinSettingQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinSettingQuery.swift; sourceTree = "<group>"; };
+		256022A92ED97E04006CF8D5 /* ModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelError.swift; sourceTree = "<group>"; };
 		2561258B2E4B0F45003CA709 /* RecordDetailSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailSheetView.swift; sourceTree = "<group>"; };
 		257730D22E3A618100AE651C /* EditInsulinSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInsulinSettingView.swift; sourceTree = "<group>"; };
 		2591518E2E38BD4F0092F7B7 /* SettingInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInsulinView.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		2525622C2C4538F700F7ECA1 /* InsulinNote_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				256022A92ED97E04006CF8D5 /* ModelError.swift */,
 				25D2224E2DDB61FE00DA1D90 /* Extensions */,
 				252993812C6CFDEF0064C2F9 /* InsulinNote_iOS.entitlements */,
 				2525623E2C46954500F7ECA1 /* Views */,
@@ -489,6 +492,7 @@
 				25D222502DDB620D00DA1D90 /* Date.swift in Sources */,
 				252562402C46956400F7ECA1 /* InsulinRecordModel.swift in Sources */,
 				252993CA2C6F70C00064C2F9 /* RecordingIntent.swift in Sources */,
+				256022AA2ED97E20006CF8D5 /* ModelError.swift in Sources */,
 				25E53F762C514DD8009DA024 /* insulinSettingAlertView.swift in Sources */,
 				256022A72EBD01D8006CF8D5 /* InsulinSettingQuery.swift in Sources */,
 				25E53F2D2C4FF0D3009DA024 /* InsulinSettingColumnView.swift in Sources */,

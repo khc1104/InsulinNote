@@ -33,18 +33,6 @@ public actor InsulinModelActor {
         isStoredInMemoryOnly: false
     )
 
-    public func getSettings() -> [InsulinSettingModel] {
-        let descriptor = FetchDescriptor<InsulinSettingModel>(
-            sortBy: [.init(\InsulinSettingModel.actingType, order: .forward)]
-        )
-        do {
-            let settings = try modelContext.fetch(descriptor)
-            return settings
-        } catch {
-            fatalError("Failed to get Insulin Settings")
-        }
-    }
-
     public func fetchAllSettings() -> [InsulinSettingModel] {
         do {
             let descriptor = FetchDescriptor<InsulinSettingModel>(

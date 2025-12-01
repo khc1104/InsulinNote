@@ -33,18 +33,18 @@ public actor InsulinModelActor {
         isStoredInMemoryOnly: false
     )
 
-    public func fetchAllSettings() -> [InsulinSettingModel] {
+    public func fetchAllSettings() throws ->  [InsulinSettingModel] {
         do {
             let descriptor = FetchDescriptor<InsulinSettingModel>(
                 sortBy: []
             )
             return try modelContext.fetch(descriptor)
         } catch {
-            fatalError("Failed to get Insulin Settings")
+            throw ModelError.fetchSettingError
         }
     }
 
-    public func fetchSettings(with ids: [UUID]) -> [InsulinSettingModel] {
+    public func fetchSettings(with ids: [UUID]) throws -> [InsulinSettingModel] {
         let predicate = #Predicate<InsulinSettingModel> { setting in
             ids.contains(setting.id)
         }
@@ -54,11 +54,11 @@ public actor InsulinModelActor {
         do {
             return try modelContext.fetch(descriptor)
         } catch {
-            fatalError("Failed to fetch Setting by id")
+            throw ModelError.fetchSettingError
         }
     }
 
-    public func fetchLastRecord(for id: UUID) -> InsulinRecordModel? {
+    public func fetchLastRecord(for id: UUID) throws -> InsulinRecordModel? {
         let todayStart = Calendar.current.startOfDay(for: .now)
         let nextDayStart = todayStart.addingTimeInterval(86400)
         let predicate = #Predicate<InsulinRecordModel> { record in
@@ -72,15 +72,15 @@ public actor InsulinModelActor {
         do {
             return try modelContext.fetch(descriptor).first
         } catch {
-            fatalError("The problem occurred during fetch LastRecord")
+            throw ModelError.fetchRecordError
         }
     }
 
     // 인슐린 투여기록 추가
-    public func addRecord(_ id: PersistentIdentifier, dosage: Int, date: Date) {
+    public func addRecord(_ id: PersistentIdentifier, dosage: Int, date: Date) throws {
         guard let setting = modelContext.model(for: id) as? InsulinSettingModel
         else {
-            fatalError("Failed to find InsulinSettingModel")
+            throw ModelError.updateDataError
         }
         let record = InsulinRecordModel(
             dosage: dosage,
@@ -88,27 +88,27 @@ public actor InsulinModelActor {
             updatedAt: date
         )
         setting.records.append(record)
-        self.saveContext()
+        try self.saveContext()
     }
 
     // 인슐린 세팅 변경( 이름, 기본 투여량)
-    public func updateSetting(
+    public func updateSetting  (
         _ id: PersistentIdentifier,
         insulinProductName: String,
         dosage: Int
-    ) {
+    ) throws {
         guard let setting = modelContext.model(for: id) as? InsulinSettingModel
         else {
-            fatalError("Failed to find InsulinSettingModel")
+            throw ModelError.updateDataError
         }
         setting.insulinProductName = insulinProductName
         setting.dosage = dosage
 
-        self.saveContext()
+        try self.saveContext()
     }
 
     // 첫 실행시 초기 세팅 생성할 때 씀
-    public func createInitSetting() {
+    public func createInitSetting() throws {
         do {
             let descriptor = FetchDescriptor<InsulinSettingModel>()
             if try modelContext.fetchCount(descriptor) == 0 {
@@ -130,20 +130,20 @@ public actor InsulinModelActor {
                 )
                 modelContext.insert(fastActingInsulin)
 
-                self.saveContext()
+                try self.saveContext()
             }
         } catch {
-            fatalError("Failed to init Settings")
+            throw ModelError.createInitSettingError
         }
     }
 
-    private func saveContext() {
+    private func saveContext() throws {
         if modelContext.hasChanges {
             do {
                 try modelContext.save()
                 print("성공")
             } catch {
-                fatalError("Failed to insert new InsulinRecordModel")
+                throw ModelError.updateDataError
             }
         }
     }

@@ -12,6 +12,8 @@ struct ContentView: View {
     
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(ErrorManager.self) private var errorManager
+    
     @AppStorage("firstLaunched") var isLaunched: Bool = false
     @State private var firstSettingSheetPresented: Bool = false
     
@@ -50,9 +52,7 @@ struct ContentView: View {
                 .tag(3)
         }.task{
             if !isLaunched{
-                await InsulinModelActor.shared.createInitSetting()
-                isLaunched.toggle()
-                firstSettingSheetPresented.toggle()
+                await createInitSetting()
             }
         }
         .onChange(of: selectedTab) { oldValue, newValue in
@@ -62,6 +62,16 @@ struct ContentView: View {
             if newPhase == .active {
                 currentDate = Date()
             }
+        }
+    }
+    
+    private func createInitSetting() async {
+        do {
+            try await InsulinModelActor.shared.createInitSetting()
+            isLaunched.toggle()
+            firstSettingSheetPresented.toggle()
+        } catch {
+            errorManager.showError(error as? ModelError ?? .unknwonedError)
         }
     }
 }

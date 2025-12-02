@@ -23,7 +23,7 @@ struct LockScreenInfoTimeLineProvider: TimelineProvider {
 
     func getSnapshot(in context: Context, completion: @escaping (Entry) -> Void){
         Task {
-            let settings = await InsulinModelActor.shared.fetchAllSettings()
+            let settings = try await InsulinModelActor.shared.fetchAllSettings()
 
             guard
                 let longActingSetting = settings.first(where: {
@@ -39,9 +39,9 @@ struct LockScreenInfoTimeLineProvider: TimelineProvider {
             else {
                 fatalError("longActingSetting is not exist")
             }
-            let lastLongRecordInToday = await InsulinModelActor.shared
+            let lastLongRecordInToday = try await InsulinModelActor.shared
                 .fetchLastRecord(for: longActingSetting.id)
-            let lastFastRecordInToday = await InsulinModelActor.shared
+            let lastFastRecordInToday = try await InsulinModelActor.shared
                 .fetchLastRecord(for: fastActingSetting.id)
             let entry = LastDoseEntry(
                 date: .now,
@@ -60,7 +60,7 @@ struct LockScreenInfoTimeLineProvider: TimelineProvider {
         completion: @escaping (Timeline<Entry>) -> Void
     ) {
         Task {
-            let settings = await InsulinModelActor.shared.fetchAllSettings()
+            let settings = try await InsulinModelActor.shared.fetchAllSettings()
 
             guard
                 let longActingSetting = settings.first(where: {
@@ -76,9 +76,9 @@ struct LockScreenInfoTimeLineProvider: TimelineProvider {
             else {
                 fatalError("longActingSetting is not exist")
             }
-            let lastLongRecordInToday = await InsulinModelActor.shared
+            let lastLongRecordInToday = try await InsulinModelActor.shared
                 .fetchLastRecord(for: longActingSetting.id)
-            let lastFastRecordInToday = await InsulinModelActor.shared
+            let lastFastRecordInToday = try await InsulinModelActor.shared
                 .fetchLastRecord(for: fastActingSetting.id)
             
             let entry = LastDoseEntry(

@@ -31,9 +31,9 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
         SoundPlayer.shared.play()
         guard let settingUUID = UUID(uuidString: settingID) else {fatalError("Failed to convertUUID on intent") }
         
-        guard let setting = await InsulinModelActor.shared.fetchSettings(with: [settingUUID]).first else { fatalError("Failed to fetchSetting on intent")}
+        guard let setting = try await InsulinModelActor.shared.fetchSettings(with: [settingUUID]).first else { fatalError("Failed to fetchSetting on intent")}
         
-        await InsulinModelActor.shared.addRecord(
+        try await InsulinModelActor.shared.addRecord(
             setting.persistentModelID,
             dosage: setting.dosage,
             date: .now

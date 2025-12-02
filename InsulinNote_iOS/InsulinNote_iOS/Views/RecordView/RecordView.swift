@@ -73,11 +73,15 @@ struct RecordView: View {
         let dosage = dosage
         let settingId = selectedSetting.persistentModelID
         Task {
-            await InsulinModelActor.shared.addRecord(
-                settingId,
-                dosage: dosage,
-                date: date
-            )
+            do {
+                try await InsulinModelActor.shared.addRecord(
+                    settingId,
+                    dosage: dosage,
+                    date: date
+                )
+            } catch {
+                
+            }
         }
     }
 }

@@ -57,7 +57,7 @@ struct RecordDetailSheetView: View {
         let dosage = dosage
         let settingId = insulinSetting.persistentModelID
         Task{
-            await InsulinModelActor.shared.addRecord(settingId, dosage: dosage, date: date)
+            try await InsulinModelActor.shared.addRecord(settingId, dosage: dosage, date: date)
         }
     }
 }

@@ -42,7 +42,7 @@ struct RecordProvider: AppIntentTimelineProvider {
                                   lastRecordDosage: 15)
         }
         
-        let lastRecord = await InsulinModelActor.shared.fetchLastRecord(for: selectedSetting.id)
+        let lastRecord = try? await InsulinModelActor.shared.fetchLastRecord(for: selectedSetting.id)
         
         return RecordingEntry(
             date: .now,
@@ -59,7 +59,7 @@ struct RecordProvider: AppIntentTimelineProvider {
             return Timeline(entries: [], policy: .atEnd)
         }
         
-        let lastRecord = await InsulinModelActor.shared.fetchLastRecord(for: selectedSetting.id)
+        let lastRecord = try? await InsulinModelActor.shared.fetchLastRecord(for: selectedSetting.id)
         let entry = RecordingEntry(
             date: .now,
             settingId: selectedSetting.id,

@@ -10,9 +10,6 @@ import SwiftData
 
 @ModelActor
 public actor InsulinModelActor {
-    #if DEBUG
-    var simulateError = true
-    #endif
     public static let shared = InsulinModelActor(
         modelContainer: {
             do {
@@ -37,12 +34,6 @@ public actor InsulinModelActor {
     )
 
     public func fetchAllSettings() throws ->  [InsulinSettingModel] {
-        #if DEBUG
-        if simulateError {
-            print("if debug error occured")
-            throw ModelError.fetchSettingError
-        }
-        #endif
         do {
             let descriptor = FetchDescriptor<InsulinSettingModel>(
                 sortBy: []
@@ -54,12 +45,6 @@ public actor InsulinModelActor {
     }
 
     public func fetchSettings(with ids: [UUID]) throws -> [InsulinSettingModel] {
-        #if DEBUG
-        if simulateError {
-            print("if debug error occured")
-            throw ModelError.fetchSettingError
-        }
-        #endif
         let predicate = #Predicate<InsulinSettingModel> { setting in
             ids.contains(setting.id)
         }
@@ -74,12 +59,6 @@ public actor InsulinModelActor {
     }
 
     public func fetchLastRecord(for id: UUID) throws -> InsulinRecordModel? {
-        #if DEBUG
-        if simulateError {
-            print("if debug error occured")
-            throw ModelError.fetchRecordError
-        }
-        #endif
         let todayStart = Calendar.current.startOfDay(for: .now)
         let nextDayStart = todayStart.addingTimeInterval(86400)
         let predicate = #Predicate<InsulinRecordModel> { record in
@@ -99,12 +78,6 @@ public actor InsulinModelActor {
 
     // 인슐린 투여기록 추가
     public func addRecord(_ id: PersistentIdentifier, dosage: Int, date: Date) throws {
-        #if DEBUG
-        if simulateError {
-            print("if debug error occured")
-            throw ModelError.updateDataError
-        }
-        #endif
         guard let setting = modelContext.model(for: id) as? InsulinSettingModel
         else {
             throw ModelError.updateDataError
@@ -124,12 +97,7 @@ public actor InsulinModelActor {
         insulinProductName: String,
         dosage: Int
     ) throws {
-        #if DEBUG
-        if simulateError {
-            print("if debug error occured")
-            throw ModelError.updateDataError
-        }
-        #endif
+
         guard let setting = modelContext.model(for: id) as? InsulinSettingModel
         else {
             throw ModelError.updateDataError
@@ -142,15 +110,6 @@ public actor InsulinModelActor {
     
     // 첫 실행시 초기 세팅 생성할 때 씀
     public func createInitSetting() throws {
-        #if DEBUG
-        
-        if simulateError {
-            print("if debug error occured")
-            simulateError.toggle()
-            throw ModelError.createInitSettingError
-        }
-        #endif
-        
         do {
             let descriptor = FetchDescriptor<InsulinSettingModel>()
             if try modelContext.fetchCount(descriptor) == 0 {
@@ -180,12 +139,6 @@ public actor InsulinModelActor {
     }
 
     private func saveContext() throws {
-        #if DEBUG
-        if simulateError {
-            print("if debug error occured")
-            throw ModelError.updateDataError
-        }
-        #endif
         if modelContext.hasChanges {
             do {
                 try modelContext.save()

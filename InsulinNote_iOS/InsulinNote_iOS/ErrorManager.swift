@@ -36,6 +36,7 @@ final class ErrorManager {
     func showError(_ error: ModelError) {
         Task{ @MainActor in
             self.error = error
+            print(error)
         }
     }
 }

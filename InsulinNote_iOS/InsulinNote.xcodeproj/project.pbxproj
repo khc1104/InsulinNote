@@ -55,7 +55,6 @@
 		2561258C2E4B0F53003CA709 /* RecordDetailSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2561258B2E4B0F45003CA709 /* RecordDetailSheetView.swift */; };
 		257730D32E3A618100AE651C /* EditInsulinSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257730D22E3A618100AE651C /* EditInsulinSettingView.swift */; };
 		2591518F2E38BD4F0092F7B7 /* SettingInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2591518E2E38BD4F0092F7B7 /* SettingInsulinView.swift */; };
-		25D2224B2DCBB52200DA1D90 /* RecordCalendarLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2224A2DCBB52200DA1D90 /* RecordCalendarLogView.swift */; };
 		25D222502DDB620D00DA1D90 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2224F2DDB620A00DA1D90 /* Date.swift */; };
 		25D5FEF32C7B3EB900DCC01C /* RecordingWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */; };
 		25D5FEF42C7B3EBA00DCC01C /* RecordingWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */; };
@@ -132,7 +131,6 @@
 		2561258B2E4B0F45003CA709 /* RecordDetailSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailSheetView.swift; sourceTree = "<group>"; };
 		257730D22E3A618100AE651C /* EditInsulinSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInsulinSettingView.swift; sourceTree = "<group>"; };
 		2591518E2E38BD4F0092F7B7 /* SettingInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInsulinView.swift; sourceTree = "<group>"; };
-		25D2224A2DCBB52200DA1D90 /* RecordCalendarLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCalendarLogView.swift; sourceTree = "<group>"; };
 		25D2224F2DDB620A00DA1D90 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingWidgetView.swift; sourceTree = "<group>"; };
 		25E53F282C4B9066009DA024 /* SetInsulinSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInsulinSettingView.swift; sourceTree = "<group>"; };
@@ -285,7 +283,6 @@
 			isa = PBXGroup;
 			children = (
 				2543CB372D8AB4FB005BD9A2 /* RecordCalendarView.swift */,
-				25D2224A2DCBB52200DA1D90 /* RecordCalendarLogView.swift */,
 			);
 			path = RecordCalendarView;
 			sourceTree = "<group>";
@@ -487,7 +484,6 @@
 				256022632E7B1654006CF8D5 /* LockScreenInfoView.swift in Sources */,
 				252993802C6CF64A0064C2F9 /* RecordingWidget.swift in Sources */,
 				2543CB382D8AB4FB005BD9A2 /* RecordCalendarView.swift in Sources */,
-				25D2224B2DCBB52200DA1D90 /* RecordCalendarLogView.swift in Sources */,
 				253387402EDF065E004DAB06 /* ErrorManager.swift in Sources */,
 				25FB364B2C8F429A00BC0DA7 /* FastActingInsulinView.swift in Sources */,
 				2560226A2E83876E006CF8D5 /* FirstLunchView.swift in Sources */,

@@ -97,7 +97,6 @@ public actor InsulinModelActor {
         insulinProductName: String,
         dosage: Int
     ) throws {
-
         guard let setting = modelContext.model(for: id) as? InsulinSettingModel
         else {
             throw ModelError.updateDataError

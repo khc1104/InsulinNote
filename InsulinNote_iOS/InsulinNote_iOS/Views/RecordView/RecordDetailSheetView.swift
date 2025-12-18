@@ -48,16 +48,4 @@ struct RecordDetailSheetView: View {
             }
         }
     }
-    func addRecordAction(insulinSetting: InsulinSettingModel?, date: Date) { //인슐린 설정의 기록 추가
-        guard let insulinSetting else {
-            fatalError("Can not found InsulinSetting")
-        }
-        let calendar = Calendar.current
-        let date = calendar.isDateInToday(date) ? Date.now : date
-        let dosage = dosage
-        let settingId = insulinSetting.persistentModelID
-        Task{
-            try await InsulinModelActor.shared.addRecord(settingId, dosage: dosage, date: date)
-        }
-    }
 }

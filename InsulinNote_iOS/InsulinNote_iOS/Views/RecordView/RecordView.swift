@@ -12,8 +12,9 @@ struct RecordView: View {
     var date: Date = Date()
     @State private var isInjected: Bool = false
 
-    @Environment(\.modelContext) var insulinContext
-    @Query var insulinSettings: [InsulinSettingModel]
+    @Environment(ErrorManager.self) private var errorManager
+    @Environment(\.modelContext) private var insulinContext
+    @Query private var insulinSettings: [InsulinSettingModel]
 
     @State private var selectedSetting: InsulinSettingModel?
     @State private var editedDosage: Int = 0
@@ -80,7 +81,7 @@ struct RecordView: View {
                     date: date
                 )
             } catch {
-                
+                errorManager.showError(error as? ModelError ?? .unknwonedError)
             }
         }
     }

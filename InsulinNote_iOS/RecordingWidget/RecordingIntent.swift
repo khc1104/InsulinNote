@@ -28,20 +28,28 @@ struct RecordingIntent: AppIntent, AudioPlaybackIntent{
 
     @MainActor
     public func perform() async throws -> some ProvidesDialog{
-        SoundPlayer.shared.play()
-        guard let settingUUID = UUID(uuidString: settingID) else {fatalError("Failed to convertUUID on intent") }
-        
-        guard let setting = try await InsulinModelActor.shared.fetchSettings(with: [settingUUID]).first else { fatalError("Failed to fetchSetting on intent")}
-        
-        try await InsulinModelActor.shared.addRecord(
-            setting.persistentModelID,
-            dosage: setting.dosage,
-            date: .now
-        )
-        try await requestConfirmation()
-        
-        WidgetCenter.shared.reloadAllTimelines()
-        
-        return .result(dialog: IntentDialog("\(setting.insulinProductName)|\(setting.dosage) 투여"))
+        do{
+            SoundPlayer.shared.play()
+            guard let settingUUID = UUID(uuidString: settingID) else {fatalError("Failed to convertUUID on intent") }
+            
+            guard let setting = try await InsulinModelActor.shared.fetchSettings(with: [settingUUID]).first else { fatalError("Failed to fetchSetting on intent")}
+            
+            UserDefaults.shared.set(nil, forKey: "lastWidgetError")
+            
+            try await InsulinModelActor.shared.addRecord(
+                setting.persistentModelID,
+                dosage: setting.dosage,
+                date: .now
+            )
+            try await requestConfirmation()
+            
+            WidgetCenter.shared.reloadAllTimelines()
+            
+            return .result(dialog: IntentDialog("\(setting.insulinProductName)|\(setting.dosage) 투여"))
+        } catch {
+            let errorMessage = (error as? ModelError)?.localizedDescription ?? "저장 실패"
+            UserDefaults.shared.set(errorMessage, forKey: "lastWidgetError")
+            return .result(dialog: IntentDialog("\(errorMessage)"))
+        }
     }
 }

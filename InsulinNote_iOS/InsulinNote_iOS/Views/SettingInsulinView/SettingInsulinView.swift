@@ -9,14 +9,21 @@ import SwiftUI
 import SwiftData
 
 struct SettingInsulinView: View {
-    @Environment(\.modelContext) var insulinContext
-    @Query var insulinSettings: [InsulinSettingModel]
+    @Environment(ErrorManager.self) private var errorManager
+    @Environment(\.modelContext) private var insulinContext
+    @Query private var insulinSettings: [InsulinSettingModel]
     
+    private var longActingInsulin: InsulinSettingModel? {
+        insulinSettings.first(where: { $0.actingType == .long})
+    }
+    private var fastActingInsulin: InsulinSettingModel? {
+        insulinSettings.first(where: { $0.actingType == .fast})
+    }
     
     var body: some View {
         VStack(alignment: .leading){
-            EditInsulinSettingView(insulinSetting: insulinSettings.first(where: { $0.actingType == .long}))
-            EditInsulinSettingView(insulinSetting: insulinSettings.first(where: { $0.actingType == .fast}))
+            EditInsulinSettingView(insulinSetting: longActingInsulin)
+            EditInsulinSettingView(insulinSetting: fastActingInsulin)
         }
         .padding(.horizontal, 10)
     }

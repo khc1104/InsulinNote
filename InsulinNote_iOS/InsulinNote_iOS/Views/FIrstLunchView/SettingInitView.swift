@@ -17,21 +17,19 @@ struct SettingInitView: View {
     }
 
     @Binding var settingCompleted: Bool
-    
-    @Environment(\.modelContext) var modelContext
+
+    @Environment(ErrorManager.self) private var errorManager
+    @Environment(\.modelContext) private var modelContext
+
     @Query var insulinSettings: [InsulinSettingModel]
 
-    @State private var longActingInsulin: SettingInsulin = .init(
-        name: "지효성",
-        dosage: "20"
-    )
-    @State private var fastActingInsulin: SettingInsulin = .init(
-        name: "속효성",
-        dosage: "15"
-    )
+    @State private var longActingInsulinName: String = "지효성"
+    @State private var longActingInsulinDosage: String = "20"
+    @State private var fastActingInsulinName: String = "속효성"
+    @State private var fastActingInsulinDosage: String = "15"
 
     @FocusState private var keyFocus: keyBoardFocus?
-
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 20) {
@@ -42,13 +40,15 @@ struct SettingInitView: View {
                         .multilineTextAlignment(.center)
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
+
                 Spacer()
+
                 Grid(alignment: .leading) {
                     Text("지효성 인슐린")
                         .font(.title2)
                     GridRow {
                         Text("이름")
-                        TextField("지효성 인슐린 이름", text: $longActingInsulin.name)
+                        TextField("지효성 인슐린 이름", text: $longActingInsulinName)
                             .foregroundStyle(.blue)
                             .focused($keyFocus, equals: .longActingName)
                             .onSubmit {
@@ -59,19 +59,19 @@ struct SettingInitView: View {
                         Text("투여량")
                         TextField(
                             "지효성 인슐린 투여량",
-                            text: $longActingInsulin.dosage
+                            text: $longActingInsulinDosage
                         )
                         .foregroundStyle(.blue)
                         .keyboardType(.numberPad)
                         .focused($keyFocus, equals: .longActingDosage)
-                        .onChange(of: longActingInsulin.dosage) {
+                        .onChange(of: longActingInsulinDosage) {
                             oldValue,
                             newValue in
                             let filtered = newValue.filter {
                                 ("0"..."9").contains($0)
                             }
                             if filtered != newValue {
-                                longActingInsulin.dosage = filtered
+                                longActingInsulinDosage = filtered
                             }
                         }
                     }
@@ -84,7 +84,7 @@ struct SettingInitView: View {
                         .font(.title2)
                     GridRow {
                         Text("이름")
-                        TextField("속효성 인슐린 이름", text: $fastActingInsulin.name)
+                        TextField("속효성 인슐린 이름", text: $fastActingInsulinName)
                             .foregroundStyle(.blue)
                             .focused($keyFocus, equals: .fastActingName)
                             .onSubmit {
@@ -95,19 +95,19 @@ struct SettingInitView: View {
                         Text("투여량")
                         TextField(
                             "속효성 인슐린 투여량",
-                            text: $fastActingInsulin.dosage
+                            text: $fastActingInsulinDosage
                         )
                         .foregroundStyle(.blue)
                         .keyboardType(.numberPad)
                         .focused($keyFocus, equals: .fastActingDosage)
-                        .onChange(of: fastActingInsulin.dosage) {
+                        .onChange(of: fastActingInsulinDosage) {
                             oldValue,
                             newValue in
                             let filtered = newValue.filter {
                                 ("0"..."9").contains($0)
                             }
                             if filtered != newValue {
-                                fastActingInsulin.dosage = filtered
+                                fastActingInsulinDosage = filtered
                             }
                         }
                     }
@@ -116,22 +116,10 @@ struct SettingInitView: View {
                 .border(.fastActing)
                 Spacer()
                 Button {
-                    let longActingInsulinSetting =
-                        insulinSettings.first { $0.actingType == .long }
-                    let fastActingInsulinSetting =
-                        insulinSettings.first { $0.actingType == .fast }
-                    longActingInsulinSetting?.insulinProductName =
-                        longActingInsulin.name
-                    longActingInsulinSetting?.dosage = Int(
-                        longActingInsulin.dosage
-                    )!
-                    fastActingInsulinSetting?.insulinProductName =
-                        fastActingInsulin.name
-                    fastActingInsulinSetting?.dosage = Int(
-                        fastActingInsulin.dosage
-                    )!
-                    
-                    settingCompleted.toggle()
+                    Task {
+                        try await updateSetting()
+                    }
+
                 } label: {
                     Text("완 료")
                         .bold()
@@ -140,7 +128,6 @@ struct SettingInitView: View {
                         .foregroundStyle(.white)
                         .background(.primary)
                         .background(in: .capsule, fillStyle: FillStyle())
-
                 }
 
             }
@@ -169,13 +156,45 @@ struct SettingInitView: View {
             }
         }
     }
+    private func updateSetting() async throws {
+        do {
+            guard
+                let longActingInsulinSetting =
+                    insulinSettings.first(where: { $0.actingType == .long })
+            else { throw ModelError.updateDataError }
 
+            guard
+                let fastActingInsulinSetting =
+                    insulinSettings.first(where: { $0.actingType == .fast })
+            else { throw ModelError.updateDataError }
+            
+            try await InsulinModelActor.shared.updateSetting(
+                longActingInsulinSetting.persistentModelID,
+                insulinProductName: longActingInsulinName,
+                dosage: strToInt(longActingInsulinDosage)
+            )
+            try await InsulinModelActor.shared.updateSetting(
+                fastActingInsulinSetting.persistentModelID,
+                insulinProductName: fastActingInsulinName,
+                dosage: strToInt(fastActingInsulinDosage)
+            )
+            settingCompleted.toggle()
+        } catch {
+            errorManager.showError(error as? ModelError ?? .unknwonedError)
+        }
+    }
+
+    private func strToInt(_ str: String) -> Int {
+        guard let integer = Int(str) else {
+            return Int(str.filter { ("0"..."9").contains($0) })!
+        }
+        return integer
+    }
 }
 
 struct SettingInsulin {
     var name: String
-    var dosage: String
+    var dosageString: String
 
+    var dosage: Int { Int(dosageString) ?? 0 }
 }
-
-

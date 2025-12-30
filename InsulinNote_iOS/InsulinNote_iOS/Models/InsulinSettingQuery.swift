@@ -3,11 +3,11 @@ import SwiftData
 
 public struct InsulinSettingQuery: EntityQuery {
     public func suggestedEntities() async throws -> [InsulinSettingModel] {
-        return await InsulinModelActor.shared.fetchAllSettings()
+        return try await InsulinModelActor.shared.fetchAllSettings()
     }
     
     public func entities(for identifiers: [UUID]) async throws -> [InsulinSettingModel] {
-        return await InsulinModelActor.shared.fetchSettings(with: identifiers)
+        return try await InsulinModelActor.shared.fetchSettings(with: identifiers)
             
     }
     

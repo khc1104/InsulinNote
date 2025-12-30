@@ -20,72 +20,91 @@ struct RecordingWidgetView: View {
     }()
 
     var body: some View {
-        VStack {
-            switch family {
-            case .accessoryCircular:
-                switch entry.actingType {
-                case .long:
-                    if entry.lastRecordDate != nil{
-                        Text("투여됨")
-                    } else {
-                        Toggle(
-                            isOn: false,
-                            intent: RecordingIntent(id: entry.settingId)
-                        ) {
-                            Text("지효")
-                        }
-                    }
-                case .fast:
-                    Toggle(
-                        isOn: false,
-                        intent: RecordingIntent(id: entry.settingId)
-                    ) {
-                        Text("속효")
-                    }
-                }
-            default:
-                switch entry.actingType {
-                case .long:
-                    VStack(alignment: .leading) {
-                        Text("지효성")
-                            .font(.largeTitle)
-                        Text("\(entry.dosage)단위")
-                        if let lastRecordDate = entry.lastRecordDate {
-                            Text(
-                                "\(formatter.string(from: lastRecordDate)) 투여됨"
-                            )
+        ZStack{
+            
+            VStack {
+                switch family {
+                case .accessoryCircular:
+                    switch entry.actingType {
+                    case .long:
+                        if entry.lastRecordDate != nil{
+                            Text("투여됨")
                         } else {
                             Toggle(
                                 isOn: false,
                                 intent: RecordingIntent(id: entry.settingId)
                             ) {
-                                Image(systemName: "syringe")
+                                Text("지효")
                             }
-
                         }
-
-                    }
-                case .fast:
-                    VStack(alignment: .leading) {
-                        Text("속효성")
-                            .font(.largeTitle)
-                        Text("\(entry.dosage)단위")
-                        if let lastRecordDate = entry.lastRecordDate{
-                            Text("\(formatter.string(from: lastRecordDate))")
-                        }
-                        Button(
+                    case .fast:
+                        Toggle(
+                            isOn: false,
                             intent: RecordingIntent(id: entry.settingId)
                         ) {
-                            Image(systemName: "syringe")
+                            Text("속효")
                         }
                     }
+                default:
+                    switch entry.actingType {
+                    case .long:
+                        VStack(alignment: .leading) {
+                            Text("지효성")
+                                .font(.largeTitle)
+                            Text("\(entry.dosage)단위")
+                            if let lastRecordDate = entry.lastRecordDate {
+                                Text(
+                                    "\(formatter.string(from: lastRecordDate)) 투여됨"
+                                )
+                            } else {
+                                Toggle(
+                                    isOn: false,
+                                    intent: RecordingIntent(id: entry.settingId)
+                                ) {
+                                    Image(systemName: "syringe")
+                                }
+                                
+                            }
+                            
+                        }
+                    case .fast:
+                        VStack(alignment: .leading) {
+                            Text("속효성")
+                                .font(.largeTitle)
+                            Text("\(entry.dosage)단위")
+                            if let lastRecordDate = entry.lastRecordDate{
+                                Text("\(formatter.string(from: lastRecordDate))")
+                            }
+                            Button(
+                                intent: RecordingIntent(id: entry.settingId)
+                            ) {
+                                Image(systemName: "syringe")
+                            }
+                        }
+                    }
+                    
                 }
-
+            }
+            if let errorMessage = entry.errorMessage {
+                Color.red
+                
+                VStack {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.largeTitle)
+                        .foregroundStyle(.yellow)
+                    Text(errorMessage)
+                        .font(.caption)
+                        .foregroundStyle(.white)
+                        .multilineTextAlignment(.center)
+                }
+                .transition(.opacity)
             }
         }
+        .animation(.default, value: entry.errorMessage)
         .containerBackground(for: .widget) {
-            entry.actingType == .fast
-                ? Color.fastActing : Color.longActing
+            entry.errorMessage != nil ? Color.red :
+            entry.actingType == .fast ? Color.fastActing :
+            Color.longActing
         }
 
     }

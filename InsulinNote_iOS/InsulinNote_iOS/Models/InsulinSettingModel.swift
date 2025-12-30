@@ -10,7 +10,7 @@ import AppIntents
 
 
 @Model
-final public class InsulinSettingModel: Identifiable, AppEntity, Sendable{
+final public class InsulinSettingModel: Identifiable, AppEntity, Sendable {
     public var id: UUID = UUID() //id
     
     var insulinProductName: String //인슐린 제품 명

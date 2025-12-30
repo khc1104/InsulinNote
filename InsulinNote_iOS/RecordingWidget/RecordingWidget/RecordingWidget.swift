@@ -18,6 +18,7 @@ struct RecordingEntry: TimelineEntry {
     let actingType: InsulinSettingModel.ActingType
     let lastRecordDate: Date?
     let lastRecordDosage: Int?
+    let errorMessage: String?
 }
 
 struct RecordProvider: AppIntentTimelineProvider {
@@ -28,7 +29,9 @@ struct RecordProvider: AppIntentTimelineProvider {
                        dosage: 99,
                        actingType: .long,
                        lastRecordDate: nil,
-                       lastRecordDosage: nil)
+                       lastRecordDosage: nil,
+                       errorMessage: nil
+        )
     }
     
     func snapshot(for configuration: RecordingConfigurationIntent, in context: Context) async -> RecordingEntry {
@@ -39,10 +42,12 @@ struct RecordProvider: AppIntentTimelineProvider {
                                   dosage: 99,
                                   actingType: .long,
                                   lastRecordDate: .now,
-                                  lastRecordDosage: 15)
+                                  lastRecordDosage: 15,
+                                  errorMessage: nil
+            )
         }
         
-        let lastRecord = await InsulinModelActor.shared.fetchLastRecord(for: selectedSetting.id)
+        let lastRecord = try? await InsulinModelActor.shared.fetchLastRecord(for: selectedSetting.id)
         
         return RecordingEntry(
             date: .now,
@@ -51,15 +56,21 @@ struct RecordProvider: AppIntentTimelineProvider {
             dosage: selectedSetting.dosage,
             actingType: selectedSetting.actingType,
             lastRecordDate: lastRecord?.createdAt,
-            lastRecordDosage: lastRecord?.dosage)
+            lastRecordDosage: lastRecord?.dosage,
+            errorMessage: nil
+        )
     }
     
     func timeline(for configuration: RecordingConfigurationIntent, in context: Context) async -> Timeline<RecordingEntry> {
+        let errorMessage = UserDefaults.shared.string(forKey: "lastWidgetError")
+        
         guard let selectedSetting = configuration.setting else {
             return Timeline(entries: [], policy: .atEnd)
         }
         
-        let lastRecord = await InsulinModelActor.shared.fetchLastRecord(for: selectedSetting.id)
+        var entries: [RecordingEntry] = []
+        
+        let lastRecord = try? await InsulinModelActor.shared.fetchLastRecord(for: selectedSetting.id)
         let entry = RecordingEntry(
             date: .now,
             settingId: selectedSetting.id,
@@ -67,10 +78,28 @@ struct RecordProvider: AppIntentTimelineProvider {
             dosage: selectedSetting.dosage,
             actingType: selectedSetting.actingType,
             lastRecordDate: lastRecord?.createdAt,
-            lastRecordDosage: lastRecord?.dosage)
+            lastRecordDosage: lastRecord?.dosage,
+            errorMessage: errorMessage
+        )
+        entries.append(entry)
+        // 	에러 발생시 3초 동안 에러메세지 및 빨간색 테두리 보여줌
+        if errorMessage != nil {
+            UserDefaults.shared.set(nil, forKey: "lastWidgetError")
+            let clearEntry = RecordingEntry(
+                date: .now.addingTimeInterval(1),
+                settingId: selectedSetting.id,
+                productName: selectedSetting.insulinProductName,
+                dosage: selectedSetting.dosage,
+                actingType: selectedSetting.actingType,
+                lastRecordDate: lastRecord?.createdAt,
+                lastRecordDosage: lastRecord?.dosage,
+                errorMessage: nil
+            )
+            entries.append(clearEntry)
+        }
         
         let nextDay = Calendar.current.startOfDay(for: .now.addingTimeInterval(86400))
-        let timeLine = Timeline(entries: [entry], policy: .after(nextDay))
+        let timeLine = Timeline(entries: entries, policy: .after(nextDay))
         
         return timeLine
     }

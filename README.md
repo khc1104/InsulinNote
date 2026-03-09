@@ -33,8 +33,8 @@
 1. 달력 뷰
 1. 홈스크린 위젯에서 지효성 인슐린 기록하는 기능
 1. 락스크린에서 지효성 인슐린 투여 기록하는 기능
+1. SwiftCuncurrency를 위해 modelActor 사용
 
 ## 개선 사항
-1. Swift 6.0 적용
 1. HealthKit 사용
 

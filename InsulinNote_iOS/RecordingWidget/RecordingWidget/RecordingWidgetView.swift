@@ -13,12 +13,6 @@ struct RecordingWidgetView: View {
     var entry: RecordingEntry
     @Environment(\.widgetFamily) var family
 
-    let formatter: DateFormatter = {  //리턴할 때 사용
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        return formatter
-    }()
-
     var body: some View {
         ZStack{
             
@@ -54,7 +48,7 @@ struct RecordingWidgetView: View {
                             Text("\(entry.dosage)단위")
                             if let lastRecordDate = entry.lastRecordDate {
                                 Text(
-                                    "\(formatter.string(from: lastRecordDate)) 투여됨"
+                                    "\(DateFormatter.hourMinute.string(from: lastRecordDate)) 투여됨"
                                 )
                             } else {
                                 Toggle(
@@ -73,7 +67,7 @@ struct RecordingWidgetView: View {
                                 .font(.largeTitle)
                             Text("\(entry.dosage)단위")
                             if let lastRecordDate = entry.lastRecordDate{
-                                Text("\(formatter.string(from: lastRecordDate))")
+                                Text("\(DateFormatter.hourMinute.string(from: lastRecordDate))")
                             }
                             Button(
                                 intent: RecordingIntent(id: entry.settingId)
@@ -110,14 +104,11 @@ struct RecordingWidgetView: View {
     }
 
     private func getIsInjected(records: [InsulinRecordModel]) -> Bool {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy-MM-dd"
         let today = Date()
-        let strToday = formatter.string(from: today)
+        let strToday = DateFormatter.yyyyMMdd.string(from: today)
 
         let record = records.filter {
-            return formatter.string(from: $0.createdAt) == strToday
+            return DateFormatter.yyyyMMdd.string(from: $0.createdAt) == strToday
         }.sorted(by: { $0.createdAt > $1.createdAt })
 
         if record.isEmpty { return false } else { return true }
@@ -125,18 +116,13 @@ struct RecordingWidgetView: View {
 
     private func getLastInjected(records: [InsulinRecordModel]) -> String {
         let calendar = Calendar.current
-        let timeFormmatter: DateFormatter = {  //리턴할 때 사용
-            let formatter = DateFormatter()
-            formatter.dateFormat = "HH:mm"
-            return formatter
-        }()
 
         let lastInjectedRecord = records.filter {
             calendar.isDateInToday($0.createdAt)
         }.sorted { $0.createdAt > $1.createdAt }
 
         if let record = lastInjectedRecord.first {
-            return timeFormmatter.string(from: record.createdAt)
+            return DateFormatter.hourMinute.string(from: record.createdAt)
         } else {
             return "오늘 기록 없음"
         }

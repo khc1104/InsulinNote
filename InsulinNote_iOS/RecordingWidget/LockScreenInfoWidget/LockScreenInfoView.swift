@@ -11,11 +11,6 @@ import SwiftUI
 struct LockScreenInfoView: View {
 
     var entry: LastDoseEntry
-    let formatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        return formatter
-    }()
 
     var body: some View {
         VStack {
@@ -23,7 +18,7 @@ struct LockScreenInfoView: View {
                 Text("\(entry.longActingName)")
                 Spacer()
                 Text(
-                    "\(formatter.string(for: entry.longActingLastDoseInToday) ?? "기록 없음")"
+                    "\(DateFormatter.hourMinute.string(for: entry.longActingLastDoseInToday) ?? "기록 없음")"
                 )
 
             }
@@ -31,7 +26,7 @@ struct LockScreenInfoView: View {
                 Text("\(entry.FastActingName)")
                 Spacer()
                 Text(
-                    "\(formatter.string(for: entry.fastActingLastDoseInToday) ?? "기록 없음")"
+                    "\(DateFormatter.hourMinute.string(for: entry.fastActingLastDoseInToday) ?? "기록 없음")"
                 )
             }
         }

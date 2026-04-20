@@ -33,10 +33,7 @@ struct RecordView: View {
     }
 
     var selectedDate: String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_kr")
-        formatter.dateFormat = "yyyy년 M월 d일 E"
-        return formatter.string(from: date)
+        DateFormatter.fullDateKorean.string(from: date)
     }
 
     var body: some View {
@@ -86,3 +83,4 @@ struct RecordView: View {
         }
     }
 }
+

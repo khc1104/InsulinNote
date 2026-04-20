@@ -24,8 +24,6 @@ final public class InsulinSettingModel: Identifiable, AppEntity, Sendable {
     var updatedAt: Date //변경시간
     
     init(insulinProductName: String, actingType: ActingType, dosage: Int, records: [InsulinRecordModel], updatedAt: Date) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm a"
         self.insulinProductName = insulinProductName
         self.actingType = actingType
         self.dosage = dosage

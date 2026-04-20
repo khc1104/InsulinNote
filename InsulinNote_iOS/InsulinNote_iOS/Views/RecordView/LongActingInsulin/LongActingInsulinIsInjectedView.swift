@@ -13,11 +13,8 @@ struct LongActingInsulinIsInjectedView:View {
     let proxy: GeometryProxy
     
     var injectedDate: String {
-        let formatter = DateFormatter()
-        formatter.locale = .init(identifier: "ko_KR")
-        formatter.dateFormat = "a h시 mm분"
         if let insulinRecord{
-            return formatter.string(from: insulinRecord.createdAt)
+            return DateFormatter.doseTimeKorean.string(from: insulinRecord.createdAt)
         }else{
             return "없음"
         }

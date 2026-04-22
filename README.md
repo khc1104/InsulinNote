@@ -6,7 +6,7 @@
 
 - 지효성 인슐린을 투여했는지 잊는 문제를 해결하기 위해 시작했습니다.
 - 기존 혈당/투여 앱의 복잡한 입력 흐름 대신, 필요한 정보만 빠르게 기록하는 것을 목표로 합니다.
-- 현재 우선순위는 `당일 지효성 투여 여부 확인`과 `속효성 투여 기록`입니다.
+- `당일 지효성 투여 여부 확인`과 `입력 뎁스 최소화`가 가장 중요한 목표입니다.
 
 ## 개발 환경
 
@@ -41,11 +41,11 @@
 
 | 메인 화면 | 캘린더 화면 |
 | --- | --- |
-| (이미지 추가 예정) | (이미지 추가 예정) |
+|<img width="295" height="640" alt="메인 화면" src="https://github.com/user-attachments/assets/350d0e41-93e8-461e-9120-8aa3fe14aecf" />|<img width="295" height="640" alt="캘린더" src="https://github.com/user-attachments/assets/4361b4c2-3273-412d-9f2d-e267f7f58d1e" />|
 
 | 홈화면 위젯 투여 | 잠금화면 위젯 투여 |
 | --- | --- |
-| ![홈화면 위젯 투여](https://github.com/user-attachments/assets/2e145e62-2825-4802-98ce-96d2ef35293e) | ![잠금화면 위젯 투여](https://github.com/user-attachments/assets/1bcf8c04-ed31-46c5-bfcc-fd7b64252e6f) |
+|<img width="295" height="640" alt="홈화면 위젯" src="https://github.com/user-attachments/assets/fc66d33b-57bf-4ce0-a94e-26f0c01ea953" />|<img width="295" height="640" alt="잠금화면 위젯" src="https://github.com/user-attachments/assets/b152d7b7-4a99-4894-85b5-bb48bc5d9ab0" />|
 
 
 ## 향후 개선 항목

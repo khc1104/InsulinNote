@@ -4,23 +4,27 @@
     {
       "layers" : [
         {
-          "blend-mode" : "soft-light",
-          "fill" : {
-            "linear-gradient" : [
-              "display-p3:0.69971,0.77002,0.24170,1.00000",
-              "display-p3:0.79297,0.40820,0.15735,1.00000"
-            ]
-          },
+          "blend-mode" : "normal",
+          "fill" : "automatic",
           "glass" : true,
-          "hidden" : false,
-          "image-name" : "Adobe Express - file_Nero_AI_Image_Upscaler_Standard_Face.png",
-          "name" : "Adobe Express - file_Nero_AI_Image_Upscaler_Standard_Face",
-          "opacity" : 1,
+          "image-name" : "펜.png",
+          "name" : "펜",
           "position" : {
-            "scale" : 0.6,
+            "scale" : 3.1,
             "translation-in-points" : [
-              0,
-              -5
+              45.4140625,
+              -18.28125
+            ]
+          }
+        },
+        {
+          "image-name" : "달력.png",
+          "name" : "달력",
+          "position" : {
+            "scale" : 3.1,
+            "translation-in-points" : [
+              -5.453125,
+              -45.5
             ]
           }
         }
@@ -39,6 +43,8 @@
     "circles" : [
       "watchOS"
     ],
-    "squares" : "shared"
+    "squares" : [
+      "iOS"
+    ]
   }
 }

@@ -39,12 +39,13 @@
 
 ## 화면 예시
 
+| 메인 화면 | 캘린더 화면 |
+| --- | --- |
+| (이미지 추가 예정) | (이미지 추가 예정) |
 
-| 홈화면 위젯                                                              | 잠금화면 위젯                                                             |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Simulator Screen Recording - iPhone 16 Pro - 2025-04-24 at 10 42 07 | Simulator Screen Recording - iPhone 16 Pro - 2025-04-24 at 10 46 57 |
-| 지효성 인슐린 투여                                                          | 속효성 인슐린 투여                                                          |
-| Simulator Screen Recording - iPhone 16 Pro - 2025-04-24 at 10 44 18 | Simulator Screen Recording - iPhone 16 Pro - 2025-04-24 at 10 43 38 |
+| 홈화면 위젯 투여 | 잠금화면 위젯 투여 |
+| --- | --- |
+| ![홈화면 위젯 투여](https://github.com/user-attachments/assets/2e145e62-2825-4802-98ce-96d2ef35293e) | ![잠금화면 위젯 투여](https://github.com/user-attachments/assets/1bcf8c04-ed31-46c5-bfcc-fd7b64252e6f) |
 
 
 ## 향후 개선 항목

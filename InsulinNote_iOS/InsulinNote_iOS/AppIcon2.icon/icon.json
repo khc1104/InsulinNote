@@ -1,0 +1,44 @@
+{
+  "fill" : "automatic",
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "blend-mode" : "soft-light",
+          "fill" : {
+            "linear-gradient" : [
+              "display-p3:0.69971,0.77002,0.24170,1.00000",
+              "display-p3:0.79297,0.40820,0.15735,1.00000"
+            ]
+          },
+          "glass" : true,
+          "hidden" : false,
+          "image-name" : "Adobe Express - file_Nero_AI_Image_Upscaler_Standard_Face.png",
+          "name" : "Adobe Express - file_Nero_AI_Image_Upscaler_Standard_Face",
+          "opacity" : 1,
+          "position" : {
+            "scale" : 0.6,
+            "translation-in-points" : [
+              0,
+              -5
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}

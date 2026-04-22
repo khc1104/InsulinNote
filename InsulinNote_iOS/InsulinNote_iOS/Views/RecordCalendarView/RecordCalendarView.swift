@@ -41,18 +41,17 @@ enum Weekday: Int, CaseIterable {
 struct RecordCalendarView: View {
     let gridItems = Array(repeating: GridItem(.flexible()), count: 7)
     
-    @State var isSheetPresented: Bool = false
-    @State var startDayOfWeek: Int = 0
-    @State var selectedYear: Int = 2025
-    @State var selectedMonth: Int = 4
+    @State private var isSheetPresented: Bool = false
+    @State private var startDayOfWeek: Int = 0
+    @State private var selectedYear: Int = 2025
+    @State private var selectedMonth: Int = 4
     
-    @State var selectedDate: Date? = nil
+    @State private var selectedDate: Date? = nil
     
-    var today: [Int]{
+    var currentDate: Date = Date()
+    private var today: [Int]{
         var dateElements: [Int] = []
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let dateString = formatter.string(from: Date())
+        let dateString = DateFormatter.yyyyMMdd.string(from: currentDate)
         let dateArray = dateString.split(separator: "-")
         dateElements.append(Int(dateArray[0])!)
         dateElements.append(Int(dateArray[1])!)
@@ -61,7 +60,6 @@ struct RecordCalendarView: View {
     }
     
     @Environment(\.modelContext) var insulinContext
-    @Query var records: [InsulinRecordModel]
     
     var body: some View {
         VStack{
@@ -89,42 +87,14 @@ struct RecordCalendarView: View {
                     Image(systemName: "chevron.right")
                 }
             }
-            LazyVGrid(columns: gridItems) {
-                ForEach(Weekday.allCases, id: \.self){ dow in
-                    Text("\(dow.getString())")
-                }
-                ForEach(1..<(startDayOfWeek + getLastDayOfMonth(selectedYear, selectedMonth)!), id: \.self){ item in
-                    let day = item - startDayOfWeek + 1
-                    if item >= startDayOfWeek{
-                        ZStack{
-                            if selectedYear == today[0] && selectedYear == today[0] && selectedMonth == today[1] && (day) == today[2]{ //오늘이 맞는지
-                                Circle().fill(.yellow).opacity(0.3).frame(maxWidth: 30, maxHeight: 30)
-                            }
-                            if getIsInjected(year: selectedYear, month: selectedMonth, day: (day)){
-                                Circle().stroke(
-                                    Color.green,
-                                    style: StrokeStyle(lineWidth: 1.0 ))
-                                .frame(maxWidth: 30, maxHeight: 30)
-                            }
-                            if selectedYear < today[0] || selectedMonth < today[1] || day <= today[2] {
-                                Text("\(day)").frame(maxWidth: 40, maxHeight: 40)
-                                    .onTapGesture {
-                                        if selectedYear == today[0] && selectedMonth == today[1] && day == today[2]{
-                                            selectedDate = .now
-                                        }else{
-                                            selectedDate = intToDate(year: selectedYear, month: selectedMonth, day: day)
-                                        }
-                                    }
-                            }else{
-                                Text("\(day)").frame(maxWidth: 40, maxHeight: 40)
-                            }
-                            
-                        }
-                    }else{
-                        Text("")
-                    }
-                }
-            }
+            MonthlyRecordGridView(
+                gridItems: gridItems,
+                startDayOfWeek: startDayOfWeek,
+                selectedYear: selectedYear,
+                selectedMonth: selectedMonth,
+                today: today,
+                selectedDate: $selectedDate
+            )
         }.onAppear{
             selectedYear = today[0]
             selectedMonth = today[1]
@@ -146,33 +116,138 @@ struct RecordCalendarView: View {
     //월의 마지막날을 찾는 함수
     func getLastDayOfMonth(_ year:Int, _ month: Int) -> Int?{
         let calendar = Calendar.current
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let startDay = formatter.date(from: "\(year)-\(month)-01")!
+        let startDay = DateFormatter.yyyyMMdd.date(from: "\(year)-\(month)-01")!
         let nextStartDay = calendar.date(byAdding: .month, value: 1, to: startDay)!
         let end = calendar.dateComponents([.day], from: startDay, to:nextStartDay)
         
         guard let day = end.day else { return nil }
         return day
     }
-    //해당 날짜에 투여 기록이 있는지 반환 있으면 true 없으면 false
-    func getIsInjected(year:Int, month: Int, day: Int) -> Bool{
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let checkDate = "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day))"
-        let injectedRecords = records.filter{
-            let createdDate = formatter.string(from: $0.createdAt)
-            return createdDate == checkDate && $0.setting?.actingType == .long //해당 날짜에 투여한 기록이고 지효성인 경우 반환
-        }
-        
-        return !injectedRecords.isEmpty
-    }
     
     func intToDate(year: Int, month: Int, day: Int) -> Date{
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let dateString = "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day)) 23:59:59"
-        return formatter.date(from: dateString) ?? Date()
+        return DateFormatter.yyyyMMddHHmmss.date(from: dateString) ?? Date()
+    }
+}
+
+private struct MonthlyRecordGridView: View {
+    let gridItems: [GridItem]
+    let startDayOfWeek: Int
+    let selectedYear: Int
+    let selectedMonth: Int
+    let today: [Int]
+    @Binding var selectedDate: Date?
+
+    @Query private var records: [InsulinRecordModel]
+
+    init(
+        gridItems: [GridItem],
+        startDayOfWeek: Int,
+        selectedYear: Int,
+        selectedMonth: Int,
+        today: [Int],
+        selectedDate: Binding<Date?>
+    ) {
+        self.gridItems = gridItems
+        self.startDayOfWeek = startDayOfWeek
+        self.selectedYear = selectedYear
+        self.selectedMonth = selectedMonth
+        self.today = today
+        _selectedDate = selectedDate
+
+        let calendar = Calendar.current
+        let monthStart = calendar.date(from: DateComponents(year: selectedYear, month: selectedMonth, day: 1)) ?? .now
+        let nextMonthStart = calendar.date(byAdding: .month, value: 1, to: monthStart) ?? monthStart.addingTimeInterval(86400 * 31)
+
+        _records = Query(
+            filter: #Predicate<InsulinRecordModel> { record in
+                record.createdAt >= monthStart && record.createdAt < nextMonthStart
+            }
+        )
+    }
+
+    private var injectedLongDays: Set<Int> {
+        let calendar = Calendar.current
+        var set = Set<Int>()
+        for record in records {
+            guard record.setting?.actingType == .long else { continue }
+            let day = calendar.component(.day, from: record.createdAt)
+            set.insert(day)
+        }
+        return set
+    }
+
+    var body: some View {
+        LazyVGrid(columns: gridItems) {
+            ForEach(Weekday.allCases, id: \.self) { dow in
+                Text("\(dow.getString())")
+            }
+
+            let lastDay = getLastDayOfMonth(selectedYear, selectedMonth) ?? 30
+            ForEach(1..<(startDayOfWeek + lastDay), id: \.self) { item in
+                let day = item - startDayOfWeek + 1
+
+                if item >= startDayOfWeek {
+                    ZStack {
+                        if selectedYear == today[0] && selectedMonth == today[1] && day == today[2] { // 오늘
+                            Circle()
+                                .fill(.yellow)
+                                .opacity(0.3)
+                                .frame(maxWidth: 30, maxHeight: 30)
+                        }
+
+                        if injectedLongDays.contains(day) {
+                            Circle()
+                                .stroke(
+                                    Color.green,
+                                    style: StrokeStyle(lineWidth: 1.0)
+                                )
+                                .frame(maxWidth: 30, maxHeight: 30)
+                        }
+
+                        if isDayTappable(year: selectedYear, month: selectedMonth, day: day) {
+                            Text("\(day)")
+                                .frame(maxWidth: 40, maxHeight: 45)
+                                .onTapGesture {
+                                    selectedDate = intToDate(year: selectedYear, month: selectedMonth, day: day)
+                                }
+                        } else {
+                            Text("\(day)").frame(maxWidth: 40, maxHeight: 45)
+                        }
+                    }
+                } else {
+                    Text("")
+                }
+            }
+        }
+    }
+
+    // 월의 마지막날을 찾는 함수
+    private func getLastDayOfMonth(_ year: Int, _ month: Int) -> Int? {
+        let calendar = Calendar.current
+        let startDay = DateFormatter.yyyyMMdd.date(from: "\(year)-\(month)-01")!
+        let nextStartDay = calendar.date(byAdding: .month, value: 1, to: startDay)!
+        let end = calendar.dateComponents([.day], from: startDay, to: nextStartDay)
+
+        guard let day = end.day else { return nil }
+        return day
+    }
+
+    private func intToDate(year: Int, month: Int, day: Int) -> Date {
+        let dateString = "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day)) 23:59:59"
+        return DateFormatter.yyyyMMddHHmmss.date(from: dateString) ?? Date()
+    }
+
+    /// 오늘(포함) 이후·미래 월은 탭 불가. 과거 일만 RecordView로 연다.
+    private func isDayTappable(year: Int, month: Int, day: Int) -> Bool {
+        let calendar = Calendar.current
+        guard
+            let cellDate = calendar.date(from: DateComponents(year: year, month: month, day: day)),
+            let todayDate = calendar.date(from: DateComponents(year: today[0], month: today[1], day: today[2]))
+        else { return false }
+        let cellStart = calendar.startOfDay(for: cellDate)
+        let todayStart = calendar.startOfDay(for: todayDate)
+        return cellStart < todayStart
     }
 }
 

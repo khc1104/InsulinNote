@@ -7,36 +7,38 @@
 
 import SwiftUI
 import SwiftData
-import AppIntents
-
-//fileprivate let modelContainer: ModelContainer = {
-//    do{
-//        let schema = Schema([InsulinSettingModel.self])
-//        return try ModelContainer(
-//            for: schema,
-//            configurations: ModelConfiguration(
-//                schema: schema,
-//                isStoredInMemoryOnly: false
-//            )
-//            )
-//    }catch{
-//        fatalError("Could not create ModelContainer: \(error)")
-//    }
-//}()
 
 @main
 struct InsulinNote_iOSApp: App {
-    let context = ModelContextStore.sharedModelContext
-    init(){
-        //AppDependencyManager.shared.add(dependency: modelContainer)
-        
-        
-    }
-     
+    @State private var errorManager = ErrorManager()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if errorManager.isCriticalError {
+                ContentUnavailableView {
+                    Label("에러 발생", systemImage: "exclamationmark.triangle")
+                } description: {
+                    Text(errorManager.error?.localizedDescription ?? "")
+                } actions: {
+                    Button ("새로 고침") {
+                        errorManager.error = nil
+                    }
+                }
+            } else {
+                ContentView()
+                    .environment(errorManager)
+                    .alert(isPresented: Binding(
+                        get: { errorManager.isAlertError },
+                        set: { if !$0 { errorManager.error = nil }}
+                    ), error: errorManager.error) {_ in
+                        Button("확인", role: .cancel) {
+                            errorManager.error = nil
+                        }
+                    } message: { error in
+                        Text(error.recoverySuggestion ?? "")
+                    }
+            }
         }
-        .modelContainer(context.container)
+        .modelContainer(InsulinModelActor.shared.modelContainer)
     }
 }

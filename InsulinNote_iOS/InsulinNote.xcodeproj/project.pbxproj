@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		250107C92E704027001FD959 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 250107C82E704027001FD959 /* AppIcon.icon */; };
+		250107C92E704027001FD959 /* AppIcon2.icon in Resources */ = {isa = PBXBuildFile; fileRef = 250107C82E704027001FD959 /* AppIcon2.icon */; };
+		2523AA172F98594B00EF08AD /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 2523AA162F98594B00EF08AD /* AppIcon.icon */; };
 		2525622E2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2525622D2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift */; };
 		252562302C4538F700F7ECA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2525622F2C4538F700F7ECA1 /* ContentView.swift */; };
 		252562342C4538F800F7ECA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 252562332C4538F800F7ECA1 /* Assets.xcassets */; };
@@ -27,8 +28,14 @@
 		252993CE2C6F74EB0064C2F9 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252993CC2C6F74EB0064C2F9 /* SoundPlayer.swift */; };
 		252993D02C6F75090064C2F9 /* intent-click-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 252993CF2C6F75090064C2F9 /* intent-click-sound.mp3 */; };
 		252993D12C6F75090064C2F9 /* intent-click-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 252993CF2C6F75090064C2F9 /* intent-click-sound.mp3 */; };
-		252994092C7728F60064C2F9 /* ModelContextStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252994082C7728F60064C2F9 /* ModelContextStore.swift */; };
-		2529940A2C772B340064C2F9 /* ModelContextStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252994082C7728F60064C2F9 /* ModelContextStore.swift */; };
+		2533873E2EDE0591004DAB06 /* ModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022A92ED97E04006CF8D5 /* ModelError.swift */; };
+		253387402EDF065E004DAB06 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2533873F2EDF0654004DAB06 /* ErrorManager.swift */; };
+		253387412EF38E20004DAB06 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2533873F2EDF0654004DAB06 /* ErrorManager.swift */; };
+		253387432EF94310004DAB06 /* UserDefaults + shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253387422EF94302004DAB06 /* UserDefaults + shared.swift */; };
+		253387442EF9437E004DAB06 /* UserDefaults + shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253387422EF94302004DAB06 /* UserDefaults + shared.swift */; };
+		253387462F042EA1004DAB06 /* DateFormatter + format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253387452F042E8E004DAB06 /* DateFormatter + format.swift */; };
+		253387472F042EA1004DAB06 /* DateFormatter + format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253387452F042E8E004DAB06 /* DateFormatter + format.swift */; };
+		253387492F042EFC004DAB06 /* FormatStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253387482F042EF3004DAB06 /* FormatStyles.swift */; };
 		2543CB382D8AB4FB005BD9A2 /* RecordCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543CB372D8AB4FB005BD9A2 /* RecordCalendarView.swift */; };
 		25484BE22C91A4CD005119AC /* LongActingInsulinIsInjectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25484BE12C91A4CD005119AC /* LongActingInsulinIsInjectedView.swift */; };
 		25484BE42C91A8D9005119AC /* LongActingInsulinIsNotInjectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25484BE32C91A8D9005119AC /* LongActingInsulinIsNotInjectedView.swift */; };
@@ -44,22 +51,19 @@
 		2560226F2E8387F2006CF8D5 /* SettingInitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560226D2E8387F2006CF8D5 /* SettingInitView.swift */; };
 		256022722E851B89006CF8D5 /* WidgetExplainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022712E851B89006CF8D5 /* WidgetExplainView.swift */; };
 		256022732E851B89006CF8D5 /* WidgetExplainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022712E851B89006CF8D5 /* WidgetExplainView.swift */; };
+		2560229E2EA4DE91006CF8D5 /* InsulinModelActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560229D2EA4DE8A006CF8D5 /* InsulinModelActor.swift */; };
+		2560229F2EA4DE91006CF8D5 /* InsulinModelActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560229D2EA4DE8A006CF8D5 /* InsulinModelActor.swift */; };
+		256022A12EB7A001006CF8D5 /* ModelContextStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022A02EB79FB8006CF8D5 /* ModelContextStore.swift */; };
+		256022A22EB7A001006CF8D5 /* ModelContextStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022A02EB79FB8006CF8D5 /* ModelContextStore.swift */; };
+		256022A62EBD01D8006CF8D5 /* InsulinSettingQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022A52EBD01CE006CF8D5 /* InsulinSettingQuery.swift */; };
+		256022A72EBD01D8006CF8D5 /* InsulinSettingQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022A52EBD01CE006CF8D5 /* InsulinSettingQuery.swift */; };
+		256022AA2ED97E20006CF8D5 /* ModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022A92ED97E04006CF8D5 /* ModelError.swift */; };
 		2561258C2E4B0F53003CA709 /* RecordDetailSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2561258B2E4B0F45003CA709 /* RecordDetailSheetView.swift */; };
 		257730D32E3A618100AE651C /* EditInsulinSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257730D22E3A618100AE651C /* EditInsulinSettingView.swift */; };
 		2591518F2E38BD4F0092F7B7 /* SettingInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2591518E2E38BD4F0092F7B7 /* SettingInsulinView.swift */; };
-		25BDD44B2E5D3E650047B0AB /* WidgetFastActingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD44A2E5D3E650047B0AB /* WidgetFastActingView.swift */; };
-		25BDD44C2E5D3E650047B0AB /* WidgetFastActingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD44A2E5D3E650047B0AB /* WidgetFastActingView.swift */; };
-		25BDD44E2E5D3E6A0047B0AB /* WidgetLongActingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD44D2E5D3E6A0047B0AB /* WidgetLongActingView.swift */; };
-		25BDD44F2E5D3E6A0047B0AB /* WidgetLongActingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD44D2E5D3E6A0047B0AB /* WidgetLongActingView.swift */; };
-		25D2224B2DCBB52200DA1D90 /* RecordCalendarLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2224A2DCBB52200DA1D90 /* RecordCalendarLogView.swift */; };
-		25D222502DDB620D00DA1D90 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2224F2DDB620A00DA1D90 /* Date.swift */; };
-		25D5FEF32C7B3EB900DCC01C /* RecordingWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5FEF22C7B3E2700DCC01C /* RecordingWidgetEntryView.swift */; };
-		25D5FEF42C7B3EBA00DCC01C /* RecordingWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5FEF22C7B3E2700DCC01C /* RecordingWidgetEntryView.swift */; };
-		25E53F292C4B9066009DA024 /* SetInsulinSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F282C4B9066009DA024 /* SetInsulinSettingView.swift */; };
-		25E53F2B2C4C11EB009DA024 /* AddInsulinSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F2A2C4C11EB009DA024 /* AddInsulinSettingView.swift */; };
-		25E53F2D2C4FF0D3009DA024 /* InsulinSettingColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F2C2C4FF0D3009DA024 /* InsulinSettingColumnView.swift */; };
-		25E53F762C514DD8009DA024 /* insulinSettingAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F752C514DD8009DA024 /* insulinSettingAlertView.swift */; };
-		25E53F782C5282AA009DA024 /* UpdateInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53F772C5282AA009DA024 /* UpdateInsulinView.swift */; };
+		25D222502DDB620D00DA1D90 /* Date + id.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2224F2DDB620A00DA1D90 /* Date + id.swift */; };
+		25D5FEF32C7B3EB900DCC01C /* RecordingWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */; };
+		25D5FEF42C7B3EBA00DCC01C /* RecordingWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */; };
 		25E53FF72C5E3AD2009DA024 /* HowManyGetProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FF62C5E3AD2009DA024 /* HowManyGetProductView.swift */; };
 		25FB36492C8F35E200BC0DA7 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FB36482C8F35E200BC0DA7 /* RecordView.swift */; };
 		25FB364B2C8F429A00BC0DA7 /* FastActingInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FB364A2C8F429A00BC0DA7 /* FastActingInsulinView.swift */; };
@@ -92,7 +96,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		250107C82E704027001FD959 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		250107C82E704027001FD959 /* AppIcon2.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon2.icon; sourceTree = "<group>"; };
+		2523AA162F98594B00EF08AD /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		2525622A2C4538F700F7ECA1 /* InsulinNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsulinNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2525622D2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinNote_iOSApp.swift; sourceTree = "<group>"; };
 		2525622F2C4538F700F7ECA1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,7 +117,10 @@
 		252993C92C6F70C00064C2F9 /* RecordingIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingIntent.swift; sourceTree = "<group>"; };
 		252993CC2C6F74EB0064C2F9 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		252993CF2C6F75090064C2F9 /* intent-click-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "intent-click-sound.mp3"; sourceTree = "<group>"; };
-		252994082C7728F60064C2F9 /* ModelContextStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContextStore.swift; sourceTree = "<group>"; };
+		2533873F2EDF0654004DAB06 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
+		253387422EF94302004DAB06 /* UserDefaults + shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + shared.swift"; sourceTree = "<group>"; };
+		253387452F042E8E004DAB06 /* DateFormatter + format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter + format.swift"; sourceTree = "<group>"; };
+		253387482F042EF3004DAB06 /* FormatStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatStyles.swift; sourceTree = "<group>"; };
 		2543CB372D8AB4FB005BD9A2 /* RecordCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCalendarView.swift; sourceTree = "<group>"; };
 		25484BE12C91A4CD005119AC /* LongActingInsulinIsInjectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongActingInsulinIsInjectedView.swift; sourceTree = "<group>"; };
 		25484BE32C91A8D9005119AC /* LongActingInsulinIsNotInjectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongActingInsulinIsNotInjectedView.swift; sourceTree = "<group>"; };
@@ -121,19 +129,15 @@
 		256022692E83876E006CF8D5 /* FirstLunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLunchView.swift; sourceTree = "<group>"; };
 		2560226D2E8387F2006CF8D5 /* SettingInitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInitView.swift; sourceTree = "<group>"; };
 		256022712E851B89006CF8D5 /* WidgetExplainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExplainView.swift; sourceTree = "<group>"; };
+		2560229D2EA4DE8A006CF8D5 /* InsulinModelActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinModelActor.swift; sourceTree = "<group>"; };
+		256022A02EB79FB8006CF8D5 /* ModelContextStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContextStore.swift; sourceTree = "<group>"; };
+		256022A52EBD01CE006CF8D5 /* InsulinSettingQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinSettingQuery.swift; sourceTree = "<group>"; };
+		256022A92ED97E04006CF8D5 /* ModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelError.swift; sourceTree = "<group>"; };
 		2561258B2E4B0F45003CA709 /* RecordDetailSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailSheetView.swift; sourceTree = "<group>"; };
 		257730D22E3A618100AE651C /* EditInsulinSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInsulinSettingView.swift; sourceTree = "<group>"; };
 		2591518E2E38BD4F0092F7B7 /* SettingInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInsulinView.swift; sourceTree = "<group>"; };
-		25BDD44A2E5D3E650047B0AB /* WidgetFastActingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetFastActingView.swift; sourceTree = "<group>"; };
-		25BDD44D2E5D3E6A0047B0AB /* WidgetLongActingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLongActingView.swift; sourceTree = "<group>"; };
-		25D2224A2DCBB52200DA1D90 /* RecordCalendarLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCalendarLogView.swift; sourceTree = "<group>"; };
-		25D2224F2DDB620A00DA1D90 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		25D5FEF22C7B3E2700DCC01C /* RecordingWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingWidgetEntryView.swift; sourceTree = "<group>"; };
-		25E53F282C4B9066009DA024 /* SetInsulinSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInsulinSettingView.swift; sourceTree = "<group>"; };
-		25E53F2A2C4C11EB009DA024 /* AddInsulinSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsulinSettingView.swift; sourceTree = "<group>"; };
-		25E53F2C2C4FF0D3009DA024 /* InsulinSettingColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinSettingColumnView.swift; sourceTree = "<group>"; };
-		25E53F752C514DD8009DA024 /* insulinSettingAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insulinSettingAlertView.swift; sourceTree = "<group>"; };
-		25E53F772C5282AA009DA024 /* UpdateInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInsulinView.swift; sourceTree = "<group>"; };
+		25D2224F2DDB620A00DA1D90 /* Date + id.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + id.swift"; sourceTree = "<group>"; };
+		25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingWidgetView.swift; sourceTree = "<group>"; };
 		25E53FF62C5E3AD2009DA024 /* HowManyGetProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowManyGetProductView.swift; sourceTree = "<group>"; };
 		25FB36482C8F35E200BC0DA7 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		25FB364A2C8F429A00BC0DA7 /* FastActingInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastActingInsulinView.swift; sourceTree = "<group>"; };
@@ -183,7 +187,7 @@
 		252562212C4538F700F7ECA1 = {
 			isa = PBXGroup;
 			children = (
-				252994082C7728F60064C2F9 /* ModelContextStore.swift */,
+				256022A02EB79FB8006CF8D5 /* ModelContextStore.swift */,
 				252993822C6D01D70064C2F9 /* RecordingWidgetExtension.entitlements */,
 				2525622C2C4538F700F7ECA1 /* InsulinNote_iOS */,
 				252993712C6B73620064C2F9 /* RecordingWidget */,
@@ -204,13 +208,17 @@
 		2525622C2C4538F700F7ECA1 /* InsulinNote_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				253387482F042EF3004DAB06 /* FormatStyles.swift */,
+				2533873F2EDF0654004DAB06 /* ErrorManager.swift */,
+				256022A92ED97E04006CF8D5 /* ModelError.swift */,
 				25D2224E2DDB61FE00DA1D90 /* Extensions */,
 				252993812C6CFDEF0064C2F9 /* InsulinNote_iOS.entitlements */,
 				2525623E2C46954500F7ECA1 /* Views */,
 				2525623D2C46953D00F7ECA1 /* Models */,
 				2525622D2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift */,
 				252562332C4538F800F7ECA1 /* Assets.xcassets */,
-				250107C82E704027001FD959 /* AppIcon.icon */,
+				250107C82E704027001FD959 /* AppIcon2.icon */,
+				2523AA162F98594B00EF08AD /* AppIcon.icon */,
 				252562352C4538F800F7ECA1 /* Preview Content */,
 			);
 			path = InsulinNote_iOS;
@@ -227,6 +235,8 @@
 		2525623D2C46953D00F7ECA1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				256022A52EBD01CE006CF8D5 /* InsulinSettingQuery.swift */,
+				2560229D2EA4DE8A006CF8D5 /* InsulinModelActor.swift */,
 				2525623F2C46956400F7ECA1 /* InsulinRecordModel.swift */,
 				252562412C4697CC00F7ECA1 /* InsulinSettingModel.swift */,
 			);
@@ -242,7 +252,6 @@
 				2525622F2C4538F700F7ECA1 /* ContentView.swift */,
 				25FB36472C8F35B200BC0DA7 /* RecordView */,
 				25E53FF52C5E3AAF009DA024 /* HowManyGetProductView */,
-				25E53F272C4B8FF5009DA024 /* SetInsulinView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,10 +268,9 @@
 		252993712C6B73620064C2F9 /* RecordingWidget */ = {
 			isa = PBXGroup;
 			children = (
-				25BDD4492E5D3E2D0047B0AB /* View */,
+				256022A82ECC640F006CF8D5 /* RecordingWidget */,
+				25BDD4492E5D3E2D0047B0AB /* LockScreenInfoWidget */,
 				252993722C6B73620064C2F9 /* RecordingWidgetBundle.swift */,
-				252993742C6B73620064C2F9 /* RecordingWidget.swift */,
-				256022652E7BDCD8006CF8D5 /* LockScreenInfoWidget.swift */,
 				252993C92C6F70C00064C2F9 /* RecordingIntent.swift */,
 				252993CC2C6F74EB0064C2F9 /* SoundPlayer.swift */,
 				252993CF2C6F75090064C2F9 /* intent-click-sound.mp3 */,
@@ -276,7 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				2543CB372D8AB4FB005BD9A2 /* RecordCalendarView.swift */,
-				25D2224A2DCBB52200DA1D90 /* RecordCalendarLogView.swift */,
 			);
 			path = RecordCalendarView;
 			sourceTree = "<group>";
@@ -291,6 +298,15 @@
 			path = FIrstLunchView;
 			sourceTree = "<group>";
 		};
+		256022A82ECC640F006CF8D5 /* RecordingWidget */ = {
+			isa = PBXGroup;
+			children = (
+				252993742C6B73620064C2F9 /* RecordingWidget.swift */,
+				25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */,
+			);
+			path = RecordingWidget;
+			sourceTree = "<group>";
+		};
 		2591518D2E38BD360092F7B7 /* SettingInsulinView */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,35 +316,23 @@
 			path = SettingInsulinView;
 			sourceTree = "<group>";
 		};
-		25BDD4492E5D3E2D0047B0AB /* View */ = {
+		25BDD4492E5D3E2D0047B0AB /* LockScreenInfoWidget */ = {
 			isa = PBXGroup;
 			children = (
-				25D5FEF22C7B3E2700DCC01C /* RecordingWidgetEntryView.swift */,
-				25BDD44A2E5D3E650047B0AB /* WidgetFastActingView.swift */,
-				25BDD44D2E5D3E6A0047B0AB /* WidgetLongActingView.swift */,
+				256022652E7BDCD8006CF8D5 /* LockScreenInfoWidget.swift */,
 				256022622E7B1654006CF8D5 /* LockScreenInfoView.swift */,
 			);
-			path = View;
+			path = LockScreenInfoWidget;
 			sourceTree = "<group>";
 		};
 		25D2224E2DDB61FE00DA1D90 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				25D2224F2DDB620A00DA1D90 /* Date.swift */,
+				253387452F042E8E004DAB06 /* DateFormatter + format.swift */,
+				253387422EF94302004DAB06 /* UserDefaults + shared.swift */,
+				25D2224F2DDB620A00DA1D90 /* Date + id.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		25E53F272C4B8FF5009DA024 /* SetInsulinView */ = {
-			isa = PBXGroup;
-			children = (
-				25E53F282C4B9066009DA024 /* SetInsulinSettingView.swift */,
-				25E53F2A2C4C11EB009DA024 /* AddInsulinSettingView.swift */,
-				25E53F2C2C4FF0D3009DA024 /* InsulinSettingColumnView.swift */,
-				25E53F752C514DD8009DA024 /* insulinSettingAlertView.swift */,
-				25E53F772C5282AA009DA024 /* UpdateInsulinView.swift */,
-			);
-			path = SetInsulinView;
 			sourceTree = "<group>";
 		};
 		25E53FF52C5E3AAF009DA024 /* HowManyGetProductView */ = {
@@ -431,10 +435,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				250107C92E704027001FD959 /* AppIcon.icon in Resources */,
+				250107C92E704027001FD959 /* AppIcon2.icon in Resources */,
 				252562372C4538F800F7ECA1 /* Preview Assets.xcassets in Resources */,
 				252993D02C6F75090064C2F9 /* intent-click-sound.mp3 in Resources */,
 				252562342C4538F800F7ECA1 /* Assets.xcassets in Resources */,
+				2523AA172F98594B00EF08AD /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,39 +460,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				252562302C4538F700F7ECA1 /* ContentView.swift in Sources */,
+				253387492F042EFC004DAB06 /* FormatStyles.swift in Sources */,
+				253387432EF94310004DAB06 /* UserDefaults + shared.swift in Sources */,
 				2560226F2E8387F2006CF8D5 /* SettingInitView.swift in Sources */,
 				2591518F2E38BD4F0092F7B7 /* SettingInsulinView.swift in Sources */,
 				252993CD2C6F74EB0064C2F9 /* SoundPlayer.swift in Sources */,
-				25E53F292C4B9066009DA024 /* SetInsulinSettingView.swift in Sources */,
 				25484BE22C91A4CD005119AC /* LongActingInsulinIsInjectedView.swift in Sources */,
 				25FB364F2C8F4A4A00BC0DA7 /* LongActingInsulinView.swift in Sources */,
-				25E53F2B2C4C11EB009DA024 /* AddInsulinSettingView.swift in Sources */,
-				25E53F782C5282AA009DA024 /* UpdateInsulinView.swift in Sources */,
-				25BDD44E2E5D3E6A0047B0AB /* WidgetLongActingView.swift in Sources */,
+				2560229F2EA4DE91006CF8D5 /* InsulinModelActor.swift in Sources */,
+				256022A12EB7A001006CF8D5 /* ModelContextStore.swift in Sources */,
 				25484BE62C91BB8A005119AC /* InsulinSettingModel.swift in Sources */,
 				25FB364D2C8F497300BC0DA7 /* FastActingInsulinRecordCardView.swift in Sources */,
 				256022672E7BDCD8006CF8D5 /* LockScreenInfoWidget.swift in Sources */,
 				256022632E7B1654006CF8D5 /* LockScreenInfoView.swift in Sources */,
 				252993802C6CF64A0064C2F9 /* RecordingWidget.swift in Sources */,
 				2543CB382D8AB4FB005BD9A2 /* RecordCalendarView.swift in Sources */,
-				25D2224B2DCBB52200DA1D90 /* RecordCalendarLogView.swift in Sources */,
+				253387402EDF065E004DAB06 /* ErrorManager.swift in Sources */,
 				25FB364B2C8F429A00BC0DA7 /* FastActingInsulinView.swift in Sources */,
-				252994092C7728F60064C2F9 /* ModelContextStore.swift in Sources */,
 				2560226A2E83876E006CF8D5 /* FirstLunchView.swift in Sources */,
 				25E53FF72C5E3AD2009DA024 /* HowManyGetProductView.swift in Sources */,
 				25484BE42C91A8D9005119AC /* LongActingInsulinIsNotInjectedView.swift in Sources */,
 				256022722E851B89006CF8D5 /* WidgetExplainView.swift in Sources */,
 				2525622E2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift in Sources */,
-				25D222502DDB620D00DA1D90 /* Date.swift in Sources */,
+				25D222502DDB620D00DA1D90 /* Date + id.swift in Sources */,
 				252562402C46956400F7ECA1 /* InsulinRecordModel.swift in Sources */,
 				252993CA2C6F70C00064C2F9 /* RecordingIntent.swift in Sources */,
-				25E53F762C514DD8009DA024 /* insulinSettingAlertView.swift in Sources */,
-				25BDD44B2E5D3E650047B0AB /* WidgetFastActingView.swift in Sources */,
-				25E53F2D2C4FF0D3009DA024 /* InsulinSettingColumnView.swift in Sources */,
+				256022AA2ED97E20006CF8D5 /* ModelError.swift in Sources */,
+				256022A72EBD01D8006CF8D5 /* InsulinSettingQuery.swift in Sources */,
 				257730D32E3A618100AE651C /* EditInsulinSettingView.swift in Sources */,
 				2561258C2E4B0F53003CA709 /* RecordDetailSheetView.swift in Sources */,
+				253387472F042EA1004DAB06 /* DateFormatter + format.swift in Sources */,
 				25FB36492C8F35E200BC0DA7 /* RecordView.swift in Sources */,
-				25D5FEF32C7B3EB900DCC01C /* RecordingWidgetEntryView.swift in Sources */,
+				25D5FEF32C7B3EB900DCC01C /* RecordingWidgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,19 +500,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				2560226B2E83876E006CF8D5 /* FirstLunchView.swift in Sources */,
+				253387412EF38E20004DAB06 /* ErrorManager.swift in Sources */,
 				256022642E7B1654006CF8D5 /* LockScreenInfoView.swift in Sources */,
+				253387462F042EA1004DAB06 /* DateFormatter + format.swift in Sources */,
 				252993C82C6F6C5E0064C2F9 /* InsulinRecordModel.swift in Sources */,
-				25BDD44C2E5D3E650047B0AB /* WidgetFastActingView.swift in Sources */,
-				25D5FEF42C7B3EBA00DCC01C /* RecordingWidgetEntryView.swift in Sources */,
+				25D5FEF42C7B3EBA00DCC01C /* RecordingWidgetView.swift in Sources */,
+				256022A22EB7A001006CF8D5 /* ModelContextStore.swift in Sources */,
 				256022732E851B89006CF8D5 /* WidgetExplainView.swift in Sources */,
+				2533873E2EDE0591004DAB06 /* ModelError.swift in Sources */,
 				2560226E2E8387F2006CF8D5 /* SettingInitView.swift in Sources */,
 				252993732C6B73620064C2F9 /* RecordingWidgetBundle.swift in Sources */,
 				25484BE52C91BB89005119AC /* InsulinSettingModel.swift in Sources */,
 				252993752C6B73620064C2F9 /* RecordingWidget.swift in Sources */,
-				2529940A2C772B340064C2F9 /* ModelContextStore.swift in Sources */,
 				252993CE2C6F74EB0064C2F9 /* SoundPlayer.swift in Sources */,
-				25BDD44F2E5D3E6A0047B0AB /* WidgetLongActingView.swift in Sources */,
+				253387442EF9437E004DAB06 /* UserDefaults + shared.swift in Sources */,
+				256022A62EBD01D8006CF8D5 /* InsulinSettingQuery.swift in Sources */,
 				256022662E7BDCD8006CF8D5 /* LockScreenInfoWidget.swift in Sources */,
+				2560229E2EA4DE91006CF8D5 /* InsulinModelActor.swift in Sources */,
 				252993CB2C6F70C00064C2F9 /* RecordingIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,7 +594,8 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = YES;
+				SWIFT_UPCOMING_FEATURE_INFER_SENDABLE_FROM_CAPTURES = YES;
+				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = NO;
 				SWIFT_UPCOMING_FEATURE_NONISOLATED_NONSENDING_BY_DEFAULT = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -646,7 +655,8 @@
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = YES;
+				SWIFT_UPCOMING_FEATURE_INFER_SENDABLE_FROM_CAPTURES = YES;
+				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = NO;
 				SWIFT_UPCOMING_FEATURE_NONISOLATED_NONSENDING_BY_DEFAULT = YES;
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;

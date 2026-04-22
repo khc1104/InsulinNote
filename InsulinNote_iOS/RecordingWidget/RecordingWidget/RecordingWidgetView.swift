@@ -1,0 +1,130 @@
+//
+//  RecodingWidgetView.swift
+//  InsulinNote_iOS
+//
+//  Created by 권희철 on 8/25/24.
+//
+
+import AppIntents
+import SwiftData
+import SwiftUI
+
+struct RecordingWidgetView: View {
+    var entry: RecordingEntry
+    @Environment(\.widgetFamily) var family
+
+    var body: some View {
+        ZStack{
+            
+            VStack {
+                switch family {
+                case .accessoryCircular:
+                    switch entry.actingType {
+                    case .long:
+                        if entry.lastRecordDate != nil{
+                            Text("투여됨")
+                        } else {
+                            Toggle(
+                                isOn: false,
+                                intent: RecordingIntent(id: entry.settingId)
+                            ) {
+                                Text("지효")
+                            }
+                        }
+                    case .fast:
+                        Toggle(
+                            isOn: false,
+                            intent: RecordingIntent(id: entry.settingId)
+                        ) {
+                            Text("속효")
+                        }
+                    }
+                default:
+                    switch entry.actingType {
+                    case .long:
+                        VStack(alignment: .leading) {
+                            Text("지효성")
+                                .font(.largeTitle)
+                            Text("\(entry.dosage)단위")
+                            if let lastRecordDate = entry.lastRecordDate {
+                                Text(
+                                    "\(DateFormatter.hourMinute.string(from: lastRecordDate)) 투여됨"
+                                )
+                            } else {
+                                Toggle(
+                                    isOn: false,
+                                    intent: RecordingIntent(id: entry.settingId)
+                                ) {
+                                    Image(systemName: "syringe")
+                                }
+                                
+                            }
+                            
+                        }
+                    case .fast:
+                        VStack(alignment: .leading) {
+                            Text("속효성")
+                                .font(.largeTitle)
+                            Text("\(entry.dosage)단위")
+                            if let lastRecordDate = entry.lastRecordDate{
+                                Text("\(DateFormatter.hourMinute.string(from: lastRecordDate))")
+                            }
+                            Button(
+                                intent: RecordingIntent(id: entry.settingId)
+                            ) {
+                                Image(systemName: "syringe")
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            if let errorMessage = entry.errorMessage {
+                Color.red
+                
+                VStack {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.largeTitle)
+                        .foregroundStyle(.yellow)
+                    Text(errorMessage)
+                        .font(.caption)
+                        .foregroundStyle(.white)
+                        .multilineTextAlignment(.center)
+                }
+                .transition(.opacity)
+            }
+        }
+        .animation(.default, value: entry.errorMessage)
+        .containerBackground(for: .widget) {
+            entry.errorMessage != nil ? Color.red :
+            entry.actingType == .fast ? Color.fastActing :
+            Color.longActing
+        }
+
+    }
+
+    private func getIsInjected(records: [InsulinRecordModel]) -> Bool {
+        let today = Date()
+        let strToday = DateFormatter.yyyyMMdd.string(from: today)
+
+        let record = records.filter {
+            return DateFormatter.yyyyMMdd.string(from: $0.createdAt) == strToday
+        }.sorted(by: { $0.createdAt > $1.createdAt })
+
+        if record.isEmpty { return false } else { return true }
+    }
+
+    private func getLastInjected(records: [InsulinRecordModel]) -> String {
+        let calendar = Calendar.current
+
+        let lastInjectedRecord = records.filter {
+            calendar.isDateInToday($0.createdAt)
+        }.sorted { $0.createdAt > $1.createdAt }
+
+        if let record = lastInjectedRecord.first {
+            return DateFormatter.hourMinute.string(from: record.createdAt)
+        } else {
+            return "오늘 기록 없음"
+        }
+    }
+}

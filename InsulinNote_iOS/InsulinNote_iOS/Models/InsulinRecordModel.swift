@@ -10,8 +10,8 @@ import SwiftData
 
 
 @Model
-final class InsulinRecordModel: Identifiable{
-    @Attribute(.unique) var id: UUID = UUID() //id
+final public class InsulinRecordModel: Identifiable{
+    @Attribute(.unique) public var id: UUID = UUID() //id
     
     var dosage: Int //투여양
     
@@ -19,18 +19,12 @@ final class InsulinRecordModel: Identifiable{
     var updatedAt: Date //변경시간
     
     var dateString: String{
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: createdAt)
+        DateFormatter.yyyyMMdd.string(from: createdAt)
     }
     
     var timeString: String{
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        return formatter.string(from: createdAt)
+        DateFormatter.hourMinute.string(from: createdAt)
     }
-    
-    var today = Date.now
     
     var setting: InsulinSettingModel?
     

@@ -5,12 +5,13 @@
 //  Created by 권희철 on 7/16/24.
 //
 
-import Foundation
 import SwiftData
+import AppIntents
+
 
 @Model
-final class InsulinSettingModel: Identifiable{
-    @Attribute(.unique) var id: UUID = UUID() //id
+final public class InsulinSettingModel: Identifiable, AppEntity, Sendable {
+    public var id: UUID = UUID() //id
     
     var insulinProductName: String //인슐린 제품 명
     var actingType: ActingType
@@ -23,8 +24,6 @@ final class InsulinSettingModel: Identifiable{
     var updatedAt: Date //변경시간
     
     init(insulinProductName: String, actingType: ActingType, dosage: Int, records: [InsulinRecordModel], updatedAt: Date) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm a"
         self.insulinProductName = insulinProductName
         self.actingType = actingType
         self.dosage = dosage
@@ -33,18 +32,21 @@ final class InsulinSettingModel: Identifiable{
         self.updatedAt = updatedAt
     }
     
-    init(){
-        self.insulinProductName = "none"
-        self.actingType = .long
-        self.dosage = 99
-        self.records = []
-        self.createdAt = .now
-        self.updatedAt = .now
+    enum ActingType: Int, Codable, Comparable{
+        case long = 0//지속성
+        case fast = 1//속효성
+        public static func < (lhs: ActingType, rhs: ActingType) -> Bool {
+            return lhs.rawValue < rhs.rawValue
+        }
+        
     }
     
-    enum ActingType: Codable{
-        case fast //속효성
-        case long //지속성
+// MARK: - AppIntent
+    public var displayRepresentation: DisplayRepresentation{
+        DisplayRepresentation(title: "\(insulinProductName)")
     }
+    
+    static public var typeDisplayRepresentation: TypeDisplayRepresentation = "인슐린 설정"
+    static public var defaultQuery = InsulinSettingQuery()
 }
 

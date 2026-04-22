@@ -5,91 +5,82 @@
 //  Created by 권희철 on 9/9/24.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
-struct RecordView:View {
+struct RecordView: View {
     var date: Date = Date()
-    //@State var date: Date = .now
     @State private var isInjected: Bool = false
-    
-    @Environment(\.modelContext) var insulinContext
-    @Query var insulinSettings: [InsulinSettingModel]
-    
-    @State private var isPresented: Bool = false
+
+    @Environment(ErrorManager.self) private var errorManager
+    @Environment(\.modelContext) private var insulinContext
+    @Query private var insulinSettings: [InsulinSettingModel]
+
+    @State private var selectedSetting: InsulinSettingModel?
     @State private var editedDosage: Int = 0
-    @State private var recordClosure: (() -> Void) = {print("기록 에러")}
-    
+    @State private var recordClosure: (() -> Void) = { print("기록 에러") }
+
     var longActingInsulin: InsulinSettingModel? {
-        insulinSettings.filter{
+        insulinSettings.filter {
             $0.actingType == .long
         }.first
     }
-    
+
     var fastActingInsulin: InsulinSettingModel? {
-        insulinSettings.filter{
+        insulinSettings.filter {
             $0.actingType == .fast
         }.first
     }
-    
+
     var selectedDate: String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_kr")
-        formatter.dateFormat = "yyyy년 M월 d일 E"
-        return formatter.string(from: date)
+        DateFormatter.fullDateKorean.string(from: date)
     }
-    
+
     var body: some View {
-        GeometryReader{proxy in
-            VStack(alignment: .leading, spacing: 10){
+        GeometryReader { proxy in
+            VStack(alignment: .leading, spacing: 10) {
                 Text("\(selectedDate)")
                     .font(.largeTitle)
-                LongActingInsulinView(date: date,
-                                      longActingInsulinSetting:
-                                        longActingInsulin,
-                                      proxy: proxy,
-                                      isPresented: $isPresented,
-                                      dosage: $editedDosage,
-                                      recordClosure: $recordClosure)
-                FastActingInsulinView(date: date,
-                                      insulinSetting: fastActingInsulin,
-                                      isPresented: $isPresented,
-                                      dosage: $editedDosage,
-                                      recordClosure: $recordClosure)
-                
-                
+                LongActingInsulinView(
+                    date: date,
+                    setting:
+                        longActingInsulin,
+                    proxy: proxy,
+                ) { selectedSetting = longActingInsulin }
+                FastActingInsulinView(
+                    date: date,
+                    setting: fastActingInsulin,
+                ) { selectedSetting = fastActingInsulin }
             }
             .padding(.horizontal, 10)
-        }.onAppear{
-            print(selectedDate)
         }
-        .sheet(isPresented: $isPresented) {
-            RecordDetailSheetView(dosage: $editedDosage) {
-                recordClosure()
-                    
-            }
+        .sheet(item: $selectedSetting) { setting in
+            RecordDetailSheetView(
+                setting: setting,
+                onButtonTaped: addRecord(dosage:)
+            )
             .presentationDetents([.medium])
         }
     }
+    private func addRecord(dosage: Int) {  //인슐린 설정의 기록 추가
+        guard let selectedSetting else {
+            fatalError("Can not found InsulinSetting")
+        }
+        let calendar = Calendar.current
+        let date = calendar.isDateInToday(date) ? Date.now : date
+        let dosage = dosage
+        let settingId = selectedSetting.persistentModelID
+        Task {
+            do {
+                try await InsulinModelActor.shared.addRecord(
+                    settingId,
+                    dosage: dosage,
+                    date: date
+                )
+            } catch {
+                errorManager.showError(error as? ModelError ?? .unknwonedError)
+            }
+        }
+    }
 }
 
-#Preview{
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: InsulinSettingModel.self
-                                        , configurations: config)
-
-//    let insulin1 = InsulinSettingModel(insulinProductName: "트레시바", actingType: .long, dosage: 22, records: [
-//        InsulinRecordModel(dosage: 22, createdAt: .now, updatedAt: .now)
-//    ], updatedAt: .now)
-//    container.mainContext.insert(insulin1)
-//
-//    let insulin2 = InsulinSettingModel(insulinProductName: "노보래피드", actingType: .fast, dosage: 17, records: [
-//        InsulinRecordModel(dosage: 17, createdAt: .now, updatedAt: .now)
-//    ], updatedAt: .now)
-//    container.mainContext.insert(insulin2)
-    
-    
-    
-    return RecordView().modelContainer(container)
-    
-}

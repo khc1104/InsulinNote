@@ -13,6 +13,8 @@ struct EditInsulinSettingView: View {
     var insulinSetting: InsulinSettingModel?
     private let widgetCenter = WidgetCenter.shared
     
+    @Environment(ErrorManager.self) private var errorManager
+    
     @State private var isPresentingEditSheet = false
     
     @State private var productName = ""
@@ -57,16 +59,22 @@ struct EditInsulinSettingView: View {
                             Divider()
                             TextEditor(text: $dosage)
                                 .keyboardType(.numberPad)
+                                .onChange(of: dosage) {
+                                    oldValue,
+                                    newValue in
+                                    let filtered = newValue.filter {
+                                        ("0"..."9").contains($0)
+                                    }
+                                    if filtered != newValue {
+                                        dosage = filtered
+                                    }
+                                }
                         }
                         Button{
-                            guard let dosage = Int(dosage) else  {
-                                print("정수가 아님")
-                                return
+                            Task{
+                                await updateSetting()
                             }
-                            insulinSetting?.insulinProductName = productName
-                            insulinSetting?.dosage = dosage
-                            widgetCenter.reloadAllTimelines()
-                            isPresentingEditSheet.toggle()
+                            
                         }label: {
                             Text("수정")
                         }
@@ -76,6 +84,23 @@ struct EditInsulinSettingView: View {
                     dosage = String(insulinSetting?.dosage ?? 0)
                 }
             }
+        }
+    }
+    private func updateSetting() async {
+        do {
+            guard let insulinSetting = insulinSetting else { throw ModelError.updateDataError}
+            let dosage = Int(dosage) ?? insulinSetting.dosage
+            
+            try await InsulinModelActor.shared.updateSetting(
+                insulinSetting.persistentModelID,
+                insulinProductName: productName,
+                dosage: dosage
+            )
+            
+            widgetCenter.reloadAllTimelines()
+            isPresentingEditSheet.toggle()
+        } catch {
+            errorManager.showError(error as? ModelError ?? .unknwonedError)
         }
     }
 }

@@ -1,6 +1,18 @@
-# InsulinNote
+<div align="center">
+  <!-- 1. 앱 아이콘 (둥근 모서리가 적용된 이미지 파일 추천) -->
+<img width="167" height="167" alt="icon2-iOS-Default-83 5x83 5@2x" src="https://github.com/user-attachments/assets/36941a51-9ffb-4380-905d-7047f0c6c9c8" />
 
-인슐린 투여 기록에 필요한 행동을 최소화해, 빠르게 기록하고 당일 투여 여부를 확인할 수 있도록 만든 iOS 앱입니다.
+  <!-- 2. 프로젝트 타이틀 -->
+  <h1>InsulinNote</h1>
+
+  <!-- 3. 한 줄 소개 -->
+  <p>인슐린 투여 기록에 필요한 행동을 최소화해, 빠르게 기록하고 당일 투여 여부를 확인할 수 있도록 만든 iOS 앱입니다.</p>
+
+  <!-- 4. 앱 스토어 다운로드 뱃지 -->
+  <a href="https://apps.apple.com/kr/app/%EC%9D%B8%EC%8A%90%EB%A6%B0%EB%85%B8%ED%8A%B8/id6763216913">
+    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr?size=250x83&amp;releaseDate=1276560000&h=38fe76d0d21650b28489ed39a8286a11" alt="App Store에서 다운로드" width="140">
+  </a>
+</div>
 
 ## 개요
 

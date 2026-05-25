@@ -92,3 +92,7 @@ iOSInjectionProject/
 #DS_Store
 .DS_Store
 .aider*
+
+# LLM Context File
+InsulinNote_Context.md
+

@@ -91,8 +91,11 @@ iOSInjectionProject/
 
 #DS_Store
 .DS_Store
-.aider*
 
 # LLM Context File
 InsulinNote_Context.md
+
+# AI/Agent configurations and logs
+.antigravity*
+Agents.md
 

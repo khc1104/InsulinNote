@@ -107,6 +107,34 @@ public actor InsulinModelActor {
         try self.saveContext()
     }
     
+    // 투여 기록 수정
+    public func updateRecord(
+        _ id: PersistentIdentifier,
+        dosage: Int,
+        date: Date
+    ) throws {
+        guard let record = modelContext.model(for: id) as? InsulinRecordModel
+        else {
+            throw ModelError.updateDataError
+        }
+        record.dosage = dosage
+        record.createdAt = date
+        record.updatedAt = .now
+        
+        try self.saveContext()
+    }
+    
+    // 투여 기록 삭제
+    public func deleteRecord(_ id: PersistentIdentifier) throws {
+        guard let record = modelContext.model(for: id) as? InsulinRecordModel
+        else {
+            throw ModelError.updateDataError
+        }
+        modelContext.delete(record)
+        
+        try self.saveContext()
+    }
+    
     // 첫 실행시 초기 세팅 생성할 때 씀
     public func createInitSetting() throws {
         do {

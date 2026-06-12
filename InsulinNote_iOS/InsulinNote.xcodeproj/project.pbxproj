@@ -61,6 +61,14 @@
 		257730D32E3A618100AE651C /* EditInsulinSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257730D22E3A618100AE651C /* EditInsulinSettingView.swift */; };
 		25795BBF2FD7B109007F7429 /* AddRecordSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BBE2FD7B106007F7429 /* AddRecordSheetView.swift */; };
 		25795BC12FD7B112007F7429 /* EditRecordSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BC02FD7B112007F7429 /* EditRecordSheetView.swift */; };
+		25795BC32FD952AD007F7429 /* MonthlyRecordGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BC22FD95297007F7429 /* MonthlyRecordGridView.swift */; };
+		25795BC52FD952C8007F7429 /* CalendarDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BC42FD952C6007F7429 /* CalendarDayCellView.swift */; };
+		25795BC82FD95309007F7429 /* LongActingComplianceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BC72FD95308007F7429 /* LongActingComplianceCard.swift */; };
+		25795BCB2FD95330007F7429 /* CircularProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BCA2FD9532E007F7429 /* CircularProgressRing.swift */; };
+		25795BCD2FD95342007F7429 /* LongActingConsistencyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BCC2FD95340007F7429 /* LongActingConsistencyCard.swift */; };
+		25795BD02FD9535F007F7429 /* FastActingPatternChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BCF2FD9535E007F7429 /* FastActingPatternChart.swift */; };
+		25795BD22FD95369007F7429 /* FastActingFilterChipBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BD12FD95368007F7429 /* FastActingFilterChipBar.swift */; };
+		25795BD42FD9537F007F7429 /* FastActingStreakBadgeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BD32FD9537D007F7429 /* FastActingStreakBadgeBar.swift */; };
 		25D222502DDB620D00DA1D90 /* Date + id.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2224F2DDB620A00DA1D90 /* Date + id.swift */; };
 		25D5FEF32C7B3EB900DCC01C /* RecordingWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */; };
 		25D5FEF42C7B3EBA00DCC01C /* RecordingWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */; };
@@ -136,6 +144,14 @@
 		257730D22E3A618100AE651C /* EditInsulinSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInsulinSettingView.swift; sourceTree = "<group>"; };
 		25795BBE2FD7B106007F7429 /* AddRecordSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordSheetView.swift; sourceTree = "<group>"; };
 		25795BC02FD7B112007F7429 /* EditRecordSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordSheetView.swift; sourceTree = "<group>"; };
+		25795BC22FD95297007F7429 /* MonthlyRecordGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRecordGridView.swift; sourceTree = "<group>"; };
+		25795BC42FD952C6007F7429 /* CalendarDayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCellView.swift; sourceTree = "<group>"; };
+		25795BC72FD95308007F7429 /* LongActingComplianceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongActingComplianceCard.swift; sourceTree = "<group>"; };
+		25795BCA2FD9532E007F7429 /* CircularProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressRing.swift; sourceTree = "<group>"; };
+		25795BCC2FD95340007F7429 /* LongActingConsistencyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongActingConsistencyCard.swift; sourceTree = "<group>"; };
+		25795BCF2FD9535E007F7429 /* FastActingPatternChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastActingPatternChart.swift; sourceTree = "<group>"; };
+		25795BD12FD95368007F7429 /* FastActingFilterChipBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastActingFilterChipBar.swift; sourceTree = "<group>"; };
+		25795BD32FD9537D007F7429 /* FastActingStreakBadgeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastActingStreakBadgeBar.swift; sourceTree = "<group>"; };
 		25D2224F2DDB620A00DA1D90 /* Date + id.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + id.swift"; sourceTree = "<group>"; };
 		25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingWidgetView.swift; sourceTree = "<group>"; };
 		25FB36482C8F35E200BC0DA7 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
@@ -245,10 +261,10 @@
 		2525623E2C46954500F7ECA1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				256022682E838754006CF8D5 /* FIrstLunchView */,
-				2543CB352D8AB4D6005BD9A2 /* RecordCalendarView */,
 				2525622F2C4538F700F7ECA1 /* ContentView.swift */,
 				25FB36472C8F35B200BC0DA7 /* RecordView */,
+				2543CB352D8AB4D6005BD9A2 /* RecordCalendarView */,
+				256022682E838754006CF8D5 /* FIrstLunchView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -280,6 +296,9 @@
 		2543CB352D8AB4D6005BD9A2 /* RecordCalendarView */ = {
 			isa = PBXGroup;
 			children = (
+				25795BCE2FD9534E007F7429 /* FastActingDashBoard */,
+				25795BC92FD9530F007F7429 /* LongActingDashBoard */,
+				25795BC62FD952CF007F7429 /* CalendarView */,
 				2543CB372D8AB4FB005BD9A2 /* RecordCalendarView.swift */,
 			);
 			path = RecordCalendarView;
@@ -302,6 +321,35 @@
 				25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */,
 			);
 			path = RecordingWidget;
+			sourceTree = "<group>";
+		};
+		25795BC62FD952CF007F7429 /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				25795BC42FD952C6007F7429 /* CalendarDayCellView.swift */,
+				25795BC22FD95297007F7429 /* MonthlyRecordGridView.swift */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		25795BC92FD9530F007F7429 /* LongActingDashBoard */ = {
+			isa = PBXGroup;
+			children = (
+				25795BCC2FD95340007F7429 /* LongActingConsistencyCard.swift */,
+				25795BCA2FD9532E007F7429 /* CircularProgressRing.swift */,
+				25795BC72FD95308007F7429 /* LongActingComplianceCard.swift */,
+			);
+			path = LongActingDashBoard;
+			sourceTree = "<group>";
+		};
+		25795BCE2FD9534E007F7429 /* FastActingDashBoard */ = {
+			isa = PBXGroup;
+			children = (
+				25795BD32FD9537D007F7429 /* FastActingStreakBadgeBar.swift */,
+				25795BD12FD95368007F7429 /* FastActingFilterChipBar.swift */,
+				25795BCF2FD9535E007F7429 /* FastActingPatternChart.swift */,
+			);
+			path = FastActingDashBoard;
 			sourceTree = "<group>";
 		};
 		25BDD4492E5D3E2D0047B0AB /* LockScreenInfoWidget */ = {
@@ -443,13 +491,16 @@
 			files = (
 				252562302C4538F700F7ECA1 /* ContentView.swift in Sources */,
 				253387492F042EFC004DAB06 /* FormatStyles.swift in Sources */,
+				25795BD02FD9535F007F7429 /* FastActingPatternChart.swift in Sources */,
 				253387432EF94310004DAB06 /* UserDefaults + shared.swift in Sources */,
 				2560226F2E8387F2006CF8D5 /* SettingInitView.swift in Sources */,
 				252993CD2C6F74EB0064C2F9 /* SoundPlayer.swift in Sources */,
 				25484BE22C91A4CD005119AC /* LongActingInsulinIsInjectedView.swift in Sources */,
 				25795BC12FD7B112007F7429 /* EditRecordSheetView.swift in Sources */,
+				25795BCB2FD95330007F7429 /* CircularProgressRing.swift in Sources */,
 				25FB364F2C8F4A4A00BC0DA7 /* LongActingInsulinView.swift in Sources */,
 				2560229F2EA4DE91006CF8D5 /* InsulinModelActor.swift in Sources */,
+				25795BD22FD95369007F7429 /* FastActingFilterChipBar.swift in Sources */,
 				256022A12EB7A001006CF8D5 /* ModelContextStore.swift in Sources */,
 				25484BE62C91BB8A005119AC /* InsulinSettingModel.swift in Sources */,
 				25FB364D2C8F497300BC0DA7 /* FastActingInsulinRecordCardView.swift in Sources */,
@@ -458,7 +509,11 @@
 				252993802C6CF64A0064C2F9 /* RecordingWidget.swift in Sources */,
 				2543CB382D8AB4FB005BD9A2 /* RecordCalendarView.swift in Sources */,
 				25795BBF2FD7B109007F7429 /* AddRecordSheetView.swift in Sources */,
+				25795BD42FD9537F007F7429 /* FastActingStreakBadgeBar.swift in Sources */,
+				25795BCD2FD95342007F7429 /* LongActingConsistencyCard.swift in Sources */,
+				25795BC32FD952AD007F7429 /* MonthlyRecordGridView.swift in Sources */,
 				253387402EDF065E004DAB06 /* ErrorManager.swift in Sources */,
+				25795BC52FD952C8007F7429 /* CalendarDayCellView.swift in Sources */,
 				25FB364B2C8F429A00BC0DA7 /* FastActingInsulinView.swift in Sources */,
 				2560226A2E83876E006CF8D5 /* FirstLunchView.swift in Sources */,
 				25484BE42C91A8D9005119AC /* LongActingInsulinIsNotInjectedView.swift in Sources */,
@@ -467,6 +522,7 @@
 				25D222502DDB620D00DA1D90 /* Date + id.swift in Sources */,
 				252562402C46956400F7ECA1 /* InsulinRecordModel.swift in Sources */,
 				252993CA2C6F70C00064C2F9 /* RecordingIntent.swift in Sources */,
+				25795BC82FD95309007F7429 /* LongActingComplianceCard.swift in Sources */,
 				256022AA2ED97E20006CF8D5 /* ModelError.swift in Sources */,
 				256022A72EBD01D8006CF8D5 /* InsulinSettingQuery.swift in Sources */,
 				257730D32E3A618100AE651C /* EditInsulinSettingView.swift in Sources */,

@@ -59,14 +59,14 @@ struct MonthlyRecordGridView: View {
     }
 
     var body: some View {
-        VStack(spacing: isSmallDevice ? 4 : 8) {
-            LazyVGrid(columns: gridItems, spacing: isSmallDevice ? 2 : 4) {
+        VStack(spacing: 4)  {
+            LazyVGrid(columns: gridItems, spacing: 4) {
                 ForEach(Weekday.allCases, id: \.self) { dow in
                     Text("\(dow.getString())")
                         .font(.system(isSmallDevice ? .caption2 : .footnote, design: .rounded))
                         .fontWeight(.bold)
                         .foregroundColor(.secondary)
-                        .frame(height: isSmallDevice ? 16 : 20)
+                        .frame(height: 16)
                 }
 
                 let lastDay = getLastDayOfMonth(selectedYear, selectedMonth) ?? 30
@@ -95,7 +95,7 @@ struct MonthlyRecordGridView: View {
                 }
             }
         }
-        .padding(isSmallDevice ? 10 : 14) // 소형 기기에서 패딩 압축
+        .padding(14)
                 .background(Color(uiColor: .secondarySystemGroupedBackground)) // 전체 달력을 담는 카드배경
         .cornerRadius(16)
         .overlay(

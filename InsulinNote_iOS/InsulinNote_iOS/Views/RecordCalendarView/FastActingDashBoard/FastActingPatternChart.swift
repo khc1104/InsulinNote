@@ -158,7 +158,7 @@ struct FastActingPatternChart: View {
                     }
                 }
             }
-            .frame(height: isSmallDevice ? 115 : 160)  // 소형 기기 시 높이를 115pt로 유기적 수축
+            .frame(height: 160)  // 소형 기기 시 높이를 115pt로 유기적 수축
         }
     }
     

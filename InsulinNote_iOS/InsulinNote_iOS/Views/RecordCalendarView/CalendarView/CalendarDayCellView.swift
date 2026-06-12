@@ -17,7 +17,7 @@ struct CalendarDayCellView: View {
     
     var body: some View {
         ZStack {
-            let circleSize: CGFloat = isSmallDevice ? 24 : 30
+            let circleSize: CGFloat = 30
             
             // 오늘 날짜 노란색 원
             if isToday {
@@ -43,7 +43,7 @@ struct CalendarDayCellView: View {
                 .fontWeight(isToday ? .bold : .regular)
                 .foregroundColor(isTappable ? .primary : .secondary.opacity(0.5))
         }
-        .frame(maxWidth: .infinity, minHeight: isSmallDevice ? 34 : 44) // 소형 기기일 때 높이를 34pt로 조절
+        .frame(maxWidth: .infinity, minHeight: 44) // 소형 기기일 때 높이를 34pt로 조절
         .contentShape(Rectangle()) // 터치 제스처 영역 유지
         .onTapGesture {
             if isTappable {

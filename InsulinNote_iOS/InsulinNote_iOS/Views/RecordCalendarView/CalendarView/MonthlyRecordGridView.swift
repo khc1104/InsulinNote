@@ -15,6 +15,7 @@ struct MonthlyRecordGridView: View {
     let selectedMonth: Int
     let today: [Int]
     let isSmallDevice: Bool // 소형 기기 모드 플래그 추가
+    let calendarWeeks: Int  // 달력 Row 수 (4, 5, 6)
     @Binding var selectedDate: Date?
 
     @Query private var records: [InsulinRecordModel]
@@ -26,6 +27,7 @@ struct MonthlyRecordGridView: View {
         selectedMonth: Int,
         today: [Int],
         isSmallDevice: Bool,
+        calendarWeeks: Int,
         selectedDate: Binding<Date?>
     ) {
         self.gridItems = gridItems
@@ -34,6 +36,7 @@ struct MonthlyRecordGridView: View {
         self.selectedMonth = selectedMonth
         self.today = today
         self.isSmallDevice = isSmallDevice
+        self.calendarWeeks = calendarWeeks
         _selectedDate = selectedDate
 
         let calendar = Calendar.current
@@ -59,8 +62,14 @@ struct MonthlyRecordGridView: View {
     }
 
     var body: some View {
-        VStack(spacing: 4)  {
-            LazyVGrid(columns: gridItems, spacing: 4) {
+        // 주차 수에 따른 동적 셀 높이 및 그리드 간격 계산 (HIG 44pt 준수)
+        let gridSpacing: CGFloat = calendarWeeks >= 6 ? 2 : (isSmallDevice ? 2 : 4)
+        let cellMinHeight: CGFloat = calendarWeeks >= 6
+            ? (isSmallDevice ? 34 : 36)
+            : (isSmallDevice ? 36 : 44)
+
+        VStack(spacing: gridSpacing)  {
+            LazyVGrid(columns: gridItems, spacing: gridSpacing) {
                 ForEach(Weekday.allCases, id: \.self) { dow in
                     Text("\(dow.getString())")
                         .font(.system(isSmallDevice ? .caption2 : .footnote, design: .rounded))
@@ -84,18 +93,19 @@ struct MonthlyRecordGridView: View {
                             isLongActingInjected: isLongActingInjected,
                             isTappable: isTappable,
                             isSmallDevice: isSmallDevice,
+                            cellMinHeight: cellMinHeight,
                             onTap: {
                                 selectedDate = intToDate(year: selectedYear, month: selectedMonth, day: day)
                             }
                         )
                     } else {
                         Spacer()
-                            .frame(height: isSmallDevice ? 34 : 44)
+                            .frame(height: cellMinHeight)
                     }
                 }
             }
         }
-        .padding(14)
+        .padding(calendarWeeks >= 6 ? 10 : 14)
                 .background(Color(uiColor: .secondarySystemGroupedBackground)) // 전체 달력을 담는 카드배경
         .cornerRadius(16)
         .overlay(

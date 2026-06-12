@@ -61,14 +61,38 @@ struct RecordCalendarView: View {
 
     @Environment(\.modelContext) var insulinContext
 
+    // 달력 주차(Row 수) 자동 계산 (HIG 자가 검증 대응)
+    private func getCalendarWeeks(_ year: Int, _ month: Int, _ startDay: Int) -> Int {
+        let lastDay = getLastDayOfMonth(year, month) ?? 30
+        let totalSlots = startDay - 1 + lastDay
+        return Int(ceil(Double(totalSlots) / 7.0))
+    }
+
+    private func getLastDayOfMonth(_ year: Int, _ month: Int) -> Int? {
+        let calendar = Calendar.current
+        guard let start = DateFormatter.yyyyMMdd.date(from: "\(year)-\(String(format: "%02d", month))-01") else { return nil }
+        let next = calendar.date(byAdding: .month, value: 1, to: start)!
+        return calendar.dateComponents([.day], from: start, to: next).day
+    }
+
     var body: some View {
         GeometryReader { geo in
-            // iPhone 12 mini 및 소형 기기 가용 영역 판정 (세로 700pt 미만)
-            let isSmallDevice = geo.size.height < 700
+            // 3단계 기기 높이 분류 (HIG 보완본)
+            let isMiniDevice = geo.size.height < 700
+            let isLargeDevice = geo.size.height >= 780
+            let isSmallDevice = !isLargeDevice // mini + regular 모두 콤팩트 모드
+
+            let calendarWeeks = getCalendarWeeks(selectedYear, selectedMonth, startDayOfWeek)
+            let isTightMonth = calendarWeeks >= 6
+
+            // 스페이싱 매트릭스: 기기 크기 × 주차 수 조합
+            let mainSpacing: CGFloat = isLargeDevice ? 12
+                : (isTightMonth ? (isMiniDevice ? 3 : 6) : (isMiniDevice ? 6 : 8))
+
             ZStack {
                 Color(uiColor: .systemGroupedBackground).ignoresSafeArea()
 
-                VStack(spacing: isSmallDevice ? 8 : 12) {
+                VStack(spacing: mainSpacing) {
                     // 상단 년월 탐색 헤더
                     HStack(spacing: 20) {
                         Button {
@@ -130,6 +154,7 @@ struct RecordCalendarView: View {
                         selectedMonth: selectedMonth,
                         today: today,
                         isSmallDevice: isSmallDevice,
+                        calendarWeeks: calendarWeeks,
                         selectedDate: $selectedDate
                     )
                     // [세션 2] 지효성 대시보드 카드 세션 (가로 분할 및 얇은 테두리)
@@ -146,7 +171,7 @@ struct RecordCalendarView: View {
                     .padding(.horizontal)
 
                     // [세션 3] 속효성 대시보드 산점도 차트, 스트릭
-                    FastActingPatternChart(isSmallDevice: isSmallDevice)
+                    FastActingPatternChart(isSmallDevice: isSmallDevice, isTightMonth: isTightMonth)
                         .background(
                             Color(uiColor: .secondarySystemGroupedBackground)
                         )

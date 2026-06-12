@@ -10,6 +10,7 @@ import SwiftUI
 struct FastActingPatternChart: View {
     
     let isSmallDevice: Bool  // 소형 기기 모드 플래그 추가
+    let isTightMonth: Bool   // 6주 달 여부 (산점도 높이 압축)
     
     // 차트 좌표 매핑을 위한 데이터 모델 구조체 정의 추가
     struct ChartPoint: Identifiable {
@@ -132,6 +133,7 @@ struct FastActingPatternChart: View {
                         Text(String(format: "%02d:00", hour))
                             .font(.system(.caption2, design: .rounded))
                             .foregroundColor(.secondary)
+                            .frame(width: 45, height: 16, alignment: .center)
                             .position(x: xOffset, y: height + 10)
                     }
 
@@ -158,7 +160,7 @@ struct FastActingPatternChart: View {
                     }
                 }
             }
-            .frame(height: 160)  // 소형 기기 시 높이를 115pt로 유기적 수축
+            .frame(height: isTightMonth ? (isSmallDevice ? 125 : 140) : 160)  // 동적 높이 적용
         }
     }
     

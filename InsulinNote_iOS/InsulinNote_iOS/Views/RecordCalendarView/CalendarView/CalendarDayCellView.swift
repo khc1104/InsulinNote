@@ -13,6 +13,7 @@ struct CalendarDayCellView: View {
     let isLongActingInjected: Bool
     let isTappable: Bool
     let isSmallDevice: Bool // 소형 기기 모드 플래그 추가
+    let cellMinHeight: CGFloat // 동적 셀 높이 (주차 수 기반)
     let onTap: () -> Void
     
     var body: some View {
@@ -43,7 +44,7 @@ struct CalendarDayCellView: View {
                 .fontWeight(isToday ? .bold : .regular)
                 .foregroundColor(isTappable ? .primary : .secondary.opacity(0.5))
         }
-        .frame(maxWidth: .infinity, minHeight: 44) // 소형 기기일 때 높이를 34pt로 조절
+        .frame(maxWidth: .infinity, minHeight: cellMinHeight) // 동적 셀 높이 적용
         .contentShape(Rectangle()) // 터치 제스처 영역 유지
         .onTapGesture {
             if isTappable {
@@ -55,7 +56,7 @@ struct CalendarDayCellView: View {
 
 #Preview {
     HStack {
-        CalendarDayCellView(day: 10, isToday: true, isLongActingInjected: true, isTappable: true, isSmallDevice: true, onTap: {})
-        CalendarDayCellView(day: 11, isToday: false, isLongActingInjected: true, isTappable: true, isSmallDevice: false, onTap: {})
+        CalendarDayCellView(day: 10, isToday: true, isLongActingInjected: true, isTappable: true, isSmallDevice: true, cellMinHeight: 36, onTap: {})
+        CalendarDayCellView(day: 11, isToday: false, isLongActingInjected: true, isTappable: true, isSmallDevice: false, cellMinHeight: 44, onTap: {})
     }
 }

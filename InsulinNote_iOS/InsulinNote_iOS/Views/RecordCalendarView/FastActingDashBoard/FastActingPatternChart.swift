@@ -133,8 +133,15 @@ struct FastActingPatternChart: View {
                         Text(String(format: "%02d:00", hour))
                             .font(.system(.caption2, design: .rounded))
                             .foregroundColor(.secondary)
-                            .frame(width: 45, height: 16, alignment: .center)
-                            .position(x: xOffset, y: height + 10)
+                            .frame(
+                                width: 45,
+                                height: 16,
+                                alignment: index == 0 ? .leading : (index == 4 ? .trailing : .center)
+                            )
+                            .position(
+                                x: index == 0 ? xOffset + 22.5 : (index == 4 ? xOffset - 22.5 : xOffset),
+                                y: height + 10
+                            )
                     }
 
                     // 3. 데이터 점 (Dot) 매핑 및 그리기

@@ -10,10 +10,11 @@ import SwiftUI
 struct FastActingStreakBadgeBar: View {
     var loggedDaysCount: Int = 5 // 이번 주 실제 기록 일수 (0~7)
     var targetDaysCount: Int = 7  // 주간 목표 일수
+    var medalCount: Int = 0       // 누적 골드 메달 개수 추가
     let isSmallDevice: Bool // 소형 기기 모드 플래그 추가
     
     var body: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: isSmallDevice ? 5 : 8) {
             // 좌측 성공 메달 아이콘
             Image(systemName: "checkmark.seal.fill")
                 .foregroundColor(.blue)
@@ -43,10 +44,17 @@ struct FastActingStreakBadgeBar: View {
             .frame(height: 5)
             
             // 달성 텍스트 및 축하 이모지
-            Text("\(loggedDaysCount)/\(targetDaysCount)일 \(loggedDaysCount >= 5 ? "👏" : "")")
+            Text("\(loggedDaysCount)/\(targetDaysCount)일\(loggedDaysCount >= 5 ? " 👏" : "")")
                 .font(.system(isSmallDevice ? .caption2 : .caption, design: .rounded))
                 .fontWeight(.bold)
                 .foregroundColor(.secondary)
+            
+            if medalCount > 0 {
+                Text("🥇 \(medalCount)")
+                    .font(.system(isSmallDevice ? .caption2 : .caption, design: .rounded))
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+            }
         }
         .padding(.horizontal, 10)
         .frame(height: isSmallDevice ? 32 : 38) // 소형 기기일 때 높이 압축
@@ -55,5 +63,5 @@ struct FastActingStreakBadgeBar: View {
 }
 
 #Preview {
-    FastActingStreakBadgeBar(loggedDaysCount: 5, isSmallDevice: false)
+    FastActingStreakBadgeBar(loggedDaysCount: 5, medalCount: 3, isSmallDevice: false)
 }

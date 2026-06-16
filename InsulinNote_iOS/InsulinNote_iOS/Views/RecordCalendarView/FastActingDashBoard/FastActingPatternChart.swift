@@ -9,34 +9,9 @@ import SwiftUI
 
 struct FastActingPatternChart: View {
     
+    let points: [ChartPoint]
     let isSmallDevice: Bool  // 소형 기기 모드 플래그 추가
     let isTightMonth: Bool   // 6주 달 여부 (산점도 높이 압축)
-    
-    // 차트 좌표 매핑을 위한 데이터 모델 구조체 정의 추가
-    struct ChartPoint: Identifiable {
-        let id = UUID()
-        let time: Double  // 0.0 ~ 24.0 (시간대 실수형)
-        let dosage: Double  // 0.0 ~ 20.0 (투여량 단위수)
-        let dayOfWeek: Int  // 1(일) ~ 7(토)
-    }
-
-    // 차트 레이아웃에 시각적 시연을 위한 정교한 목업 데이터 목록
-    private let mockPoints: [ChartPoint] = [
-        ChartPoint(time: 7.5, dosage: 4.0, dayOfWeek: 2),  // 월요일 아침
-        ChartPoint(time: 8.2, dosage: 5.5, dayOfWeek: 3),  // 화요일 아침
-        ChartPoint(time: 7.8, dosage: 4.5, dayOfWeek: 4),  // 수요일 아침
-        ChartPoint(time: 12.2, dosage: 6.0, dayOfWeek: 2),  // 월요일 점심
-        ChartPoint(time: 12.5, dosage: 7.0, dayOfWeek: 5),  // 목요일 점심
-        ChartPoint(time: 13.0, dosage: 5.5, dayOfWeek: 7),  // 토요일 점심 (주말)
-        ChartPoint(time: 18.5, dosage: 8.0, dayOfWeek: 3),  // 화요일 저녁
-        ChartPoint(time: 19.0, dosage: 9.5, dayOfWeek: 4),  // 수요일 저녁
-        ChartPoint(time: 19.5, dosage: 11.0, dayOfWeek: 1),  // 일요일 저녁 (주말)
-        ChartPoint(time: 20.0, dosage: 8.5, dayOfWeek: 6),  // 금요일 저녁
-        ChartPoint(time: 21.0, dosage: 4.0, dayOfWeek: 5),  // 목요일 야식
-        ChartPoint(time: 11.5, dosage: 6.5, dayOfWeek: 6),  // 금요일 점심
-        ChartPoint(time: 8.5, dosage: 3.5, dayOfWeek: 7),  // 토요일 아침 (주말)
-        ChartPoint(time: 18.0, dosage: 8.0, dayOfWeek: 1),  // 일요일 저녁 (주말)
-    ]
 
     // 현재 선택된 필터 조건에 부합하는지 판단하는 필터 함수
     private func isPointActive(_ point: ChartPoint) -> Bool {
@@ -145,7 +120,7 @@ struct FastActingPatternChart: View {
                     }
 
                     // 3. 데이터 점 (Dot) 매핑 및 그리기
-                    ForEach(mockPoints) { point in
+                    ForEach(points) { point in
                         let xPos = 35 + CGFloat(point.time / 24.0) * width
                         let yPos = CGFloat(1.0 - (point.dosage / 20.0)) * height
                         let isActive = isPointActive(point)

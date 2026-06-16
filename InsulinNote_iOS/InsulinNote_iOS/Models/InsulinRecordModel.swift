@@ -34,3 +34,4 @@ final public class InsulinRecordModel: Identifiable{
         self.updatedAt = updatedAt
     }
 }
+

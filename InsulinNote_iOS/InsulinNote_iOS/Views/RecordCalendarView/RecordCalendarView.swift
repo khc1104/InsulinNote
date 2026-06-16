@@ -48,6 +48,18 @@ struct RecordCalendarView: View {
 
     @State private var selectedDate: Date? = nil
 
+    // SwiftData 기록 동기화 감시용 쿼리
+    @Query private var allRecordsForSync: [InsulinRecordModel]
+
+    // 대시보드 통계 상태 변수 정의 (기본값 제공으로 Layout Shift 방지)
+    @State private var complianceRate: Double = 0.0
+    @State private var streakDays: Int = 0
+    @State private var averageTime: String = "--:--"
+    @State private var consistencyScore: Int = 100
+    @State private var fastActingPoints: [ChartPoint] = []
+    @State private var weeklyLoggedDays: Int = 0
+    @State private var fastActingMedalCount: Int = 0
+
     var currentDate: Date = Date()
     private var today: [Int] {
         var dateElements: [Int] = []
@@ -160,18 +172,22 @@ struct RecordCalendarView: View {
                     // [세션 2] 지효성 대시보드 카드 세션 (가로 분할 및 얇은 테두리)
                     HStack(spacing: 10) {
                         LongActingComplianceCard(
-                            complianceRate: 0.95,
-                            streakDays: 12
+                            complianceRate: complianceRate,
+                            streakDays: streakDays
                         )
                         LongActingConsistencyCard(
-                            averageTime: "오전 08:30",
-                            consistencyScore: 98
+                            averageTime: averageTime,
+                            consistencyScore: consistencyScore
                         )
                     }
                     .padding(.horizontal)
 
                     // [세션 3] 속효성 대시보드 산점도 차트, 스트릭
-                    FastActingPatternChart(isSmallDevice: isSmallDevice, isTightMonth: isTightMonth)
+                    FastActingPatternChart(
+                        points: fastActingPoints,
+                        isSmallDevice: isSmallDevice,
+                        isTightMonth: isTightMonth
+                    )
                         .background(
                             Color(uiColor: .secondarySystemGroupedBackground)
                         )
@@ -185,7 +201,8 @@ struct RecordCalendarView: View {
                         )
                         .padding(.horizontal)
                     FastActingStreakBadgeBar(
-                        loggedDaysCount: 5,
+                        loggedDaysCount: weeklyLoggedDays,
+                        medalCount: fastActingMedalCount,
                         isSmallDevice: isSmallDevice
                     )
                     .padding(.horizontal)
@@ -202,9 +219,39 @@ struct RecordCalendarView: View {
                 .sheet(item: $selectedDate) { date in
                     RecordView(date: date)
                 }
+                .task(id: "\(selectedYear)-\(selectedMonth)") {
+                    await loadDashboardData()
+                }
+                .onChange(of: allRecordsForSync) { _, _ in
+                    Task {
+                        await loadDashboardData()
+                    }
+                }
             }
         }
 
+    }
+
+    private func loadDashboardData() async {
+        do {
+            let compliance = try await InsulinModelActor.shared.fetchLongActingCompliance(for: selectedYear, month: selectedMonth)
+            let consistency = try await InsulinModelActor.shared.fetchLongActingConsistency(for: selectedYear, month: selectedMonth)
+            let points = try await InsulinModelActor.shared.fetchFastActingChartPoints(for: selectedYear, month: selectedMonth)
+            let weeklyDays = try await InsulinModelActor.shared.fetchFastActingWeeklyLoggedDays()
+            let medal = try await InsulinModelActor.shared.fetchFastActingGoldMedalCount()
+            
+            await MainActor.run {
+                self.complianceRate = compliance.complianceRate
+                self.streakDays = compliance.streakDays
+                self.averageTime = consistency.averageTime
+                self.consistencyScore = consistency.consistencyScore
+                self.fastActingPoints = points
+                self.weeklyLoggedDays = weeklyDays
+                self.fastActingMedalCount = medal
+            }
+        } catch {
+            print("대시보드 데이터 연산 실패: \(error)")
+        }
     }
 
     // 1일이 무슨 요일인지 찾는 함수

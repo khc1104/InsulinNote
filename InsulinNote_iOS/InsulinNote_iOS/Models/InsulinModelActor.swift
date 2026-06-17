@@ -23,6 +23,13 @@ public actor InsulinModelActor {
         }()
     )
 
+    private let calendar = Calendar.autoupdatingCurrent
+    private let localMonToSunCalendar: Calendar = {
+        var cal = Calendar.autoupdatingCurrent
+        cal.firstWeekday = 2
+        return cal
+    }()
+
     private static let schema: Schema = .init(
         [InsulinSettingModel.self, InsulinRecordModel.self],
         version: Schema.Version(1, 0, 0)
@@ -165,10 +172,25 @@ public actor InsulinModelActor {
         }
     }
 
-    // MARK: - 캘린더 뷰에서 쓰이는 함수들
+    // MARK: - 캘린더 뷰에서 쓰이는 함수들 및 쿼리 최적화
+    
+    // 특정 ActingType에 해당하는 세팅의 ID를 가져오는 Helper 메서드
+    private func fetchSettingId(for actingType: InsulinSettingModel.ActingType) throws -> UUID? {
+        do {
+            let descriptor = FetchDescriptor<InsulinSettingModel>()
+            let settings = try modelContext.fetch(descriptor)
+            return settings.first(where: { $0.actingType == actingType })?.id
+        } catch {
+            throw ModelError.fetchSettingError
+        }
+    }
+
     // 1. 지효성 인슐린 복약률 및 연속 기록(Streak) 연산
     public func fetchLongActingCompliance(for year: Int, month: Int) throws -> (complianceRate: Double, streakDays: Int) {
-        let calendar = Calendar.current
+        guard let targetSettingId = try fetchSettingId(for: .long) else {
+            return (0.0, 0)
+        }
+        
         guard let startDate = calendar.date(from: DateComponents(year: year, month: month, day: 1)) else {
             throw ModelError.fetchRecordError
         }
@@ -176,13 +198,12 @@ public actor InsulinModelActor {
             throw ModelError.fetchRecordError
         }
         
+        // DB 레벨에서 기간 및 지효성 ID를 필터링
         let predicate = #Predicate<InsulinRecordModel> { record in
-            startDate <= record.createdAt && record.createdAt < nextMonthDate
+            startDate <= record.createdAt && record.createdAt < nextMonthDate && record.setting?.id == targetSettingId
         }
         let descriptor = FetchDescriptor<InsulinRecordModel>(predicate: predicate)
-        let monthlyRecords = try modelContext.fetch(descriptor)
-        
-        let longRecords = monthlyRecords.filter { $0.setting?.actingType == .long }
+        let longRecords = try modelContext.fetch(descriptor)
         
         let now = Date()
         let todayComponents = calendar.dateComponents([.year, .month, .day], from: now)
@@ -211,11 +232,14 @@ public actor InsulinModelActor {
         var streak = 0
         var checkDate = targetEndDate
         
-        let longAllDescriptor = FetchDescriptor<InsulinRecordModel>(
-            sortBy: [.init(\.createdAt, order: .reverse)]
-        )
-        let allRecords = try modelContext.fetch(longAllDescriptor)
-        let allLongDates = Set(allRecords.filter { $0.setting?.actingType == .long }.map { calendar.startOfDay(for: $0.createdAt) })
+        // 전체 기록 중 지효성만 DB 레벨에서 필터링해서 가져옴
+        let longAllPredicate = #Predicate<InsulinRecordModel> { record in
+            record.setting?.id == targetSettingId
+        }
+        var longAllDescriptor = FetchDescriptor<InsulinRecordModel>(predicate: longAllPredicate)
+        longAllDescriptor.sortBy = [.init(\.createdAt, order: .reverse)]
+        let allLongRecords = try modelContext.fetch(longAllDescriptor)
+        let allLongDates = Set(allLongRecords.map { calendar.startOfDay(for: $0.createdAt) })
         
         while allLongDates.contains(checkDate) {
             streak += 1
@@ -228,7 +252,10 @@ public actor InsulinModelActor {
 
     // 2. 지효성 인슐린 평균 투여 시간 및 일관성 점수 연산
     public func fetchLongActingConsistency(for year: Int, month: Int) throws -> (averageTime: String, consistencyScore: Int) {
-        let calendar = Calendar.current
+        guard let targetSettingId = try fetchSettingId(for: .long) else {
+            return ("기록 없음", 100)
+        }
+        
         guard let startDate = calendar.date(from: DateComponents(year: year, month: month, day: 1)) else {
             throw ModelError.fetchRecordError
         }
@@ -236,13 +263,12 @@ public actor InsulinModelActor {
             throw ModelError.fetchRecordError
         }
         
+        // DB 레벨 필터링
         let predicate = #Predicate<InsulinRecordModel> { record in
-            startDate <= record.createdAt && record.createdAt < nextMonthDate
+            startDate <= record.createdAt && record.createdAt < nextMonthDate && record.setting?.id == targetSettingId
         }
         let descriptor = FetchDescriptor<InsulinRecordModel>(predicate: predicate)
-        let monthlyRecords = try modelContext.fetch(descriptor)
-        
-        let longRecords = monthlyRecords.filter { $0.setting?.actingType == .long }
+        let longRecords = try modelContext.fetch(descriptor)
         
         guard !longRecords.isEmpty else {
             return ("기록 없음", 100)
@@ -293,7 +319,10 @@ public actor InsulinModelActor {
 
     // 3. 속효성 인슐린 차트용 좌표 목록 연산
     public func fetchFastActingChartPoints(for year: Int, month: Int) throws -> [ChartPoint] {
-        let calendar = Calendar.current
+        guard let fastSettingId = try fetchSettingId(for: .fast) else {
+            return []
+        }
+        
         guard let startDate = calendar.date(from: DateComponents(year: year, month: month, day: 1)) else {
             throw ModelError.fetchRecordError
         }
@@ -301,13 +330,12 @@ public actor InsulinModelActor {
             throw ModelError.fetchRecordError
         }
         
+        // DB 레벨 필터링
         let predicate = #Predicate<InsulinRecordModel> { record in
-            startDate <= record.createdAt && record.createdAt < nextMonthDate
+            startDate <= record.createdAt && record.createdAt < nextMonthDate && record.setting?.id == fastSettingId
         }
         let descriptor = FetchDescriptor<InsulinRecordModel>(predicate: predicate)
-        let monthlyRecords = try modelContext.fetch(descriptor)
-        
-        let fastRecords = monthlyRecords.filter { $0.setting?.actingType == .fast }
+        let fastRecords = try modelContext.fetch(descriptor)
         
         return fastRecords.map { record in
             let comp = calendar.dateComponents([.hour, .minute, .weekday], from: record.createdAt)
@@ -327,26 +355,25 @@ public actor InsulinModelActor {
 
     // 4. 주간 속효성 기록 일수 연산 (월~일 기준)
     public func fetchFastActingWeeklyLoggedDays() throws -> Int {
-        let calendar = Calendar.current
+        guard let fastSettingId = try fetchSettingId(for: .fast) else {
+            return 0
+        }
+        
         let now = Date()
         
-        var localCalendar = calendar
-        localCalendar.firstWeekday = 2 // 월요일 시작 주
-        
-        guard let startOfWeek = localCalendar.dateInterval(of: .weekOfYear, for: now)?.start else {
+        guard let startOfWeek = localMonToSunCalendar.dateInterval(of: .weekOfYear, for: now)?.start else {
             throw ModelError.fetchRecordError
         }
-        guard let endOfWeek = localCalendar.date(byAdding: .day, value: 7, to: startOfWeek) else {
+        guard let endOfWeek = localMonToSunCalendar.date(byAdding: .day, value: 7, to: startOfWeek) else {
             throw ModelError.fetchRecordError
         }
         
+        // DB 레벨 필터링 (주간 범위 + 속효성 ID)
         let predicate = #Predicate<InsulinRecordModel> { record in
-            startOfWeek <= record.createdAt && record.createdAt < endOfWeek
+            startOfWeek <= record.createdAt && record.createdAt < endOfWeek && record.setting?.id == fastSettingId
         }
         let descriptor = FetchDescriptor<InsulinRecordModel>(predicate: predicate)
-        let weeklyRecords = try modelContext.fetch(descriptor)
-        
-        let fastRecords = weeklyRecords.filter { $0.setting?.actingType == .fast }
+        let fastRecords = try modelContext.fetch(descriptor)
         
         let loggedDates = Set(fastRecords.map { calendar.startOfDay(for: $0.createdAt) })
         return loggedDates.count
@@ -354,22 +381,23 @@ public actor InsulinModelActor {
 
     // 5. 누적 골드 메달 개수 연산
     public func fetchFastActingGoldMedalCount() throws -> Int {
-        let calendar = Calendar.current
+        guard let fastSettingId = try fetchSettingId(for: .fast) else {
+            return 0
+        }
         
-        let descriptor = FetchDescriptor<InsulinRecordModel>()
-        let allRecords = try modelContext.fetch(descriptor)
-        
-        let fastRecords = allRecords.filter { $0.setting?.actingType == .fast }
-        
-        var localCalendar = calendar
-        localCalendar.firstWeekday = 2
+        // DB 레벨에서 속효성 인슐린 데이터만 처음부터 Fetch
+        let predicate = #Predicate<InsulinRecordModel> { record in
+            record.setting?.id == fastSettingId
+        }
+        let descriptor = FetchDescriptor<InsulinRecordModel>(predicate: predicate)
+        let fastRecords = try modelContext.fetch(descriptor)
         
         var weekToDatesMap: [String: Set<Date>] = [:]
         
         for record in fastRecords {
             let startOfDay = calendar.startOfDay(for: record.createdAt)
             
-            let components = localCalendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: record.createdAt)
+            let components = localMonToSunCalendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: record.createdAt)
             if let year = components.yearForWeekOfYear, let week = components.weekOfYear {
                 let key = "\(year)-W\(week)"
                 weekToDatesMap[key, default: Set()].insert(startOfDay)

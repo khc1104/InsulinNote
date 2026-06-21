@@ -17,16 +17,26 @@ struct ContentView: View {
     @AppStorage("firstLaunched") var isLaunched: Bool = false
     @State private var firstSettingSheetPresented: Bool = false
     
+    @Query private var insulinSettings: [InsulinSettingModel]
+    
     //탭 변경 및 앱이 백그라운드에서 돌아올 때 시간을 갱신하기 위해서 사용
     @State private var currentDate = Date()
-    @State private var selectedTab = 0
+    @State private var selectedTab = 1
+    
+    var hasInjectedLongActingToday: Bool {
+        guard let longActingSetting = insulinSettings.first(where: { $0.actingType == .long }) else { return false }
+        let calendar = Calendar.current
+        return longActingSetting.records.contains {
+            calendar.isDate($0.createdAt, inSameDayAs: currentDate)
+        }
+    }
     
     var body: some View {
         TabView(selection: $selectedTab) {
             RecordView(date: currentDate)
                 .tabItem {
                     Label(
-                        title: { Text("main") },
+                        title: { Text("홈") },
                         icon: { Image(systemName: "house.fill") }
                     )
                 }.padding(.bottom, 10)
@@ -37,20 +47,13 @@ struct ContentView: View {
             RecordCalendarView(currentDate: currentDate)
                 .tabItem {
                     Label(
-                        title: { Text("calendar") },
+                        title: { Text("캘린더") },
                           icon: { Image(systemName: "calendar") }
                     )
                 }.padding(.bottom, 10)
                 .tag(2)
-            SettingInsulinView()
-                .tabItem {
-                    Label(
-                        title: { Text("setting") },
-                          icon: { Image(systemName: "gear") }
-                    )
-                }.padding(.bottom, 10)
-                .tag(3)
-        }.task{
+        }
+        .tint(hasInjectedLongActingToday ? .longActing : .fastActing).task{
             if !isLaunched{
                 await createInitSetting()
             }

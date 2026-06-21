@@ -15,7 +15,6 @@ struct RecordingWidgetView: View {
 
     var body: some View {
         ZStack{
-            
             VStack {
                 switch family {
                 case .accessoryCircular:
@@ -46,33 +45,46 @@ struct RecordingWidgetView: View {
                             Text("지효성")
                                 .font(.largeTitle)
                             Text("\(entry.dosage)단위")
+                            
+                            Spacer()
+                            
                             if let lastRecordDate = entry.lastRecordDate {
-                                Text(
-                                    "\(DateFormatter.hourMinute.string(from: lastRecordDate)) 투여됨"
-                                )
+                                VStack(alignment: .leading) {
+                                    Text(DateFormatter.hourMinute.string(from: lastRecordDate))
+                                    Text("투여 완료")
+                                }
+                                .font(.title3)
                             } else {
                                 Toggle(
                                     isOn: false,
                                     intent: RecordingIntent(id: entry.settingId)
                                 ) {
                                     Image(systemName: "syringe")
+                                        .frame(maxWidth: .infinity)
                                 }
                                 
                             }
                             
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     case .fast:
                         VStack(alignment: .leading) {
                             Text("속효성")
                                 .font(.largeTitle)
                             Text("\(entry.dosage)단위")
+                            
+                            Spacer()
+                            
                             if let lastRecordDate = entry.lastRecordDate{
                                 Text("\(DateFormatter.hourMinute.string(from: lastRecordDate))")
+                                    .font(.title3)
                             }
-                            Button(
+                            Toggle(
+                                isOn:false,
                                 intent: RecordingIntent(id: entry.settingId)
                             ) {
                                 Image(systemName: "syringe")
+                                    .frame(maxWidth: .infinity)
                             }
                         }
                     }
@@ -128,3 +140,4 @@ struct RecordingWidgetView: View {
         }
     }
 }
+

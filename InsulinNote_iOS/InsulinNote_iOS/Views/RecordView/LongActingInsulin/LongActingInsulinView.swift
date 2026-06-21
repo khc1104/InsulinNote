@@ -14,30 +14,50 @@ struct LongActingInsulinView:View {
     let setting: InsulinSettingModel?
     let proxy: GeometryProxy
     let onButtonTapped: () -> Void
+    let onEditTapped: () -> Void
+    let onRecordTapped: (InsulinRecordModel) -> Void
     
     private var recordInDate: InsulinRecordModel? {
         dosedInDate(setting: setting)
     }
 
-    init(date: Date, setting: InsulinSettingModel?, proxy: GeometryProxy, onButtonTapped: @escaping () -> Void) {
+    init(
+        date: Date,
+        setting: InsulinSettingModel?,
+        proxy: GeometryProxy,
+        onButtonTapped: @escaping () -> Void,
+        onEditTapped: @escaping () -> Void,
+        onRecordTapped: @escaping (InsulinRecordModel) -> Void
+    ) {
         self.date = date
         self.setting = setting
         self.proxy = proxy
         self.onButtonTapped = onButtonTapped
+        self.onEditTapped = onEditTapped
+        self.onRecordTapped = onRecordTapped
     }
+    
     var body: some View {
-        VStack(alignment: .leading){
-            if let setting{
-                Text(setting.insulinProductName)
-                    .font(.title)
-                    .foregroundStyle(Color.longActing)
-                VStack{
-                    if let recordInDate{
-                        LongActingInsulinIsInjectedView(insulinRecord:recordInDate ,proxy: proxy)
-                    }else{
-                        LongActingInsulinIsNotInjectedView(proxy: proxy, onButtonTapped: onButtonTapped)
-                    }
-                }.border(Color.longActing, width: 1)
+        if let setting {
+            VStack(alignment: .leading, spacing: 8) {
+                if let recordInDate {
+                    LongActingInsulinIsInjectedView(
+                        setting: setting,
+                        insulinRecord: recordInDate,
+                        proxy: proxy,
+                        onButtonTapped: { onRecordTapped(recordInDate) },
+                        onEditTapped: onEditTapped
+                    )
+                    .frame(maxHeight: .infinity)
+                } else {
+                    LongActingInsulinIsNotInjectedView(
+                        setting: setting,
+                        proxy: proxy,
+                        onButtonTapped: onButtonTapped,
+                        onEditTapped: onEditTapped
+                    )
+                    .frame(maxHeight: .infinity)
+                }
             }
         }
     }

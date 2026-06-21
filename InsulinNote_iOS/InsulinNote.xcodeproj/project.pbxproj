@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		250107C92E704027001FD959 /* AppIcon2.icon in Resources */ = {isa = PBXBuildFile; fileRef = 250107C82E704027001FD959 /* AppIcon2.icon */; };
 		2523AA172F98594B00EF08AD /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 2523AA162F98594B00EF08AD /* AppIcon.icon */; };
 		2525622E2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2525622D2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift */; };
 		252562302C4538F700F7ECA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2525622F2C4538F700F7ECA1 /* ContentView.swift */; };
@@ -60,11 +59,21 @@
 		256022AA2ED97E20006CF8D5 /* ModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256022A92ED97E04006CF8D5 /* ModelError.swift */; };
 		2561258C2E4B0F53003CA709 /* RecordDetailSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2561258B2E4B0F45003CA709 /* RecordDetailSheetView.swift */; };
 		257730D32E3A618100AE651C /* EditInsulinSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257730D22E3A618100AE651C /* EditInsulinSettingView.swift */; };
-		2591518F2E38BD4F0092F7B7 /* SettingInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2591518E2E38BD4F0092F7B7 /* SettingInsulinView.swift */; };
+		25795BBF2FD7B109007F7429 /* AddRecordSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BBE2FD7B106007F7429 /* AddRecordSheetView.swift */; };
+		25795BC12FD7B112007F7429 /* EditRecordSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BC02FD7B112007F7429 /* EditRecordSheetView.swift */; };
+		25795BC32FD952AD007F7429 /* MonthlyRecordGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BC22FD95297007F7429 /* MonthlyRecordGridView.swift */; };
+		25795BC52FD952C8007F7429 /* CalendarDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BC42FD952C6007F7429 /* CalendarDayCellView.swift */; };
+		25795BC82FD95309007F7429 /* LongActingComplianceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BC72FD95308007F7429 /* LongActingComplianceCard.swift */; };
+		25795BCB2FD95330007F7429 /* CircularProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BCA2FD9532E007F7429 /* CircularProgressRing.swift */; };
+		25795BCD2FD95342007F7429 /* LongActingConsistencyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BCC2FD95340007F7429 /* LongActingConsistencyCard.swift */; };
+		25795BD02FD9535F007F7429 /* FastActingPatternChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BCF2FD9535E007F7429 /* FastActingPatternChart.swift */; };
+		25795BD22FD95369007F7429 /* FastActingFilterChipBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BD12FD95368007F7429 /* FastActingFilterChipBar.swift */; };
+		25795BD42FD9537F007F7429 /* FastActingStreakBadgeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BD32FD9537D007F7429 /* FastActingStreakBadgeBar.swift */; };
+		25795BD62FE11443007F7429 /* ChartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BD52FE11437007F7429 /* ChartPoint.swift */; };
+		25795BD72FE11443007F7429 /* ChartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25795BD52FE11437007F7429 /* ChartPoint.swift */; };
 		25D222502DDB620D00DA1D90 /* Date + id.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2224F2DDB620A00DA1D90 /* Date + id.swift */; };
 		25D5FEF32C7B3EB900DCC01C /* RecordingWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */; };
 		25D5FEF42C7B3EBA00DCC01C /* RecordingWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */; };
-		25E53FF72C5E3AD2009DA024 /* HowManyGetProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E53FF62C5E3AD2009DA024 /* HowManyGetProductView.swift */; };
 		25FB36492C8F35E200BC0DA7 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FB36482C8F35E200BC0DA7 /* RecordView.swift */; };
 		25FB364B2C8F429A00BC0DA7 /* FastActingInsulinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FB364A2C8F429A00BC0DA7 /* FastActingInsulinView.swift */; };
 		25FB364D2C8F497300BC0DA7 /* FastActingInsulinRecordCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FB364C2C8F497300BC0DA7 /* FastActingInsulinRecordCardView.swift */; };
@@ -96,7 +105,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		250107C82E704027001FD959 /* AppIcon2.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon2.icon; sourceTree = "<group>"; };
 		2523AA162F98594B00EF08AD /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		2523AA182F9E4FE800EF08AD /* InsulinNote-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "InsulinNote-Info.plist"; sourceTree = "<group>"; };
 		2525622A2C4538F700F7ECA1 /* InsulinNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsulinNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,10 +144,19 @@
 		256022A92ED97E04006CF8D5 /* ModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelError.swift; sourceTree = "<group>"; };
 		2561258B2E4B0F45003CA709 /* RecordDetailSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailSheetView.swift; sourceTree = "<group>"; };
 		257730D22E3A618100AE651C /* EditInsulinSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInsulinSettingView.swift; sourceTree = "<group>"; };
-		2591518E2E38BD4F0092F7B7 /* SettingInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInsulinView.swift; sourceTree = "<group>"; };
+		25795BBE2FD7B106007F7429 /* AddRecordSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecordSheetView.swift; sourceTree = "<group>"; };
+		25795BC02FD7B112007F7429 /* EditRecordSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordSheetView.swift; sourceTree = "<group>"; };
+		25795BC22FD95297007F7429 /* MonthlyRecordGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRecordGridView.swift; sourceTree = "<group>"; };
+		25795BC42FD952C6007F7429 /* CalendarDayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCellView.swift; sourceTree = "<group>"; };
+		25795BC72FD95308007F7429 /* LongActingComplianceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongActingComplianceCard.swift; sourceTree = "<group>"; };
+		25795BCA2FD9532E007F7429 /* CircularProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressRing.swift; sourceTree = "<group>"; };
+		25795BCC2FD95340007F7429 /* LongActingConsistencyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongActingConsistencyCard.swift; sourceTree = "<group>"; };
+		25795BCF2FD9535E007F7429 /* FastActingPatternChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastActingPatternChart.swift; sourceTree = "<group>"; };
+		25795BD12FD95368007F7429 /* FastActingFilterChipBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastActingFilterChipBar.swift; sourceTree = "<group>"; };
+		25795BD32FD9537D007F7429 /* FastActingStreakBadgeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastActingStreakBadgeBar.swift; sourceTree = "<group>"; };
+		25795BD52FE11437007F7429 /* ChartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPoint.swift; sourceTree = "<group>"; };
 		25D2224F2DDB620A00DA1D90 /* Date + id.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + id.swift"; sourceTree = "<group>"; };
 		25D5FEF22C7B3E2700DCC01C /* RecordingWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingWidgetView.swift; sourceTree = "<group>"; };
-		25E53FF62C5E3AD2009DA024 /* HowManyGetProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowManyGetProductView.swift; sourceTree = "<group>"; };
 		25FB36482C8F35E200BC0DA7 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		25FB364A2C8F429A00BC0DA7 /* FastActingInsulinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastActingInsulinView.swift; sourceTree = "<group>"; };
 		25FB364C2C8F497300BC0DA7 /* FastActingInsulinRecordCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastActingInsulinRecordCardView.swift; sourceTree = "<group>"; };
@@ -219,7 +236,6 @@
 				2525623D2C46953D00F7ECA1 /* Models */,
 				2525622D2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift */,
 				252562332C4538F800F7ECA1 /* Assets.xcassets */,
-				250107C82E704027001FD959 /* AppIcon2.icon */,
 				2523AA162F98594B00EF08AD /* AppIcon.icon */,
 				252562352C4538F800F7ECA1 /* Preview Content */,
 			);
@@ -237,6 +253,7 @@
 		2525623D2C46953D00F7ECA1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				25795BD52FE11437007F7429 /* ChartPoint.swift */,
 				256022A52EBD01CE006CF8D5 /* InsulinSettingQuery.swift */,
 				2560229D2EA4DE8A006CF8D5 /* InsulinModelActor.swift */,
 				2525623F2C46956400F7ECA1 /* InsulinRecordModel.swift */,
@@ -248,12 +265,10 @@
 		2525623E2C46954500F7ECA1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				256022682E838754006CF8D5 /* FIrstLunchView */,
-				2591518D2E38BD360092F7B7 /* SettingInsulinView */,
-				2543CB352D8AB4D6005BD9A2 /* RecordCalendarView */,
 				2525622F2C4538F700F7ECA1 /* ContentView.swift */,
 				25FB36472C8F35B200BC0DA7 /* RecordView */,
-				25E53FF52C5E3AAF009DA024 /* HowManyGetProductView */,
+				2543CB352D8AB4D6005BD9A2 /* RecordCalendarView */,
+				256022682E838754006CF8D5 /* FIrstLunchView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,6 +300,9 @@
 		2543CB352D8AB4D6005BD9A2 /* RecordCalendarView */ = {
 			isa = PBXGroup;
 			children = (
+				25795BCE2FD9534E007F7429 /* FastActingDashBoard */,
+				25795BC92FD9530F007F7429 /* LongActingDashBoard */,
+				25795BC62FD952CF007F7429 /* CalendarView */,
 				2543CB372D8AB4FB005BD9A2 /* RecordCalendarView.swift */,
 			);
 			path = RecordCalendarView;
@@ -309,13 +327,33 @@
 			path = RecordingWidget;
 			sourceTree = "<group>";
 		};
-		2591518D2E38BD360092F7B7 /* SettingInsulinView */ = {
+		25795BC62FD952CF007F7429 /* CalendarView */ = {
 			isa = PBXGroup;
 			children = (
-				2591518E2E38BD4F0092F7B7 /* SettingInsulinView.swift */,
-				257730D22E3A618100AE651C /* EditInsulinSettingView.swift */,
+				25795BC42FD952C6007F7429 /* CalendarDayCellView.swift */,
+				25795BC22FD95297007F7429 /* MonthlyRecordGridView.swift */,
 			);
-			path = SettingInsulinView;
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		25795BC92FD9530F007F7429 /* LongActingDashBoard */ = {
+			isa = PBXGroup;
+			children = (
+				25795BCC2FD95340007F7429 /* LongActingConsistencyCard.swift */,
+				25795BCA2FD9532E007F7429 /* CircularProgressRing.swift */,
+				25795BC72FD95308007F7429 /* LongActingComplianceCard.swift */,
+			);
+			path = LongActingDashBoard;
+			sourceTree = "<group>";
+		};
+		25795BCE2FD9534E007F7429 /* FastActingDashBoard */ = {
+			isa = PBXGroup;
+			children = (
+				25795BD32FD9537D007F7429 /* FastActingStreakBadgeBar.swift */,
+				25795BD12FD95368007F7429 /* FastActingFilterChipBar.swift */,
+				25795BCF2FD9535E007F7429 /* FastActingPatternChart.swift */,
+			);
+			path = FastActingDashBoard;
 			sourceTree = "<group>";
 		};
 		25BDD4492E5D3E2D0047B0AB /* LockScreenInfoWidget */ = {
@@ -337,17 +375,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		25E53FF52C5E3AAF009DA024 /* HowManyGetProductView */ = {
-			isa = PBXGroup;
-			children = (
-				25E53FF62C5E3AD2009DA024 /* HowManyGetProductView.swift */,
-			);
-			path = HowManyGetProductView;
-			sourceTree = "<group>";
-		};
 		25FB36472C8F35B200BC0DA7 /* RecordView */ = {
 			isa = PBXGroup;
 			children = (
+				25795BBE2FD7B106007F7429 /* AddRecordSheetView.swift */,
+				25795BC02FD7B112007F7429 /* EditRecordSheetView.swift */,
+				257730D22E3A618100AE651C /* EditInsulinSettingView.swift */,
 				2561258B2E4B0F45003CA709 /* RecordDetailSheetView.swift */,
 				25FB36482C8F35E200BC0DA7 /* RecordView.swift */,
 				250107CA2E7408B4001FD959 /* FastActingInsulin */,
@@ -437,7 +470,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				250107C92E704027001FD959 /* AppIcon2.icon in Resources */,
 				252562372C4538F800F7ECA1 /* Preview Assets.xcassets in Resources */,
 				252993D02C6F75090064C2F9 /* intent-click-sound.mp3 in Resources */,
 				252562342C4538F800F7ECA1 /* Assets.xcassets in Resources */,
@@ -463,13 +495,16 @@
 			files = (
 				252562302C4538F700F7ECA1 /* ContentView.swift in Sources */,
 				253387492F042EFC004DAB06 /* FormatStyles.swift in Sources */,
+				25795BD02FD9535F007F7429 /* FastActingPatternChart.swift in Sources */,
 				253387432EF94310004DAB06 /* UserDefaults + shared.swift in Sources */,
 				2560226F2E8387F2006CF8D5 /* SettingInitView.swift in Sources */,
-				2591518F2E38BD4F0092F7B7 /* SettingInsulinView.swift in Sources */,
 				252993CD2C6F74EB0064C2F9 /* SoundPlayer.swift in Sources */,
 				25484BE22C91A4CD005119AC /* LongActingInsulinIsInjectedView.swift in Sources */,
+				25795BC12FD7B112007F7429 /* EditRecordSheetView.swift in Sources */,
+				25795BCB2FD95330007F7429 /* CircularProgressRing.swift in Sources */,
 				25FB364F2C8F4A4A00BC0DA7 /* LongActingInsulinView.swift in Sources */,
 				2560229F2EA4DE91006CF8D5 /* InsulinModelActor.swift in Sources */,
+				25795BD22FD95369007F7429 /* FastActingFilterChipBar.swift in Sources */,
 				256022A12EB7A001006CF8D5 /* ModelContextStore.swift in Sources */,
 				25484BE62C91BB8A005119AC /* InsulinSettingModel.swift in Sources */,
 				25FB364D2C8F497300BC0DA7 /* FastActingInsulinRecordCardView.swift in Sources */,
@@ -477,16 +512,22 @@
 				256022632E7B1654006CF8D5 /* LockScreenInfoView.swift in Sources */,
 				252993802C6CF64A0064C2F9 /* RecordingWidget.swift in Sources */,
 				2543CB382D8AB4FB005BD9A2 /* RecordCalendarView.swift in Sources */,
+				25795BBF2FD7B109007F7429 /* AddRecordSheetView.swift in Sources */,
+				25795BD42FD9537F007F7429 /* FastActingStreakBadgeBar.swift in Sources */,
+				25795BCD2FD95342007F7429 /* LongActingConsistencyCard.swift in Sources */,
+				25795BC32FD952AD007F7429 /* MonthlyRecordGridView.swift in Sources */,
+				25795BD62FE11443007F7429 /* ChartPoint.swift in Sources */,
 				253387402EDF065E004DAB06 /* ErrorManager.swift in Sources */,
+				25795BC52FD952C8007F7429 /* CalendarDayCellView.swift in Sources */,
 				25FB364B2C8F429A00BC0DA7 /* FastActingInsulinView.swift in Sources */,
 				2560226A2E83876E006CF8D5 /* FirstLunchView.swift in Sources */,
-				25E53FF72C5E3AD2009DA024 /* HowManyGetProductView.swift in Sources */,
 				25484BE42C91A8D9005119AC /* LongActingInsulinIsNotInjectedView.swift in Sources */,
 				256022722E851B89006CF8D5 /* WidgetExplainView.swift in Sources */,
 				2525622E2C4538F700F7ECA1 /* InsulinNote_iOSApp.swift in Sources */,
 				25D222502DDB620D00DA1D90 /* Date + id.swift in Sources */,
 				252562402C46956400F7ECA1 /* InsulinRecordModel.swift in Sources */,
 				252993CA2C6F70C00064C2F9 /* RecordingIntent.swift in Sources */,
+				25795BC82FD95309007F7429 /* LongActingComplianceCard.swift in Sources */,
 				256022AA2ED97E20006CF8D5 /* ModelError.swift in Sources */,
 				256022A72EBD01D8006CF8D5 /* InsulinSettingQuery.swift in Sources */,
 				257730D32E3A618100AE651C /* EditInsulinSettingView.swift in Sources */,
@@ -512,6 +553,7 @@
 				2533873E2EDE0591004DAB06 /* ModelError.swift in Sources */,
 				2560226E2E8387F2006CF8D5 /* SettingInitView.swift in Sources */,
 				252993732C6B73620064C2F9 /* RecordingWidgetBundle.swift in Sources */,
+				25795BD72FE11443007F7429 /* ChartPoint.swift in Sources */,
 				25484BE52C91BB89005119AC /* InsulinSettingModel.swift in Sources */,
 				252993752C6B73620064C2F9 /* RecordingWidget.swift in Sources */,
 				252993CE2C6F74EB0064C2F9 /* SoundPlayer.swift in Sources */,
@@ -690,7 +732,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.HeeCheol.InsulinNote-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -724,7 +766,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.HeeCheol.InsulinNote-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

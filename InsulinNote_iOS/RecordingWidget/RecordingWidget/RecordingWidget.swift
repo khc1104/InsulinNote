@@ -138,3 +138,26 @@ struct RecordingConfigurationIntent: WidgetConfigurationIntent {
 
     init() {}
 }
+#Preview(as: .systemSmall) {
+    RecordingWidget()
+} timeline: {
+    RecordingEntry(
+        date: .now,
+        settingId: UUID(),
+        productName: "지효성",
+        dosage: 22,
+        actingType: .long,
+        lastRecordDate: nil,
+        lastRecordDosage: 22,
+        errorMessage: nil)
+    RecordingEntry(
+        date: .now,
+        settingId: UUID(),
+        productName: "속효성",
+        dosage: 15,
+        actingType: .fast,
+        lastRecordDate: nil,
+        lastRecordDosage: 15,
+        errorMessage: nil)
+}
+

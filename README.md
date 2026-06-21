@@ -47,11 +47,11 @@
 
 | 메인 화면 | 캘린더 화면 |
 | --- | --- |
-|<img width="295" height="640" alt="메인 화면" src="https://github.com/user-attachments/assets/350d0e41-93e8-461e-9120-8aa3fe14aecf" />|<img width="295" height="640" alt="캘린더" src="https://github.com/user-attachments/assets/4361b4c2-3273-412d-9f2d-e267f7f58d1e" />|
+|<img width="295" height="640" alt="메인 화면" src="https://github.com/user-attachments/assets/2b0f6c33-128a-4e1f-a603-299404b6f0f3" />|<img width="295" height="640" alt="캘린더" src="https://github.com/user-attachments/assets/3217a695-2ab3-4df6-b90e-633b93102966" />
 
 | 홈화면 위젯 투여 | 잠금화면 위젯 투여 |
 | --- | --- |
-|<img width="295" height="640" alt="홈화면 위젯" src="https://github.com/user-attachments/assets/fc66d33b-57bf-4ce0-a94e-26f0c01ea953" />|<img width="295" height="640" alt="잠금화면 위젯" src="https://github.com/user-attachments/assets/b152d7b7-4a99-4894-85b5-bb48bc5d9ab0" />|
+|<img width="295" height="640" alt="홈화면 위젯" src="https://github.com/user-attachments/assets/7ec743a3-dfa4-4f61-8bf9-bd9a3c773bd8" />|<img width="295" height="640" alt="잠금화면 위젯" src="https://github.com/user-attachments/assets/b152d7b7-4a99-4894-85b5-bb48bc5d9ab0" />|
 
 
 ## 향후 개선 항목
